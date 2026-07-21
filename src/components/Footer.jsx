@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flame, Instagram, Facebook, Twitter, Upload, ArrowUp } from 'lucide-react';
+import { Flame, Upload, ArrowUp, Share2, Globe, MessageCircle } from 'lucide-react';
 
 export const Footer = ({ onOpenReservation, onOpenCsvUpload }) => {
   const scrollToTop = () => {
@@ -24,14 +24,14 @@ export const Footer = ({ onOpenReservation, onOpenCsvUpload }) => {
               Minimalist luxury bar & charcoal grill. Authentic Yaji Suya, prime wood-flamed steaks, whole tilapia, and artisanal cocktails in Primrose Hill.
             </p>
             <div className="flex items-center gap-3 pt-2 text-zinc-400">
-              <a href="#" className="w-8 h-8 rounded-full bg-zinc-900 hover:bg-red-600 hover:text-white flex items-center justify-center transition-colors">
-                <Instagram size={15} />
+              <a href="#" aria-label="Social Media" className="w-8 h-8 rounded-full bg-zinc-900 hover:bg-red-600 hover:text-white flex items-center justify-center transition-colors">
+                <Globe size={15} />
               </a>
-              <a href="#" className="w-8 h-8 rounded-full bg-zinc-900 hover:bg-red-600 hover:text-white flex items-center justify-center transition-colors">
-                <Facebook size={15} />
+              <a href="#" aria-label="Share" className="w-8 h-8 rounded-full bg-zinc-900 hover:bg-red-600 hover:text-white flex items-center justify-center transition-colors">
+                <Share2 size={15} />
               </a>
-              <a href="#" className="w-8 h-8 rounded-full bg-zinc-900 hover:bg-red-600 hover:text-white flex items-center justify-center transition-colors">
-                <Twitter size={15} />
+              <a href="#" aria-label="Contact Us" className="w-8 h-8 rounded-full bg-zinc-900 hover:bg-red-600 hover:text-white flex items-center justify-center transition-colors">
+                <MessageCircle size={15} />
               </a>
             </div>
           </div>
