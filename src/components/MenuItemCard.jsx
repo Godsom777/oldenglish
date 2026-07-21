@@ -5,26 +5,26 @@ export const MenuItemCard = ({ item, onSelect, onReserveWithItem }) => {
   return (
     <div
       onClick={() => onSelect(item)}
-      className="group relative bg-[#151519] rounded-2xl border border-zinc-800/80 overflow-hidden hover:border-red-900/60 transition-all duration-300 flex flex-col justify-between cursor-pointer hover:shadow-xl hover:shadow-red-950/20"
+      className="group relative bg-white rounded-3xl border border-zinc-200/90 overflow-hidden hover:border-red-500/50 transition-all duration-300 flex flex-col justify-between cursor-pointer hover:shadow-xl hover:shadow-zinc-200/60 p-2"
     >
       {/* Image Container */}
-      <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-zinc-900">
+      <div className="relative h-52 sm:h-56 w-full rounded-2xl overflow-hidden bg-zinc-100">
         <img
           src={item.image}
           alt={item.name}
           className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#151519] via-transparent to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
 
         {/* Top Badges */}
         <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
           {/* Spice level pill */}
           {item.spicyLevel > 0 ? (
-            <div className="badge badge-red text-[11px] backdrop-blur-md bg-black/60 border-red-500/40">
-              <span className="flex gap-0.5 text-red-500">
+            <div className="badge text-[11px] backdrop-blur-md bg-white/95 text-red-600 border-red-200 font-semibold shadow-sm">
+              <span className="flex gap-0.5 text-red-600">
                 {Array.from({ length: item.spicyLevel }).map((_, i) => (
-                  <Flame key={i} size={11} className="fill-red-500" />
+                  <Flame key={i} size={12} className="fill-red-600" />
                 ))}
               </span>
               <span>Spicy</span>
@@ -34,29 +34,29 @@ export const MenuItemCard = ({ item, onSelect, onReserveWithItem }) => {
           )}
 
           {/* Price Badge */}
-          <div className="px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-white font-semibold text-sm">
+          <div className="px-3.5 py-1 rounded-full bg-zinc-900 text-white font-bold text-sm shadow-md">
             ${item.price}
           </div>
         </div>
 
         {/* Featured Ribbon if applicable */}
         {item.featured && (
-          <div className="absolute bottom-3 left-3 px-2.5 py-0.5 rounded-md bg-red-600/90 text-[10px] font-bold uppercase tracking-wider text-white">
+          <div className="absolute bottom-3 left-3 px-3 py-1 rounded-lg bg-red-600 text-[10px] font-bold uppercase tracking-wider text-white shadow-md">
             Chef’s Pick
           </div>
         )}
       </div>
 
-      {/* Content Body */}
+      {/* Content Body with Extra Whitespace */}
       <div className="p-5 flex-1 flex flex-col justify-between">
         <div>
           {/* Tags */}
           {item.tags && item.tags.length > 0 && (
-            <div className="flex flex-wrap gap-1.5 mb-2">
+            <div className="flex flex-wrap gap-1.5 mb-2.5">
               {item.tags.map((tag, idx) => (
                 <span
                   key={idx}
-                  className="text-[10px] uppercase font-semibold tracking-wider text-zinc-400 bg-zinc-800/80 px-2 py-0.5 rounded"
+                  className="text-[10px] uppercase font-bold tracking-wider text-zinc-600 bg-zinc-100 px-2.5 py-1 rounded-md border border-zinc-200"
                 >
                   {tag}
                 </span>
@@ -65,20 +65,20 @@ export const MenuItemCard = ({ item, onSelect, onReserveWithItem }) => {
           )}
 
           {/* Dish Name */}
-          <h3 className="font-serif text-lg sm:text-xl font-bold text-white group-hover:text-red-400 transition-colors line-clamp-1">
+          <h3 className="font-serif text-xl sm:text-2xl font-bold text-zinc-900 group-hover:text-red-600 transition-colors line-clamp-1">
             {item.name}
           </h3>
 
           {/* Description */}
-          <p className="text-zinc-400 text-xs sm:text-sm mt-1.5 line-clamp-2 font-light leading-relaxed">
+          <p className="text-zinc-600 text-xs sm:text-sm mt-2 line-clamp-2 font-normal leading-relaxed">
             {item.description}
           </p>
         </div>
 
         {/* Card Footer Actions */}
-        <div className="mt-4 pt-3 border-t border-zinc-800/60 flex items-center justify-between">
-          <span className="text-xs text-zinc-500 group-hover:text-zinc-300 transition-colors flex items-center gap-1">
-            <Info size={13} /> View Ingredients
+        <div className="mt-6 pt-4 border-t border-zinc-100 flex items-center justify-between">
+          <span className="text-xs font-medium text-zinc-500 group-hover:text-zinc-900 transition-colors flex items-center gap-1">
+            <Info size={14} /> View Details
           </span>
 
           <button
@@ -86,9 +86,9 @@ export const MenuItemCard = ({ item, onSelect, onReserveWithItem }) => {
               e.stopPropagation();
               onReserveWithItem(item);
             }}
-            className="text-xs font-semibold text-red-400 hover:text-red-300 bg-red-950/40 hover:bg-red-900/60 px-3 py-1.5 rounded-lg border border-red-800/40 transition-colors flex items-center gap-1"
+            className="text-xs font-semibold text-red-600 hover:text-white bg-red-50 hover:bg-red-600 px-3.5 py-2 rounded-xl border border-red-200 hover:border-red-600 transition-colors flex items-center gap-1 shadow-sm"
           >
-            <Plus size={13} /> Reserve & Order
+            <Plus size={14} /> Reserve & Order
           </button>
         </div>
       </div>

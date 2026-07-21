@@ -1,13 +1,13 @@
-// Live operating hours logic for Old English Bar & Grill
+// Operating hours logic for Old English Bar & Grill - Area H, New Owerri, Imo State
 
 export const OPERATING_HOURS = [
-  { day: 'Monday', open: '16:00', close: '00:00', label: '4:00 PM – 12:00 AM' },
-  { day: 'Tuesday', open: '16:00', close: '00:00', label: '4:00 PM – 12:00 AM' },
-  { day: 'Wednesday', open: '16:00', close: '00:00', label: '4:00 PM – 12:00 AM' },
-  { day: 'Thursday', open: '16:00', close: '01:00', label: '4:00 PM – 1:00 AM' },
-  { day: 'Friday', open: '15:00', close: '02:00', label: '3:00 PM – 2:00 AM' },
-  { day: 'Saturday', open: '13:00', close: '02:00', label: '1:00 PM – 2:00 AM' },
-  { day: 'Sunday', open: '13:00', close: '00:00', label: '1:00 PM – 12:00 AM' },
+  { day: 'Monday', open: '07:00', close: '00:00', label: '7:00 AM – 12:00 AM' },
+  { day: 'Tuesday', open: '07:00', close: '00:00', label: '7:00 AM – 12:00 AM' },
+  { day: 'Wednesday', open: '07:00', close: '00:00', label: '7:00 AM – 12:00 AM' },
+  { day: 'Thursday', open: '07:00', close: '00:00', label: '7:00 AM – 12:00 AM' },
+  { day: 'Friday', open: '07:00', close: '00:00', label: '7:00 AM – 12:00 AM' },
+  { day: 'Saturday', open: '07:00', close: '00:00', label: '7:00 AM – 12:00 AM' },
+  { day: 'Sunday', open: '07:00', close: '00:00', label: '7:00 AM – 12:00 AM' },
 ];
 
 export const getLiveBusinessStatus = () => {
@@ -24,9 +24,8 @@ export const getLiveBusinessStatus = () => {
   const openTimeMinutes = openHour * 60 + openMin;
 
   let [closeHour, closeMin] = todaySchedule.close.split(':').map(Number);
-  if (closeHour < openHour) {
-    // Closes past midnight
-    closeHour += 24;
+  if (closeHour === 0) {
+    closeHour = 24; // Midnight
   }
   const closeTimeMinutes = closeHour * 60 + closeMin;
 

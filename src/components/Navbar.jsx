@@ -15,7 +15,6 @@ export const Navbar = ({ onOpenReservation, onOpenCsvUpload }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Refresh status every minute
   useEffect(() => {
     const timer = setInterval(() => {
       setBusinessStatus(getLiveBusinessStatus());
@@ -27,46 +26,52 @@ export const Navbar = ({ onOpenReservation, onOpenCsvUpload }) => {
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-          scrolled ? 'glass-nav py-3' : 'bg-transparent py-5'
+          scrolled ? 'glass-nav py-3.5 shadow-sm' : 'bg-white/80 py-5 backdrop-blur-sm'
         }`}
-        style={{
-          borderBottom: scrolled ? '1px solid var(--border-subtle)' : '1px solid transparent',
-        }}
       >
         <div className="container flex items-center justify-between">
           {/* Logo & Brand */}
-          <a href="#" className="flex items-center gap-2 group">
-            <div className="w-9 h-9 rounded-full bg-red-600/20 border border-red-500/40 flex items-center justify-center text-red-500 group-hover:scale-105 transition-transform">
-              <Flame size={20} className="fill-red-500/30" />
+          <a href="#" className="flex items-center gap-2.5 group">
+            <div className="w-10 h-10 rounded-full bg-red-50 border border-red-200 flex items-center justify-center text-red-600 group-hover:scale-105 transition-transform shadow-sm">
+              <Flame size={22} className="fill-red-600/20" />
             </div>
             <div>
-              <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-white flex items-center gap-1.5">
+              <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 flex items-center gap-1.5">
                 OLD ENGLISH
               </span>
-              <span className="block text-[10px] uppercase tracking-[0.25em] text-red-500 font-semibold -mt-1">
-                BAR & GRILL
+              <span className="block text-[10px] uppercase tracking-[0.25em] text-red-600 font-bold -mt-1">
+                BAR & GRILL • NEW OWERRI
               </span>
             </div>
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-300">
-            <a href="#menu" className="hover:text-white transition-colors">
+          <nav className="hidden md:flex items-center gap-8 text-sm font-semibold text-zinc-700">
+            <a href="#menu" className="hover:text-red-600 transition-colors">
               Menu
             </a>
-            <a href="#story" className="hover:text-white transition-colors">
+            <a href="#story" className="hover:text-red-600 transition-colors">
               Our Story
             </a>
-            <a href="#events" className="hover:text-white transition-colors">
+            <a href="#events" className="hover:text-red-600 transition-colors">
               Private Events
             </a>
-            <a href="#location" className="hover:text-white transition-colors">
+            <a href="#location" className="hover:text-red-600 transition-colors">
               Hours & Location
             </a>
           </nav>
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-3">
+            {/* Direct Phone Link */}
+            <a
+              href="tel:08104128681"
+              className="text-xs font-bold text-zinc-800 hover:text-red-600 flex items-center gap-1.5 px-3 py-2 rounded-full hover:bg-zinc-100 transition-colors"
+            >
+              <Phone size={14} className="text-red-600" />
+              <span>08104128681</span>
+            </a>
+
             {/* Live Status Badge */}
             <div
               className={`badge ${
@@ -74,16 +79,16 @@ export const Navbar = ({ onOpenReservation, onOpenCsvUpload }) => {
               } text-xs hidden lg:flex`}
             >
               <span className="pulse-dot"></span>
-              {businessStatus.statusText}
+              {businessStatus.statusText} • 7am–12am
             </div>
 
             {/* CSV Menu Import Button */}
             <button
               onClick={onOpenCsvUpload}
-              className="btn-secondary text-xs px-3.5 py-2"
+              className="btn-secondary text-xs px-3.5 py-2.5"
               title="Upload Custom Menu CSV"
             >
-              <Upload size={14} className="text-red-400" />
+              <Upload size={14} className="text-red-600" />
               <span>Import CSV</span>
             </button>
 
@@ -122,38 +127,38 @@ export const Navbar = ({ onOpenReservation, onOpenCsvUpload }) => {
       >
         {/* Backdrop */}
         <div
-          className="absolute inset-0 bg-black/80 backdrop-blur-md"
+          className="absolute inset-0 bg-black/50 backdrop-blur-sm"
           onClick={() => setMobileMenuOpen(false)}
         />
 
         {/* Drawer */}
         <div
-          className={`absolute top-0 right-0 bottom-0 w-[85%] max-w-[340px] bg-[#121216] border-l border-zinc-800 p-6 flex flex-col justify-between transition-transform duration-300 ease-out ${
+          className={`absolute top-0 right-0 bottom-0 w-[85%] max-w-[340px] bg-white border-l border-zinc-200 p-6 flex flex-col justify-between transition-transform duration-300 ease-out shadow-2xl ${
             mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
         >
           <div>
             {/* Header */}
-            <div className="flex items-center justify-between pb-6 border-b border-zinc-800">
+            <div className="flex items-center justify-between pb-6 border-b border-zinc-200">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-red-600/20 flex items-center justify-center text-red-500">
+                <div className="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center text-red-600">
                   <Flame size={18} />
                 </div>
-                <span className="font-serif text-lg font-bold text-white">OLD ENGLISH</span>
+                <span className="font-serif text-lg font-bold text-zinc-900">OLD ENGLISH</span>
               </div>
               <button
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-zinc-400 hover:text-white p-1"
+                className="text-zinc-500 hover:text-zinc-900 p-1"
               >
                 <X size={22} />
               </button>
             </div>
 
             {/* Live Status */}
-            <div className="mt-4 p-3 rounded-xl bg-zinc-900/90 border border-zinc-800 flex items-center justify-between">
+            <div className="mt-4 p-3.5 rounded-2xl bg-zinc-50 border border-zinc-200 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Clock size={16} className="text-zinc-400" />
-                <span className="text-xs text-zinc-300">{businessStatus.hoursText}</span>
+                <Clock size={16} className="text-zinc-600" />
+                <span className="text-xs font-semibold text-zinc-800">Everyday: 7am – 12am</span>
               </div>
               <span className={`badge text-[10px] ${businessStatus.isOpen ? 'badge-open' : 'badge-closed'}`}>
                 {businessStatus.isOpen ? 'OPEN' : 'CLOSED'}
@@ -165,28 +170,28 @@ export const Navbar = ({ onOpenReservation, onOpenCsvUpload }) => {
               <a
                 href="#menu"
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-base font-medium text-zinc-200 hover:text-red-500 transition-colors py-2 border-b border-zinc-800/50"
+                className="text-base font-semibold text-zinc-800 hover:text-red-600 transition-colors py-2 border-b border-zinc-100"
               >
                 Food & Drink Menu
               </a>
               <a
                 href="#story"
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-base font-medium text-zinc-200 hover:text-red-500 transition-colors py-2 border-b border-zinc-800/50"
+                className="text-base font-semibold text-zinc-800 hover:text-red-600 transition-colors py-2 border-b border-zinc-100"
               >
                 Our Story
               </a>
               <a
                 href="#events"
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-base font-medium text-zinc-200 hover:text-red-500 transition-colors py-2 border-b border-zinc-800/50"
+                className="text-base font-semibold text-zinc-800 hover:text-red-600 transition-colors py-2 border-b border-zinc-100"
               >
                 Private Events
               </a>
               <a
                 href="#location"
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-base font-medium text-zinc-200 hover:text-red-500 transition-colors py-2 border-b border-zinc-800/50"
+                className="text-base font-semibold text-zinc-800 hover:text-red-600 transition-colors py-2 border-b border-zinc-100"
               >
                 Hours & Location
               </a>
@@ -194,7 +199,15 @@ export const Navbar = ({ onOpenReservation, onOpenCsvUpload }) => {
           </div>
 
           {/* Drawer Actions & Footer */}
-          <div className="flex flex-col gap-3 pt-6 border-t border-zinc-800">
+          <div className="flex flex-col gap-3 pt-6 border-t border-zinc-200">
+            <a
+              href="tel:08104128681"
+              className="btn-secondary w-full justify-center text-xs"
+            >
+              <Phone size={14} className="text-red-600" />
+              <span>Call 08104128681</span>
+            </a>
+
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
@@ -202,7 +215,7 @@ export const Navbar = ({ onOpenReservation, onOpenCsvUpload }) => {
               }}
               className="btn-secondary w-full justify-center text-xs"
             >
-              <Upload size={14} className="text-red-400" />
+              <Upload size={14} className="text-red-600" />
               <span>Import Menu CSV</span>
             </button>
 
@@ -218,7 +231,7 @@ export const Navbar = ({ onOpenReservation, onOpenCsvUpload }) => {
             </button>
 
             <div className="text-center mt-2">
-              <p className="text-[11px] text-zinc-500">12 Primrose Hill, London • 020 7946 0912</p>
+              <p className="text-[11px] text-zinc-500 font-medium">Area H, New Owerri, Imo State</p>
             </div>
           </div>
         </div>
