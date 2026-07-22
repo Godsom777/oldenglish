@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flame, ArrowUp, Phone, MapPin } from 'lucide-react';
+import { Flame, ArrowUp, Phone, MapPin, Award } from 'lucide-react';
 
 export const Footer = ({ onOpenReservation, onOpenCsvUpload }) => {
   const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -10,14 +10,17 @@ export const Footer = ({ onOpenReservation, onOpenCsvUpload }) => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12 pb-12 border-b border-zinc-800/80">
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <div className="flex items-center gap-2.5 mb-4">
+            <div className="flex items-center gap-2.5 mb-3">
               <div className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center shrink-0">
                 <Flame size={16} />
               </div>
               <span className="font-display text-2xl font-bold tracking-tight">OLD ENGLISH</span>
             </div>
+            <p className="font-serif italic text-red-400 text-sm font-normal mb-3">
+              "See where good taste takes you"
+            </p>
             <p className="text-zinc-400 text-xs leading-relaxed mb-4">
-              African Charcoal Bar & Grill. Flame-kissed flavours, tender Suya, rich pepper soups, and craft cocktails in a modern lounge.
+              Founded by Executive Chef Segun. Flame-kissed Suya, charcoal grilled tilapia, rich pepper soups, and craft mixology prepared under strict international hygiene standards in New Owerri.
             </p>
             <p className="text-zinc-500 text-xs font-semibold">Area H, New Owerri, Imo State</p>
           </div>
@@ -27,7 +30,7 @@ export const Footer = ({ onOpenReservation, onOpenCsvUpload }) => {
             <h4 className="text-[11px] font-bold uppercase tracking-widest text-zinc-500 mb-4">Navigation</h4>
             <ul className="space-y-2.5 text-xs font-semibold">
               <li><a href="#menu" className="text-zinc-400 hover:text-white transition-colors">Today's Menu</a></li>
-              <li><a href="#story" className="text-zinc-400 hover:text-white transition-colors">Our Story</a></li>
+              <li><a href="#story" className="text-zinc-400 hover:text-white transition-colors">Our Story & Standards</a></li>
               <li><a href="#events" className="text-zinc-400 hover:text-white transition-colors">Private Events</a></li>
               <li><a href="#location" className="text-zinc-400 hover:text-white transition-colors">Location & Hours</a></li>
             </ul>
@@ -43,7 +46,7 @@ export const Footer = ({ onOpenReservation, onOpenCsvUpload }) => {
             </ul>
           </div>
 
-          {/* Hours */}
+          {/* Hours & Slogan */}
           <div>
             <h4 className="text-[11px] font-bold uppercase tracking-widest text-zinc-500 mb-4">Hours</h4>
             <p className="text-zinc-400 text-xs leading-relaxed font-medium mb-3">

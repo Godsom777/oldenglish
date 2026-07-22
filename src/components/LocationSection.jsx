@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Phone, Clock, ExternalLink, MessageCircle } from 'lucide-react';
+import { MapPin, Phone, Clock, ExternalLink, MessageCircle, ShieldCheck } from 'lucide-react';
 import { OPERATING_HOURS, getLiveBusinessStatus } from '../utils/hoursUtil';
 
 export const LocationSection = ({ onOpenReservation }) => {
@@ -13,11 +13,14 @@ export const LocationSection = ({ onOpenReservation }) => {
           <span className="chip-pill chip-pill-dark mb-4">
             <MapPin size={12} className="text-red-500" /> Area H, New Owerri
           </span>
-          <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-extrabold text-zinc-900 tracking-tight leading-none mb-4">
-            LOCATION & HOURS
+          <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-extrabold text-zinc-900 tracking-tight leading-none mb-3">
+            SEE WHERE GOOD TASTE TAKES YOU
           </h2>
-          <p className="text-zinc-600 text-xs sm:text-base font-medium leading-relaxed">
-            Open everyday 7:00 AM – 12:00 AM for charcoal grill, Suya lounge, cocktails, and dining.
+          <p className="font-serif italic text-xl text-zinc-700 font-normal mb-3">
+            "Experience Chef Segun's master grilling and pristine hygiene in Area H, New Owerri."
+          </p>
+          <p className="text-zinc-500 text-xs sm:text-sm font-medium">
+            Open everyday 7:00 AM – 12:00 AM for charcoal dining, Suya lounge, and late-night drinks.
           </p>
         </div>
 
@@ -111,7 +114,7 @@ export const LocationSection = ({ onOpenReservation }) => {
 
             <div className="relative z-10">
               <span className="chip-pill chip-pill-red mb-3">
-                <MapPin size={12} /> Pin Location
+                <ShieldCheck size={12} /> Chef-Led Lounge
               </span>
               <h3 className="font-serif text-2xl font-bold text-white">
                 Old English Bar & Grill

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flame, Clock, MapPin, Sparkles, Award } from 'lucide-react';
+import { Flame, Clock, MapPin, Sparkles, ShieldCheck, Award } from 'lucide-react';
 import { getLiveBusinessStatus } from '../utils/hoursUtil';
 
 export const Hero = ({ onOpenReservation }) => {
@@ -12,30 +12,37 @@ export const Hero = ({ onOpenReservation }) => {
         <div className="text-center max-w-4xl mx-auto mb-10 px-2 sm:px-4">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white text-zinc-700 text-xs font-bold uppercase tracking-widest border border-zinc-200/80 mb-6 shadow-sm">
             <Sparkles size={13} className="text-red-600 shrink-0" />
-            <span>African Charcoal Lounge · New Owerri</span>
+            <span>Chef-Led Culinary Excellence · New Owerri</span>
           </div>
 
-          <h1 className="font-display text-[clamp(2.4rem,8.5vw,7.5rem)] font-extrabold text-zinc-900 leading-[0.95] tracking-tight mb-6">
-            CHARCOAL & <span className="text-red-600">FIRE.</span>
+          {/* Main Hero Headline */}
+          <h1 className="font-display text-[clamp(2.6rem,9vw,8rem)] font-extrabold text-zinc-900 leading-[0.92] tracking-tight mb-4">
+            OLD <span className="text-red-600">ENGLISH.</span>
           </h1>
 
+          {/* Slogan */}
+          <p className="font-serif italic text-2xl sm:text-3xl text-zinc-800 font-normal mb-6">
+            "See where good taste takes you"
+          </p>
+
+          {/* Subtitle */}
           <p className="text-zinc-600 text-sm sm:text-lg md:text-xl font-medium max-w-2xl mx-auto leading-relaxed mb-8 px-2">
-            Authentic Yaji-spiced Suya, whole charcoal-grilled tilapia, rich pepper soups, and craft cocktails in a sleek lounge.
+            Founded by acclaimed Executive Chef Segun, Old English brings world-class culinary discipline, pristine kitchen hygiene, and authentic hardwood charcoal grilling to Area H, New Owerri.
           </p>
 
           {/* Action Pills */}
           <div className="flex flex-wrap items-center justify-center gap-3">
             <button
               onClick={onOpenReservation}
-              className="bg-red-600 hover:bg-red-700 text-white text-xs sm:text-sm font-bold uppercase tracking-widest px-7 sm:px-9 py-3.5 rounded-full transition-all duration-300 shadow-lg shadow-red-600/25"
+              className="bg-red-600 hover:bg-red-700 text-white text-xs sm:text-sm font-bold uppercase tracking-widest px-8 py-3.5 rounded-full transition-all duration-300 shadow-lg shadow-red-600/25"
             >
               Book a Table
             </button>
             <a
               href="#menu"
-              className="bg-white hover:bg-zinc-100 text-zinc-900 text-xs sm:text-sm font-bold uppercase tracking-widest px-7 sm:px-9 py-3.5 rounded-full border border-zinc-200 transition-all duration-300 shadow-sm"
+              className="bg-white hover:bg-zinc-100 text-zinc-900 text-xs sm:text-sm font-bold uppercase tracking-widest px-8 py-3.5 rounded-full border border-zinc-200 transition-all duration-300 shadow-sm"
             >
-              Explore Menu
+              Explore Today's Menu
             </a>
           </div>
         </div>
@@ -43,7 +50,7 @@ export const Hero = ({ onOpenReservation }) => {
         {/* Hero Showcase Bento & Widgets Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch mt-10">
           {/* Main Hero Image Bento with Floating Chips */}
-          <div className="lg:col-span-8 bento-card relative min-h-[340px] sm:min-h-[440px] group">
+          <div className="lg:col-span-8 bento-card relative min-h-[360px] sm:min-h-[440px] group">
             <img
               src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1600&q=80"
               alt="Old English Flame Grill"
@@ -54,20 +61,20 @@ export const Hero = ({ onOpenReservation }) => {
             {/* Floating Tags */}
             <div className="absolute top-4 left-4 right-4 flex flex-wrap gap-2 z-10">
               <span className="chip-pill chip-pill-red shadow-lg">
-                <Flame size={12} /> Hardwood Charcoal
+                <Award size={12} /> Executive Chef Segun
               </span>
               <span className="chip-pill chip-pill-dark shadow-lg">
-                100% Halal
+                <ShieldCheck size={12} className="text-emerald-400" /> 100% Hygienic Kitchen
               </span>
             </div>
 
             <div className="absolute bottom-6 left-6 right-6 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 text-white z-10">
               <div className="pr-4">
                 <span className="text-[11px] uppercase font-bold text-red-400 tracking-widest block mb-1">
-                  Signature Atmosphere
+                  Master Culinary Practice
                 </span>
                 <h3 className="font-serif text-xl sm:text-3xl font-bold leading-tight">
-                  Open Flames & Craft Mixology
+                  Hardwood Charcoal & Pristine Craft
                 </h3>
               </div>
               <div className="flex items-center gap-2 bg-white/20 backdrop-blur-md px-4 py-2 rounded-full border border-white/25 text-xs font-semibold shrink-0">
@@ -99,18 +106,18 @@ export const Hero = ({ onOpenReservation }) => {
               </div>
 
               <div className="pt-4 border-t border-zinc-100 flex items-center justify-between text-xs font-semibold text-zinc-700">
-                <span>Call Line:</span>
-                <a href="tel:08104128681" className="text-red-600 hover:underline">08104128681</a>
+                <span>Direct Line:</span>
+                <a href="tel:08104128681" className="text-red-600 hover:underline font-bold">08104128681</a>
               </div>
             </div>
 
-            {/* Quick Special Highlights Bento Widget */}
+            {/* Chef Special Highlights Bento Widget */}
             <div className="bento-card-dark p-6 sm:p-8 flex flex-col justify-between flex-1 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-red-600/10 rounded-full blur-2xl pointer-events-none" />
 
               <div className="flex items-center justify-between mb-6 relative z-10">
                 <span className="px-3 py-1 rounded-full bg-red-600 text-white text-[10px] font-bold uppercase tracking-widest">
-                  SPECIAL OFFER
+                  CHEF'S SIGNATURE
                 </span>
                 <Award size={18} className="text-red-500" />
               </div>
@@ -120,7 +127,7 @@ export const Hero = ({ onOpenReservation }) => {
                   Dry-Aged Ribeye Suya
                 </h4>
                 <p className="text-xs text-zinc-400 leading-relaxed">
-                  Infused with authentic Hausa Yaji rub & bone marrow flame butter.
+                  Prime beef dry-aged 28 days under strict temperature control, marinated in house-ground Hausa Yaji.
                 </p>
               </div>
 
@@ -128,7 +135,7 @@ export const Hero = ({ onOpenReservation }) => {
                 onClick={onOpenReservation}
                 className="w-full bg-white text-zinc-900 text-xs font-bold uppercase tracking-wider py-3 rounded-full hover:bg-zinc-100 transition-colors relative z-10"
               >
-                Order / Reserve Table
+                Reserve Table
               </button>
             </div>
           </div>
