@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Search } from 'lucide-react';
+import { Search, Flame } from 'lucide-react';
 import { DEFAULT_CATEGORIES } from '../data/defaultMenu';
 import { MenuItemCard } from './MenuItemCard';
 
@@ -23,35 +23,35 @@ export const MenuSection = ({
   }, [menuItems, activeCategory, searchQuery]);
 
   return (
-    <section id="menu" className="py-28 md:py-36 bg-zinc-50/60">
-      <div className="container">
+    <section id="menu" className="py-24 sm:py-32 bg-[#f5f5f2]">
+      <div className="container max-w-7xl">
         {/* Header */}
-        <div className="max-w-2xl mx-auto text-center mb-16">
-          <span className="text-red-600 text-xs font-bold uppercase tracking-widest block mb-3">
-            Selection
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <span className="chip-pill chip-pill-red mb-4">
+            <Flame size={12} /> Today's Selection
           </span>
-          <h2 className="font-serif text-3xl sm:text-5xl font-normal text-zinc-900 tracking-tight leading-tight mb-4">
-            Charcoal & Bar Menu
+          <h2 className="font-display text-4xl sm:text-6xl font-extrabold text-zinc-900 tracking-tight leading-none mb-4">
+            GASTRONOMY MENU
           </h2>
-          <p className="text-zinc-500 text-base font-normal">
-            Savor authentic flame-kissed dishes, slow-charred meats, and signature craft drinks.
+          <p className="text-zinc-600 text-sm sm:text-base font-medium">
+            Hardwood charcoal grill classics, Suya skewers, rich pepper soups, and signature craft mixology.
           </p>
         </div>
 
-        {/* Filter Tabs & Search */}
-        <div className="max-w-4xl mx-auto mb-16 flex flex-col sm:flex-row items-center justify-between gap-6 pb-6 border-b border-zinc-200/70">
-          {/* Category Pills */}
-          <div className="flex items-center gap-2 overflow-x-auto w-full sm:w-auto pb-2 sm:pb-0 scrollbar-none justify-start sm:justify-center">
+        {/* Floating Pill Filter Bar & Search (Image 1 style) */}
+        <div className="max-w-5xl mx-auto mb-12 bg-white rounded-full p-2 border border-zinc-200/80 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3">
+          {/* Categories */}
+          <div className="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto px-2 py-1 scrollbar-none">
             {DEFAULT_CATEGORIES.map((cat) => {
               const isActive = activeCategory === cat.id;
               return (
                 <button
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id)}
-                  className={`px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-200 shrink-0 ${
+                  className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 shrink-0 ${
                     isActive
-                      ? 'bg-zinc-900 text-white shadow-sm'
-                      : 'text-zinc-500 hover:text-zinc-900 hover:bg-zinc-200/50'
+                      ? 'bg-red-600 text-white shadow-md shadow-red-600/20'
+                      : 'text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100'
                   }`}
                 >
                   {cat.label}
@@ -60,22 +60,22 @@ export const MenuSection = ({
             })}
           </div>
 
-          {/* Minimal Search */}
-          <div className="relative w-full sm:w-64 shrink-0">
-            <Search size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-zinc-400" />
+          {/* Search Pill */}
+          <div className="relative w-full sm:w-64 shrink-0 px-2 sm:px-0">
+            <Search size={15} className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400" />
             <input
               type="text"
               placeholder="Search menu..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-white border border-zinc-200 rounded-full pl-9 pr-4 py-2 text-xs text-zinc-900 placeholder-zinc-400 focus:outline-none focus:border-zinc-400 transition-colors"
+              className="w-full bg-zinc-100 border-0 rounded-full pl-10 pr-4 py-2 text-xs font-medium text-zinc-900 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-red-600/30 transition-all"
             />
           </div>
         </div>
 
-        {/* Grid */}
+        {/* Bento Grid */}
         {filteredItems.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredItems.map((item) => (
               <MenuItemCard
                 key={item.id}
@@ -85,13 +85,13 @@ export const MenuSection = ({
             ))}
           </div>
         ) : (
-          <div className="text-center py-20">
-            <p className="text-zinc-400 text-sm">No dishes match your search query.</p>
+          <div className="bento-card p-12 text-center max-w-md mx-auto">
+            <p className="text-zinc-500 text-sm font-medium">No dishes found matching your query.</p>
             <button
               onClick={() => { setActiveCategory('all'); setSearchQuery(''); }}
-              className="text-xs font-semibold text-red-600 uppercase tracking-wider mt-3 hover:underline"
+              className="mt-4 text-xs font-bold text-red-600 uppercase tracking-widest hover:underline"
             >
-              Reset Filters
+              Clear Search & Filters
             </button>
           </div>
         )}

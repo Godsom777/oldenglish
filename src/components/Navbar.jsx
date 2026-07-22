@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Menu as MenuIcon, X } from 'lucide-react';
+import { Flame, Menu as MenuIcon, X, Phone } from 'lucide-react';
+import { getLiveBusinessStatus } from '../utils/hoursUtil';
 
 export const Navbar = ({ onOpenReservation }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const status = getLiveBusinessStatus();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -13,57 +15,78 @@ export const Navbar = ({ onOpenReservation }) => {
 
   return (
     <>
-      <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-          scrolled
-            ? 'bg-white/95 backdrop-blur-md py-3.5 shadow-sm border-b border-zinc-100'
-            : 'bg-white/80 backdrop-blur-sm py-5 border-b border-zinc-100/60'
-        }`}
-      >
-        <div className="container flex items-center justify-between">
+      {/* Floating Pill Navbar Header */}
+      <header className="fixed top-4 left-0 right-0 z-50 px-4 sm:px-8">
+        <div className="max-w-6xl mx-auto pill-navbar px-4 sm:px-6 py-2.5 flex items-center justify-between transition-all duration-300">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 tracking-tight group">
-            <span className="w-2 h-2 rounded-full bg-red-600 inline-block group-hover:scale-125 transition-transform" />
-            <span className="font-serif text-2xl font-bold tracking-tight text-zinc-900">
+          <a href="#" className="flex items-center gap-2.5 group">
+            <div className="w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center group-hover:scale-105 transition-transform duration-300 shadow-sm">
+              <Flame size={16} />
+            </div>
+            <span className="font-display text-xl sm:text-2xl font-bold tracking-tight text-zinc-900">
               OLD ENGLISH
             </span>
           </a>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8 text-xs font-semibold uppercase tracking-widest text-zinc-500">
-            <a href="#menu" className="hover:text-zinc-900 transition-colors">Menu</a>
-            <a href="#story" className="hover:text-zinc-900 transition-colors">Story</a>
-            <a href="#events" className="hover:text-zinc-900 transition-colors">Events</a>
-            <a href="#location" className="hover:text-zinc-900 transition-colors">Location & Hours</a>
+          {/* Desktop Navigation Pills */}
+          <nav className="hidden md:flex items-center gap-1.5 bg-zinc-100/80 p-1 rounded-full border border-zinc-200/50">
+            <a
+              href="#menu"
+              className="px-4 py-1.5 rounded-full text-xs font-semibold text-zinc-600 hover:text-zinc-900 hover:bg-white transition-all"
+            >
+              Menu
+            </a>
+            <a
+              href="#story"
+              className="px-4 py-1.5 rounded-full text-xs font-semibold text-zinc-600 hover:text-zinc-900 hover:bg-white transition-all"
+            >
+              Story
+            </a>
+            <a
+              href="#events"
+              className="px-4 py-1.5 rounded-full text-xs font-semibold text-zinc-600 hover:text-zinc-900 hover:bg-white transition-all"
+            >
+              Events
+            </a>
+            <a
+              href="#location"
+              className="px-4 py-1.5 rounded-full text-xs font-semibold text-zinc-600 hover:text-zinc-900 hover:bg-white transition-all"
+            >
+              Contact
+            </a>
           </nav>
 
-          {/* Desktop Reservation Button */}
-          <div className="hidden md:flex items-center gap-6">
-            <a href="tel:08104128681" className="text-xs font-medium text-zinc-500 hover:text-zinc-900 transition-colors">
-              08104128681
-            </a>
+          {/* Right Action Widgets */}
+          <div className="hidden md:flex items-center gap-3">
+            {/* Live hours pill */}
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-100 text-zinc-700 text-xs font-medium border border-zinc-200/60">
+              <span className={`w-2 h-2 rounded-full ${status.isOpen ? 'bg-emerald-500 animate-pulse' : 'bg-zinc-400'}`} />
+              <span>{status.isOpen ? 'Open Now' : 'Closed'}</span>
+            </div>
+
+            {/* Reserve Table Pill */}
             <button
               onClick={onOpenReservation}
-              className="bg-zinc-900 text-white text-xs font-semibold tracking-wider uppercase px-5 py-2.5 rounded-full hover:bg-red-600 transition-colors duration-300"
+              className="bg-red-600 hover:bg-red-700 text-white text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-full transition-all duration-300 shadow-md shadow-red-600/20 hover:shadow-lg hover:shadow-red-600/30"
             >
               Reserve Table
             </button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="flex items-center gap-3 md:hidden">
+          {/* Mobile Actions */}
+          <div className="flex items-center gap-2 md:hidden">
             <button
               onClick={onOpenReservation}
-              className="bg-zinc-900 text-white text-xs font-semibold px-4 py-2 rounded-full"
+              className="bg-red-600 text-white text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-full shadow-sm"
             >
               Reserve
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-zinc-800"
+              className="p-2 text-zinc-800 rounded-full hover:bg-zinc-100"
               aria-label="Toggle menu"
             >
-              {mobileMenuOpen ? <X size={22} /> : <MenuIcon size={22} />}
+              {mobileMenuOpen ? <X size={20} /> : <MenuIcon size={20} />}
             </button>
           </div>
         </div>
@@ -71,28 +94,43 @@ export const Navbar = ({ onOpenReservation }) => {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 bg-white p-8 flex flex-col justify-between md:hidden animate-fade-in">
+        <div className="fixed inset-0 z-50 bg-white/95 backdrop-blur-xl p-6 flex flex-col justify-between md:hidden animate-fade-in">
           <div>
-            <div className="flex items-center justify-between mb-12">
-              <span className="font-serif text-2xl font-bold text-zinc-900">OLD ENGLISH</span>
+            <div className="flex items-center justify-between mb-8 pb-4 border-b border-zinc-100">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center">
+                  <Flame size={16} />
+                </div>
+                <span className="font-display text-2xl font-bold text-zinc-900">OLD ENGLISH</span>
+              </div>
               <button onClick={() => setMobileMenuOpen(false)} className="p-2 text-zinc-600">
                 <X size={24} />
               </button>
             </div>
-            <nav className="flex flex-col gap-6 text-xl font-serif">
-              <a href="#menu" onClick={() => setMobileMenuOpen(false)} className="text-zinc-900 hover:text-red-600">Menu</a>
-              <a href="#story" onClick={() => setMobileMenuOpen(false)} className="text-zinc-900 hover:text-red-600">Our Story</a>
-              <a href="#events" onClick={() => setMobileMenuOpen(false)} className="text-zinc-900 hover:text-red-600">Private Events</a>
-              <a href="#location" onClick={() => setMobileMenuOpen(false)} className="text-zinc-900 hover:text-red-600">Hours & Location</a>
+
+            <nav className="flex flex-col gap-4 text-lg font-serif">
+              <a href="#menu" onClick={() => setMobileMenuOpen(false)} className="text-zinc-900 font-semibold hover:text-red-600 py-2 border-b border-zinc-100">
+                Menu & Dishes
+              </a>
+              <a href="#story" onClick={() => setMobileMenuOpen(false)} className="text-zinc-900 font-semibold hover:text-red-600 py-2 border-b border-zinc-100">
+                Our Story
+              </a>
+              <a href="#events" onClick={() => setMobileMenuOpen(false)} className="text-zinc-900 font-semibold hover:text-red-600 py-2 border-b border-zinc-100">
+                Private Events
+              </a>
+              <a href="#location" onClick={() => setMobileMenuOpen(false)} className="text-zinc-900 font-semibold hover:text-red-600 py-2 border-b border-zinc-100">
+                Location & Hours
+              </a>
             </nav>
           </div>
-          <div className="space-y-4">
-            <a href="tel:08104128681" className="block text-center text-sm font-medium text-zinc-600 py-3 border border-zinc-200 rounded-full">
-              Call 08104128681
+
+          <div className="space-y-3">
+            <a href="tel:08104128681" className="flex items-center justify-center gap-2 text-sm font-semibold text-zinc-800 py-3 rounded-full border border-zinc-200">
+              <Phone size={14} /> Call 08104128681
             </a>
             <button
               onClick={() => { setMobileMenuOpen(false); onOpenReservation(); }}
-              className="w-full bg-zinc-900 text-white text-sm font-semibold py-3.5 rounded-full"
+              className="w-full bg-red-600 text-white text-sm font-bold uppercase tracking-wider py-3.5 rounded-full shadow-lg shadow-red-600/20"
             >
               Reserve a Table
             </button>
