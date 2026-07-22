@@ -89,7 +89,7 @@ export const ReservationModal = ({ isOpen, onClose, initialItem = null }) => {
           <div className="bg-red-50 border-b border-red-100 px-5 py-2.5 flex items-center gap-3 text-xs text-red-800">
             <Utensils size={14} className="text-red-600 shrink-0" />
             <span>
-              Reserving table with dish: <strong>{initialItem.name}</strong> (${initialItem.price})
+              Reserving table with dish: <strong>{initialItem.name}</strong>
             </span>
           </div>
         )}

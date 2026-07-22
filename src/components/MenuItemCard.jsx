@@ -17,11 +17,6 @@ export const MenuItemCard = ({ item, onSelect }) => {
             loading="lazy"
           />
 
-          {/* Floating Price Pill */}
-          <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-md text-zinc-900 font-bold text-xs px-3 py-1.5 rounded-full shadow-md border border-zinc-200/50">
-            ${item.price}
-          </div>
-
           {/* Spicy / Chef Tag */}
           <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-10">
             {item.featured && (
@@ -54,7 +49,7 @@ export const MenuItemCard = ({ item, onSelect }) => {
       {/* Card Footer Button Pill */}
       <div className="pt-4 border-t border-zinc-100 flex items-center justify-between">
         <span className="text-[11px] font-bold uppercase tracking-wider text-zinc-400">
-          {item.category || 'Specialty'}
+          {item.category ? item.category.replace('-', ' ') : 'Specialty'}
         </span>
 
         <button className="w-8 h-8 rounded-full bg-zinc-100 group-hover:bg-red-600 text-zinc-700 group-hover:text-white flex items-center justify-center transition-all duration-300">

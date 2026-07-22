@@ -24,19 +24,16 @@ export const DishDetailModal = ({ item, onClose, onReserveWithItem }) => {
         {/* Content */}
         <div className="p-6 overflow-y-auto space-y-5 flex-1 -mt-6 relative bg-white rounded-t-3xl">
           {/* Header */}
-          <div className="flex items-start justify-between gap-4">
-            <div>
-              {item.spicyLevel > 0 && (
-                <div className="flex items-center gap-1 mb-2 text-red-600">
-                  {Array.from({ length: item.spicyLevel }).map((_, i) => (
-                    <Flame key={i} size={13} className="fill-red-600" />
-                  ))}
-                  <span className="text-[11px] font-semibold ml-1">Spice Level {item.spicyLevel}/3</span>
-                </div>
-              )}
-              <h2 className="font-serif text-2xl font-semibold text-zinc-900 leading-tight">{item.name}</h2>
-            </div>
-            <span className="text-2xl font-semibold text-zinc-900 shrink-0">${item.price}</span>
+          <div>
+            {item.spicyLevel > 0 && (
+              <div className="flex items-center gap-1 mb-2 text-red-600">
+                {Array.from({ length: item.spicyLevel }).map((_, i) => (
+                  <Flame key={i} size={13} className="fill-red-600" />
+                ))}
+                <span className="text-[11px] font-semibold ml-1">Spice Level {item.spicyLevel}/3</span>
+              </div>
+            )}
+            <h2 className="font-serif text-2xl font-bold text-zinc-900 leading-tight">{item.name}</h2>
           </div>
 
           <p className="text-zinc-600 text-sm leading-relaxed">{item.description}</p>
@@ -45,7 +42,7 @@ export const DishDetailModal = ({ item, onClose, onReserveWithItem }) => {
           {item.ingredients?.length > 0 && (
             <div>
               <h4 className="text-[11px] uppercase font-semibold tracking-widest text-zinc-400 mb-2 flex items-center gap-1.5">
-                <Utensils size={13} /> Ingredients
+                <Utensils size={13} /> Key Ingredients
               </h4>
               <div className="flex flex-wrap gap-1.5">
                 {item.ingredients.map((ing, idx) => (
@@ -60,7 +57,7 @@ export const DishDetailModal = ({ item, onClose, onReserveWithItem }) => {
             <div className="flex items-start gap-3 p-4 rounded-xl bg-zinc-50 border border-zinc-100">
               <Wine size={16} className="text-zinc-400 shrink-0 mt-0.5" />
               <div>
-                <span className="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider block">Pairs with</span>
+                <span className="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider block">Recommended Pairing</span>
                 <span className="text-sm text-zinc-700">{item.pairing}</span>
               </div>
             </div>
@@ -70,13 +67,13 @@ export const DishDetailModal = ({ item, onClose, onReserveWithItem }) => {
         {/* Footer */}
         <div className="p-5 border-t border-zinc-100 flex gap-3 shrink-0">
           <button onClick={onClose} className="flex-1 py-3 text-sm font-medium text-zinc-600 rounded-full border border-zinc-200 hover:bg-zinc-50 transition-colors">
-            Back
+            Close
           </button>
           <button
             onClick={() => { onClose(); onReserveWithItem(item); }}
-            className="flex-1 py-3 text-sm font-medium text-white bg-zinc-900 rounded-full hover:bg-zinc-800 transition-colors flex items-center justify-center gap-2"
+            className="flex-1 py-3 text-sm font-medium text-white bg-red-600 rounded-full hover:bg-red-700 transition-colors flex items-center justify-center gap-2"
           >
-            <Calendar size={15} /> Reserve with this
+            <Calendar size={15} /> Reserve Table With Dish
           </button>
         </div>
       </div>
