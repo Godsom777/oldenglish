@@ -34,7 +34,7 @@ export const MenuSection = ({
             GASTRONOMY MENU
           </h2>
           <p className="text-zinc-600 text-xs sm:text-base font-medium leading-relaxed">
-            Hardwood charcoal grill classics, Suya skewers, rich pepper soups, and signature craft mixology.
+            Hardwood flame grill classics, Suya skewers, rich pepper soups, and signature craft mixology.
           </p>
         </div>
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { X, Calendar, Clock, Users, MapPin, CheckCircle2, ChevronRight, ChevronLeft, Utensils, Phone } from 'lucide-react';
 
 const SEATING_ZONES = [
-  { id: 'main-dining', label: 'Main Dining Room', desc: 'Lively atmosphere near the visible charcoal grill.' },
+  { id: 'main-dining', label: 'Main Dining Room', desc: 'Lively atmosphere near the visible open flame grill.' },
   { id: 'suya-bar', label: 'Suya Bar & Lounge', desc: 'Sleek counter seats with direct mixologist view.' },
   { id: 'terrace', label: 'Outdoor VIP Terrace', desc: 'Open-air terrace with ambient lighting.' },
   { id: 'private-room', label: 'Private Dining Room', desc: 'Intimate space for private celebrations.' },

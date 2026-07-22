@@ -33,8 +33,7 @@ export const EventsSection = ({ onOpenReservation }) => {
               </h2>
 
               <p className="text-zinc-600 text-xs sm:text-sm leading-relaxed mb-6">
-                Host intimate dinners, birthday parties, corporate celebrations, or full lounge takeovers in New Owerri with tailored charcoal tasting menus and cocktail pairings.
-              </p>
+                Whether planning an intimate private dinner, corporate celebration, birthday party, or full lounge takeover in New Owerri, our team crafts bespoke flame tasting menus and cocktail packages tailored to your event.           </p>
             </div>
 
             <div className="relative rounded-2xl overflow-hidden aspect-[16/10] bg-zinc-100 mt-4">

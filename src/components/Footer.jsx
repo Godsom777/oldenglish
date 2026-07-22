@@ -20,7 +20,7 @@ export const Footer = ({ onOpenReservation, onOpenCsvUpload }) => {
               "See where good taste takes you"
             </p>
             <p className="text-zinc-400 text-xs leading-relaxed mb-4">
-              Founded by Executive Chef Segun. Flame-kissed Suya, charcoal grilled tilapia, rich pepper soups, and craft mixology prepared under strict international hygiene standards in New Owerri.
+              Founded by Executive Chef Uzochukwu Elui. Flame-kissed Suya, grilled tilapia, rich pepper soups, and craft mixology prepared under strict international hygiene standards in Owerri Imo State.
             </p>
             <p className="text-zinc-500 text-xs font-semibold">Area H, New Owerri, Imo State</p>
           </div>
@@ -64,7 +64,7 @@ export const Footer = ({ onOpenReservation, onOpenCsvUpload }) => {
 
         {/* Bottom Bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
-          <span>&copy; {new Date().getFullYear()} Old English Bar & Grill. All rights reserved.</span>
+          <span>&copy; {new Date().getFullYear()} Old English Bar & Grills. All rights reserved.</span>
 
           <div className="flex items-center gap-6">
             <button

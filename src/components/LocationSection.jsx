@@ -11,16 +11,16 @@ export const LocationSection = ({ onOpenReservation }) => {
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 px-2">
           <span className="chip-pill chip-pill-dark mb-4">
-            <MapPin size={12} className="text-red-500" /> Area H, New Owerri
+            <MapPin size={12} className="text-red-500" /> Area H, New Owerri, Imo State
           </span>
           <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-extrabold text-zinc-900 tracking-tight leading-none mb-3">
             SEE WHERE GOOD TASTE TAKES YOU
           </h2>
           <p className="font-serif italic text-xl text-zinc-700 font-normal mb-3">
-            "Experience Chef Segun's master grilling and pristine hygiene in Area H, New Owerri."
+            "Experience Executive Chef Uzochukwu Elui's master grilling and pristine kitchen hygiene in Owerri Imo State."
           </p>
           <p className="text-zinc-500 text-xs sm:text-sm font-medium">
-            Open everyday 7:00 AM – 12:00 AM for charcoal dining, Suya lounge, and late-night drinks.
+            Open everyday 7:00 AM – 12:00 AM for flame grilling, Suya lounge, cocktails, and fine dining.
           </p>
         </div>
 
@@ -117,7 +117,7 @@ export const LocationSection = ({ onOpenReservation }) => {
                 <ShieldCheck size={12} /> Chef-Led Lounge
               </span>
               <h3 className="font-serif text-2xl font-bold text-white">
-                Old English Bar & Grill
+                Old English Bar & Grills
               </h3>
               <p className="text-xs text-zinc-400 mt-1">Area H, New Owerri, Imo State</p>
             </div>

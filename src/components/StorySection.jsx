@@ -6,7 +6,7 @@ export const StorySection = () => {
     {
       icon: <Thermometer size={22} className="text-red-600" />,
       title: 'Precision Temperature Control',
-      desc: 'Prime ribeye cuts dry-aged 28 days in climate-controlled chambers (+1°C to +3°C) to ensure pristine safety and peak marbling flavor.',
+      desc: 'Prime ribeye cuts aged in climate-controlled chambers (+1°C to +3°C) to ensure pristine safety and peak marbling flavor.',
     },
     {
       icon: <ShieldCheck size={22} className="text-emerald-600" />,
@@ -20,13 +20,13 @@ export const StorySection = () => {
     },
     {
       icon: <Flame size={22} className="text-red-600" />,
-      title: 'Natural Hardwood Charcoal',
-      desc: 'Flames stoked using pure hardwood charcoal at 450°C—searing in rich juices without synthetic lighters or artificial smoke.',
+      title: 'Artisanal Hardwood Grilling',
+      desc: 'Flames stoked using pure hardwood coals at 450°C—searing in rich juices without synthetic lighters or artificial smoke.',
     },
     {
       icon: <UtensilsCrossed size={22} className="text-indigo-600" />,
       title: 'In-House Hausa Yaji Crafting',
-      desc: 'Kuli-kuli, ginger, and wild spices toasted, ground, and hand-blended daily by Executive Chef Segun with zero artificial MSG.',
+      desc: 'Kuli-kuli, ginger, and wild spices toasted, ground, and hand-blended daily by Executive Chef Uzochukwu Elui with zero artificial MSG.',
     },
   ];
 
@@ -39,7 +39,7 @@ export const StorySection = () => {
           <div className="lg:col-span-5 bento-card relative min-h-[380px] sm:min-h-[460px]">
             <img
               src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=1200&q=80"
-              alt="Executive Chef Segun & Kitchen Team"
+              alt="Executive Chef Uzochukwu Elui & Kitchen Team"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent pointer-events-none" />
@@ -57,7 +57,7 @@ export const StorySection = () => {
               <h4 className="font-serif text-xl sm:text-2xl font-bold leading-tight">
                 "Great taste starts with uncompromised hygiene and master culinary craft."
               </h4>
-              <p className="text-xs text-zinc-300 mt-1.5 font-medium">— Executive Chef Segun</p>
+              <p className="text-xs text-zinc-300 mt-1.5 font-medium">— Executive Chef Uzochukwu Elui</p>
             </div>
           </div>
 
@@ -74,10 +74,10 @@ export const StorySection = () => {
 
               <div className="space-y-4 text-zinc-600 text-sm sm:text-base leading-relaxed">
                 <p>
-                  Founded by acclaimed Executive Chef Segun, <strong className="text-zinc-900">Old English Bar & Grill</strong> was created to elevate West African charcoal-flame cuisine into a world-class dining experience in Area H, New Owerri.
+                  Founded by acclaimed Executive Chef Uzochukwu Elui, <strong className="text-zinc-900">Old English Bar & Grills</strong> brings world-class culinary discipline, pristine kitchen hygiene, and authentic grilling to Owerri Imo State.
                 </p>
                 <p>
-                  We believe that true flavor cannot exist without immaculate hygiene and culinary precision. From our temperature-controlled butchery to our open-fire hardwood pit, every dish is executed under strict international food safety standards.
+                  We believe that true flavor cannot exist without immaculate hygiene and culinary precision. From our temperature-controlled butchery to our open-fire pit, every dish is executed under strict international food safety standards.
                 </p>
                 <p className="font-serif italic text-zinc-900 text-lg font-semibold border-l-2 border-red-600 pl-4 py-1">
                   "See where good taste takes you — from clean preparation to unforgettable flavor."
@@ -89,7 +89,7 @@ export const StorySection = () => {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8 pt-6 border-t border-zinc-100">
               <div className="p-4 rounded-2xl bg-zinc-50 border border-zinc-100/80">
                 <span className="font-display text-2xl sm:text-3xl font-extrabold text-zinc-900 block">7am – 12am</span>
-                <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider">Open Daily</span>
+                <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider">Open Everyday</span>
               </div>
               <div className="p-4 rounded-2xl bg-zinc-50 border border-zinc-100/80">
                 <span className="font-display text-2xl sm:text-3xl font-extrabold text-red-600 block">100%</span>
@@ -113,7 +113,7 @@ export const StorySection = () => {
               OUR 5 CULINARY STANDARDS
             </h3>
             <p className="text-zinc-600 text-xs sm:text-base font-medium">
-              How Chef Segun & Team guarantee pristine hygiene and superior flavor in every dish.
+              How Executive Chef Uzochukwu Elui & Team guarantee pristine hygiene and superior flavor in every dish.
             </p>
           </div>
 
@@ -149,11 +149,11 @@ export const StorySection = () => {
                   Pristine Hygiene Guarantee
                 </h4>
                 <p className="text-xs text-zinc-400 leading-relaxed">
-                  "Every meal served at Old English reflects our commitment to world-class food safety, clean craft, and genuine hospitality."
+                  "Every meal served at Old English Bar & Grills reflects our commitment to world-class food safety, clean craft, and genuine hospitality."
                 </p>
               </div>
               <div className="mt-6 pt-4 border-t border-zinc-800 text-xs text-zinc-300 font-semibold relative z-10">
-                Executive Chef Segun & Kitchen Team
+                Executive Chef Uzochukwu Elui & Kitchen Team
               </div>
             </div>
           </div>

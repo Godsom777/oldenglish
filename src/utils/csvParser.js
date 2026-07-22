@@ -17,9 +17,9 @@ export const parseMenuCsv = (file) => {
           const parsedItems = results.data.map((row, index) => {
             // Flexible column matching
             const name = row.name || row.item || row.dish || row.title || `Item ${index + 1}`;
-            const categoryRaw = row.category || row.type || row.section || 'charcoal-grill';
+            const categoryRaw = row.category || row.type || row.section || 'grills';
             const price = parseFloat(row.price || row.cost || row.amount || '0') || 15;
-            const description = row.description || row.desc || row.details || 'Delicious grilled specialty item.';
+            const description = row.description || row.desc || row.details || 'Delicious flame-grilled specialty item.';
             const spicyLevel = parseInt(row.spicy || row.spicylevel || row.spice || '0', 10) || 0;
             const tagsRaw = row.tags || row.diet || row.labels || '';
             const image = row.image || row.photo || row.img || 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80';
@@ -57,46 +57,41 @@ export const parseMenuCsv = (file) => {
 
 const cleanCategoryId = (catStr) => {
   const normalized = String(catStr).toLowerCase();
-  if (normalized.includes('suya') || normalized.includes('starter')) return 'suya-starters';
-  if (normalized.includes('grill') || normalized.includes('main') || normalized.includes('charcoal')) return 'charcoal-grill';
-  if (normalized.includes('soup') || normalized.includes('bowl') || normalized.includes('swallow')) return 'soups-swallow';
-  if (normalized.includes('side') || normalized.includes('bite')) return 'sides';
-  if (normalized.includes('cocktail') || normalized.includes('drink') || normalized.includes('beverage')) return 'cocktails-drinks';
-  if (normalized.includes('dessert') || normalized.includes('sweet')) return 'desserts';
-  return 'charcoal-grill';
+  if (normalized.includes('suya') || normalized.includes('starter')) return 'starters';
+  if (normalized.includes('grill') || normalized.includes('main')) return 'grills';
+  if (normalized.includes('soup') || normalized.includes('bowl') || normalized.includes('swallow')) return 'soups';
+  if (normalized.includes('cocktail') || normalized.includes('drink') || normalized.includes('beverage')) return 'drinks';
+  return 'grills';
 };
 
 // Generate and trigger download of sample CSV file
 export const downloadSampleMenuCsv = () => {
   const sampleData = [
     {
-      Name: 'Aged Beef Suya Skewers',
-      Category: 'suya-starters',
-      Price: 18,
+      Name: 'Authentic Beef Suya Skewers',
+      Category: 'starters',
       Spicy: 3,
-      Tags: 'Chef Special, Halal, Gluten-Free',
-      Description: 'Thinly sliced prime ribeye marinated in authentic Yaji spice blend, flash-grilled over glowing hardwood charcoal.',
+      Tags: 'Chef Special, Halal',
+      Description: 'Thinly sliced prime ribeye marinated in authentic Yaji spice blend, flash-grilled over glowing flames.',
       Ingredients: 'Prime Ribeye, Yaji Spice, Peanut Powder, Ginger, Onion',
-      Pairing: 'Smoked Charcoal Old Fashioned',
+      Pairing: 'Old English Signature Chapman',
       Image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80',
       Featured: true
     },
     {
-      Name: 'Old English Whole Grilled Tilapia',
-      Category: 'charcoal-grill',
-      Price: 34,
+      Name: 'Whole BBQ Catfish',
+      Category: 'grills',
       Spicy: 2,
       Tags: 'Popular, Halal',
-      Description: 'Whole jumbo fresh Tilapia flame-grilled over open coals with fried plantain & attieke.',
-      Ingredients: 'Fresh Tilapia, Red Pepper Rub, Sweet Plantain',
-      Pairing: 'Palm Wine Sour',
+      Description: 'Whole jumbo fresh Catfish flame-grilled over open coals with fried plantain & attieke.',
+      Ingredients: 'Fresh Catfish, Red Pepper Rub, Sweet Plantain',
+      Pairing: 'Fresh Fruit Juice',
       Image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80',
       Featured: true
     },
     {
       Name: 'Old English Signature Chapman',
-      Category: 'cocktails-drinks',
-      Price: 14,
+      Category: 'drinks',
       Spicy: 0,
       Tags: 'House Favorite',
       Description: 'The iconic Nigerian club drink with Fanta, Sprite, Angostura bitters, cucumber & citrus.',

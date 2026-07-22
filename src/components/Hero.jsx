@@ -12,7 +12,7 @@ export const Hero = ({ onOpenReservation }) => {
         <div className="text-center max-w-4xl mx-auto mb-10 px-2 sm:px-4">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white text-zinc-700 text-xs font-bold uppercase tracking-widest border border-zinc-200/80 mb-6 shadow-sm">
             <Sparkles size={13} className="text-red-600 shrink-0" />
-            <span>Chef-Led Culinary Excellence · New Owerri</span>
+            <span>Chef-Led Culinary Excellence · Owerri Imo State</span>
           </div>
 
           {/* Main Hero Headline */}
@@ -27,7 +27,7 @@ export const Hero = ({ onOpenReservation }) => {
 
           {/* Subtitle */}
           <p className="text-zinc-600 text-sm sm:text-lg md:text-xl font-medium max-w-2xl mx-auto leading-relaxed mb-8 px-2">
-            Founded by acclaimed Executive Chef Segun, Old English brings world-class culinary discipline, pristine kitchen hygiene, and authentic hardwood charcoal grilling to Area H, New Owerri.
+            Founded by acclaimed Executive Chef Uzochukwu Elui, Old English Bar & Grills brings world-class culinary discipline, pristine kitchen hygiene, and authentic grilling to Owerri Imo State.
           </p>
 
           {/* Action Pills */}
@@ -53,7 +53,7 @@ export const Hero = ({ onOpenReservation }) => {
           <div className="lg:col-span-8 bento-card relative min-h-[360px] sm:min-h-[440px] group">
             <img
               src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1600&q=80"
-              alt="Old English Flame Grill"
+              alt="Old English Bar & Grills Atmosphere"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent pointer-events-none" />
@@ -61,7 +61,7 @@ export const Hero = ({ onOpenReservation }) => {
             {/* Floating Tags */}
             <div className="absolute top-4 left-4 right-4 flex flex-wrap gap-2 z-10">
               <span className="chip-pill chip-pill-red shadow-lg">
-                <Award size={12} /> Executive Chef Segun
+                <Award size={12} /> Executive Chef Uzochukwu Elui
               </span>
               <span className="chip-pill chip-pill-dark shadow-lg">
                 <ShieldCheck size={12} className="text-emerald-400" /> 100% Hygienic Kitchen
@@ -74,12 +74,12 @@ export const Hero = ({ onOpenReservation }) => {
                   Master Culinary Practice
                 </span>
                 <h3 className="font-serif text-xl sm:text-3xl font-bold leading-tight">
-                  Hardwood Charcoal & Pristine Craft
+                  Hardwood Flames & Pristine Craft
                 </h3>
               </div>
               <div className="flex items-center gap-2 bg-white/20 backdrop-blur-md px-4 py-2 rounded-full border border-white/25 text-xs font-semibold shrink-0">
                 <MapPin size={13} className="text-red-400" />
-                <span>Area H, New Owerri</span>
+                <span>Area H, New Owerri, Imo State</span>
               </div>
             </div>
           </div>
@@ -102,7 +102,7 @@ export const Hero = ({ onOpenReservation }) => {
               <div className="mb-4">
                 <span className="text-[11px] uppercase font-bold text-zinc-400 tracking-wider block mb-1">Operating Hours</span>
                 <h4 className="font-serif text-2xl font-bold text-zinc-900 leading-tight">Everyday 7am – 12am</h4>
-                <p className="text-xs text-zinc-500 mt-1.5 leading-relaxed">Breakfast, Lunch, Dinner & Late-night Suya</p>
+                <p className="text-xs text-zinc-500 mt-1.5 leading-relaxed">Breakfast, Lunch, Dinner & Late-night Grills</p>
               </div>
 
               <div className="pt-4 border-t border-zinc-100 flex items-center justify-between text-xs font-semibold text-zinc-700">
@@ -124,10 +124,10 @@ export const Hero = ({ onOpenReservation }) => {
 
               <div className="relative z-10 mb-4">
                 <h4 className="font-serif text-2xl font-bold text-white mb-2 leading-tight">
-                  Dry-Aged Ribeye Suya
+                  Executive Mix Grill Platter
                 </h4>
                 <p className="text-xs text-zinc-400 leading-relaxed">
-                  Prime beef dry-aged 28 days under strict temperature control, marinated in house-ground Hausa Yaji.
+                  Prime beef ribeye, flame-roasted chicken, and jumbo prawns marinated in authentic Hausa Yaji rub.
                 </p>
               </div>
 
