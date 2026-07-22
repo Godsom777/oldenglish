@@ -52,8 +52,8 @@ export const Hero = ({ onOpenReservation }) => {
           {/* Main Hero Image Bento with Floating Chips */}
           <div className="lg:col-span-8 bento-card relative min-h-[360px] sm:min-h-[440px] group">
             <img
-              src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1600&q=80"
-              alt="Old English Bar & Grills Atmosphere"
+              src="/images/hero-interior.jpg"
+              alt="Old English Bar & Grills Interior"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent pointer-events-none" />
