@@ -44,7 +44,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0b0b0d] text-zinc-100 font-sans selection:bg-red-900 selection:text-white">
+    <div className="min-h-screen bg-white text-zinc-900 font-sans selection:bg-red-600 selection:text-white">
       {/* Sticky Header */}
       <Navbar
         onOpenReservation={() => handleOpenReservation()}

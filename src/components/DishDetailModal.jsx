@@ -5,129 +5,78 @@ export const DishDetailModal = ({ item, onClose, onReserveWithItem }) => {
   if (!item) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 animate-fade-in">
-      {/* Backdrop */}
-      <div
-        className="absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity"
-        onClick={onClose}
-      />
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center animate-fade-in">
+      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={onClose} />
 
-      {/* Modal Container */}
-      <div className="relative w-full sm:max-w-xl bg-white border-t sm:border border-zinc-200 rounded-t-3xl sm:rounded-3xl overflow-hidden shadow-2xl z-10 max-h-[90vh] flex flex-col">
-        {/* Modal Header Image */}
-        <div className="relative h-60 sm:h-64 w-full bg-zinc-100 shrink-0">
-          <img
-            src={item.image}
-            alt={item.name}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-black/50" />
-
-          {/* Close Button */}
+      <div className="relative w-full sm:max-w-lg bg-white rounded-t-3xl sm:rounded-2xl overflow-hidden shadow-2xl z-10 max-h-[90vh] flex flex-col">
+        {/* Image */}
+        <div className="relative h-64 w-full shrink-0">
+          <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-black/30" />
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/90 text-zinc-800 flex items-center justify-center hover:bg-white transition-colors border border-zinc-200 shadow-md"
+            className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/90 text-zinc-700 flex items-center justify-center hover:bg-white transition-colors shadow-sm"
           >
-            <X size={20} />
+            <X size={18} />
           </button>
-
-          {/* Title & Price Header Overlay */}
-          <div className="absolute bottom-4 left-6 right-6">
-            <div className="flex items-center gap-2 mb-1.5">
-              {item.spicyLevel > 0 && (
-                <span className="badge badge-red text-xs font-semibold bg-red-100 border-red-200 text-red-700">
-                  <Flame size={13} className="fill-red-600 text-red-600" />
-                  <span>Spice Level {item.spicyLevel}/3</span>
-                </span>
-              )}
-              {item.tags?.map((tag, idx) => (
-                <span
-                  key={idx}
-                  className="text-[10px] uppercase font-bold text-zinc-800 bg-white/90 px-2.5 py-0.5 rounded-md border border-zinc-200"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-
-            <div className="flex items-baseline justify-between gap-4">
-              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-zinc-900 leading-tight">
-                {item.name}
-              </h2>
-              <span className="text-2xl font-bold text-red-600 font-sans">
-                ${item.price}
-              </span>
-            </div>
-          </div>
         </div>
 
-        {/* Modal Body Content */}
-        <div className="p-6 overflow-y-auto space-y-6">
-          {/* Description */}
-          <div>
-            <h4 className="text-xs uppercase font-bold tracking-wider text-zinc-500 mb-1.5">
-              Description
-            </h4>
-            <p className="text-zinc-700 text-sm sm:text-base leading-relaxed font-normal">
-              {item.description}
-            </p>
+        {/* Content */}
+        <div className="p-6 overflow-y-auto space-y-5 flex-1 -mt-6 relative bg-white rounded-t-3xl">
+          {/* Header */}
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              {item.spicyLevel > 0 && (
+                <div className="flex items-center gap-1 mb-2 text-red-600">
+                  {Array.from({ length: item.spicyLevel }).map((_, i) => (
+                    <Flame key={i} size={13} className="fill-red-600" />
+                  ))}
+                  <span className="text-[11px] font-semibold ml-1">Spice Level {item.spicyLevel}/3</span>
+                </div>
+              )}
+              <h2 className="font-serif text-2xl font-semibold text-zinc-900 leading-tight">{item.name}</h2>
+            </div>
+            <span className="text-2xl font-semibold text-zinc-900 shrink-0">${item.price}</span>
           </div>
 
-          {/* Key Ingredients */}
-          {item.ingredients && item.ingredients.length > 0 && (
+          <p className="text-zinc-600 text-sm leading-relaxed">{item.description}</p>
+
+          {/* Ingredients */}
+          {item.ingredients?.length > 0 && (
             <div>
-              <h4 className="text-xs uppercase font-bold tracking-wider text-zinc-500 mb-2 flex items-center gap-1.5">
-                <Utensils size={15} className="text-red-600" /> Key Ingredients
+              <h4 className="text-[11px] uppercase font-semibold tracking-widest text-zinc-400 mb-2 flex items-center gap-1.5">
+                <Utensils size={13} /> Ingredients
               </h4>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1.5">
                 {item.ingredients.map((ing, idx) => (
-                  <span
-                    key={idx}
-                    className="text-xs bg-zinc-100 border border-zinc-200 text-zinc-800 px-3 py-1.5 rounded-xl font-medium"
-                  >
-                    {ing}
-                  </span>
+                  <span key={idx} className="text-xs bg-zinc-100 text-zinc-700 px-3 py-1 rounded-full font-medium">{ing}</span>
                 ))}
               </div>
             </div>
           )}
 
-          {/* Beverage Pairing */}
+          {/* Pairing */}
           {item.pairing && (
-            <div className="p-4 rounded-2xl bg-red-50/60 border border-red-100 flex items-start gap-3.5">
-              <div className="p-2.5 rounded-xl bg-red-100 text-red-600 shrink-0 mt-0.5">
-                <Wine size={18} />
-              </div>
+            <div className="flex items-start gap-3 p-4 rounded-xl bg-zinc-50 border border-zinc-100">
+              <Wine size={16} className="text-zinc-400 shrink-0 mt-0.5" />
               <div>
-                <h5 className="text-xs font-bold text-zinc-900 uppercase tracking-wider">
-                  Recommended Beverage Pairing
-                </h5>
-                <p className="text-xs text-zinc-700 mt-0.5 font-normal">
-                  {item.pairing}
-                </p>
+                <span className="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider block">Pairs with</span>
+                <span className="text-sm text-zinc-700">{item.pairing}</span>
               </div>
             </div>
           )}
         </div>
 
-        {/* Modal Footer Actions */}
-        <div className="p-5 border-t border-zinc-200 bg-zinc-50 flex items-center justify-between gap-3 shrink-0">
-          <button
-            onClick={onClose}
-            className="btn-secondary text-xs px-4 py-2.5"
-          >
-            Back to Menu
+        {/* Footer */}
+        <div className="p-5 border-t border-zinc-100 flex gap-3 shrink-0">
+          <button onClick={onClose} className="flex-1 py-3 text-sm font-medium text-zinc-600 rounded-full border border-zinc-200 hover:bg-zinc-50 transition-colors">
+            Back
           </button>
-
           <button
-            onClick={() => {
-              onClose();
-              onReserveWithItem(item);
-            }}
-            className="btn-primary text-xs px-5 py-2.5"
+            onClick={() => { onClose(); onReserveWithItem(item); }}
+            className="flex-1 py-3 text-sm font-medium text-white bg-zinc-900 rounded-full hover:bg-zinc-800 transition-colors flex items-center justify-center gap-2"
           >
-            <Calendar size={15} />
-            <span>Book Table with this Dish</span>
+            <Calendar size={15} /> Reserve with this
           </button>
         </div>
       </div>
