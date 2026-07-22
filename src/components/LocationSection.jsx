@@ -7,16 +7,16 @@ export const LocationSection = ({ onOpenReservation }) => {
 
   return (
     <section id="location" className="py-24 sm:py-32 bg-white">
-      <div className="container max-w-7xl">
+      <div className="site-container">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
+        <div className="text-center max-w-3xl mx-auto mb-12 px-2">
           <span className="chip-pill chip-pill-dark mb-4">
             <MapPin size={12} className="text-red-500" /> Area H, New Owerri
           </span>
-          <h2 className="font-display text-4xl sm:text-6xl font-extrabold text-zinc-900 tracking-tight leading-none mb-4">
+          <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-extrabold text-zinc-900 tracking-tight leading-none mb-4">
             LOCATION & HOURS
           </h2>
-          <p className="text-zinc-600 text-sm sm:text-base font-medium">
+          <p className="text-zinc-600 text-xs sm:text-base font-medium leading-relaxed">
             Open everyday 7:00 AM – 12:00 AM for charcoal grill, Suya lounge, cocktails, and dining.
           </p>
         </div>
@@ -38,7 +38,7 @@ export const LocationSection = ({ onOpenReservation }) => {
                 </span>
               </div>
 
-              <div className="space-y-2 text-xs">
+              <div className="space-y-2 text-xs mb-4">
                 {OPERATING_HOURS.map((item, idx) => {
                   const isToday = item.day === status.todayName;
                   return (
@@ -58,7 +58,7 @@ export const LocationSection = ({ onOpenReservation }) => {
 
             <button
               onClick={onOpenReservation}
-              className="mt-6 w-full bg-zinc-900 text-white text-xs font-bold uppercase tracking-wider py-3 rounded-full hover:bg-red-600 transition-colors"
+              className="mt-4 w-full bg-zinc-900 text-white text-xs font-bold uppercase tracking-wider py-3 rounded-full hover:bg-red-600 transition-colors"
             >
               Reserve Table
             </button>
@@ -88,7 +88,7 @@ export const LocationSection = ({ onOpenReservation }) => {
               </div>
             </div>
 
-            <div className="pt-6 border-t border-zinc-100 flex flex-col gap-2">
+            <div className="pt-6 border-t border-zinc-100 flex flex-col gap-2 mt-4">
               <a
                 href="https://wa.me/2348104128681"
                 target="_blank"
@@ -101,13 +101,13 @@ export const LocationSection = ({ onOpenReservation }) => {
           </div>
 
           {/* Bento Card 3: Visual Location Card */}
-          <div className="bento-card-dark p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden min-h-[300px]">
+          <div className="bento-card-dark p-6 sm:p-8 flex flex-col justify-between relative min-h-[300px]">
             <img
               src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=800&q=80"
               alt="Map view"
-              className="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-luminosity"
+              className="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-luminosity pointer-events-none"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none" />
 
             <div className="relative z-10">
               <span className="chip-pill chip-pill-red mb-3">
@@ -119,7 +119,7 @@ export const LocationSection = ({ onOpenReservation }) => {
               <p className="text-xs text-zinc-400 mt-1">Area H, New Owerri, Imo State</p>
             </div>
 
-            <div className="relative z-10 pt-6">
+            <div className="relative z-10 pt-6 mt-4">
               <a
                 href="https://maps.google.com"
                 target="_blank"

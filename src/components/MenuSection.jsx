@@ -24,22 +24,22 @@ export const MenuSection = ({
 
   return (
     <section id="menu" className="py-24 sm:py-32 bg-[#f5f5f2]">
-      <div className="container max-w-7xl">
+      <div className="site-container">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
+        <div className="text-center max-w-3xl mx-auto mb-12 px-2">
           <span className="chip-pill chip-pill-red mb-4">
             <Flame size={12} /> Today's Selection
           </span>
-          <h2 className="font-display text-4xl sm:text-6xl font-extrabold text-zinc-900 tracking-tight leading-none mb-4">
+          <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-extrabold text-zinc-900 tracking-tight leading-none mb-4">
             GASTRONOMY MENU
           </h2>
-          <p className="text-zinc-600 text-sm sm:text-base font-medium">
+          <p className="text-zinc-600 text-xs sm:text-base font-medium leading-relaxed">
             Hardwood charcoal grill classics, Suya skewers, rich pepper soups, and signature craft mixology.
           </p>
         </div>
 
-        {/* Floating Pill Filter Bar & Search (Image 1 style) */}
-        <div className="max-w-5xl mx-auto mb-12 bg-white rounded-full p-2 border border-zinc-200/80 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3">
+        {/* Floating Pill Filter Bar & Search */}
+        <div className="max-w-4xl mx-auto mb-12 bg-white rounded-3xl sm:rounded-full p-2.5 border border-zinc-200/80 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3">
           {/* Categories */}
           <div className="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto px-2 py-1 scrollbar-none">
             {DEFAULT_CATEGORIES.map((cat) => {
@@ -85,7 +85,7 @@ export const MenuSection = ({
             ))}
           </div>
         ) : (
-          <div className="bento-card p-12 text-center max-w-md mx-auto">
+          <div className="bento-card p-10 sm:p-12 text-center max-w-md mx-auto">
             <p className="text-zinc-500 text-sm font-medium">No dishes found matching your query.</p>
             <button
               onClick={() => { setActiveCategory('all'); setSearchQuery(''); }}

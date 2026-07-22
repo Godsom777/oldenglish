@@ -6,12 +6,12 @@ export const Footer = ({ onOpenReservation, onOpenCsvUpload }) => {
 
   return (
     <footer className="bg-[#111113] text-white pt-16 pb-12 border-t border-zinc-800">
-      <div className="container max-w-7xl">
+      <div className="site-container">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12 pb-12 border-b border-zinc-800/80">
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center">
+              <div className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center shrink-0">
                 <Flame size={16} />
               </div>
               <span className="font-display text-2xl font-bold tracking-tight">OLD ENGLISH</span>
@@ -46,13 +46,13 @@ export const Footer = ({ onOpenReservation, onOpenCsvUpload }) => {
           {/* Hours */}
           <div>
             <h4 className="text-[11px] font-bold uppercase tracking-widest text-zinc-500 mb-4">Hours</h4>
-            <p className="text-zinc-400 text-xs leading-relaxed font-medium">
+            <p className="text-zinc-400 text-xs leading-relaxed font-medium mb-3">
               Open Everyday<br />
               <strong className="text-white">7:00 AM – 12:00 AM</strong>
             </p>
             <button
               onClick={onOpenReservation}
-              className="mt-4 bg-red-600 hover:bg-red-700 text-white text-[11px] font-bold uppercase tracking-wider px-4 py-2 rounded-full transition-all shadow-md shadow-red-600/20"
+              className="bg-red-600 hover:bg-red-700 text-white text-[11px] font-bold uppercase tracking-wider px-4 py-2 rounded-full transition-all shadow-md shadow-red-600/20"
             >
               Reserve Table
             </button>

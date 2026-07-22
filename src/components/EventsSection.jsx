@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Send, CheckCircle2, Calendar, Users, Wine } from 'lucide-react';
+import { Send, CheckCircle2 } from 'lucide-react';
 
 export const EventsSection = ({ onOpenReservation }) => {
   const [submitted, setSubmitted] = useState(false);
@@ -19,20 +19,20 @@ export const EventsSection = ({ onOpenReservation }) => {
 
   return (
     <section id="events" className="py-24 sm:py-32 bg-[#f5f5f2]">
-      <div className="container max-w-7xl">
+      <div className="site-container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* Left Bento Info */}
-          <div className="lg:col-span-5 bento-card p-8 sm:p-10 flex flex-col justify-between">
+          <div className="lg:col-span-5 bento-card p-6 sm:p-10 flex flex-col justify-between">
             <div>
               <span className="chip-pill chip-pill-red mb-6">
                 Private Dining & Catering
               </span>
 
-              <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-zinc-900 leading-tight mb-4">
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-zinc-900 leading-tight mb-4">
                 HOST YOUR SPECIAL OCCASIONS.
               </h2>
 
-              <p className="text-zinc-600 text-sm leading-relaxed mb-6">
+              <p className="text-zinc-600 text-xs sm:text-sm leading-relaxed mb-6">
                 Host intimate dinners, birthday parties, corporate celebrations, or full lounge takeovers in New Owerri with tailored charcoal tasting menus and cocktail pairings.
               </p>
             </div>
@@ -43,8 +43,8 @@ export const EventsSection = ({ onOpenReservation }) => {
                 alt="Private Event Setting"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4 text-white text-xs font-bold flex items-center justify-between">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-4 left-4 right-4 text-white text-xs font-bold flex items-center justify-between z-10">
                 <span>Lounge Capacity: 120+ Guests</span>
                 <span className="bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-[10px]">Area H</span>
               </div>
@@ -52,7 +52,7 @@ export const EventsSection = ({ onOpenReservation }) => {
           </div>
 
           {/* Right Bento Form */}
-          <div className="lg:col-span-7 bento-card p-8 sm:p-10">
+          <div className="lg:col-span-7 bento-card p-6 sm:p-10">
             <h3 className="font-serif text-2xl font-bold text-zinc-900 mb-1">
               Private Event Inquiry
             </h3>
