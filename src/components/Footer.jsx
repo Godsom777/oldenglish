@@ -37,12 +37,7 @@ export const Footer = ({ onOpenReservation, onOpenCsvUpload }) => {
               <li><Link to="/story" className="text-zinc-400 hover:text-white transition-colors">Our Story & Standards</Link></li>
               <li><Link to="/bar" className="text-zinc-400 hover:text-white transition-colors">Our Bar & Mixology</Link></li>
               <li><Link to="/rooms" className="text-zinc-400 hover:text-white transition-colors">Rooms & Spaces Gallery</Link></li>
-              <li>
-                <Link to="/apartments" className="text-red-400 hover:text-red-300 transition-colors inline-flex items-center gap-1.5 font-bold">
-                  <span>Luxury Apartments</span>
-                  <span className="text-[9px] font-extrabold bg-red-600 text-white px-1.5 py-0.5 rounded-full uppercase">SOON</span>
-                </Link>
-              </li>
+              <li><Link to="/apartments" className="text-zinc-400 hover:text-white transition-colors">Kcanice & Isabella Apartments</Link></li>
               <li><Link to="/events" className="text-zinc-400 hover:text-white transition-colors">Private Events</Link></li>
               <li><Link to="/contact" className="text-zinc-400 hover:text-white transition-colors">Location & Hours</Link></li>
             </ul>
@@ -53,6 +48,7 @@ export const Footer = ({ onOpenReservation, onOpenCsvUpload }) => {
             <h4 className="text-[11px] font-bold uppercase tracking-widest text-zinc-500 mb-4">Contact Us</h4>
             <ul className="space-y-2.5 text-xs font-semibold">
               <li><a href="tel:08104128681" className="text-red-400 hover:text-red-300 transition-colors flex items-center gap-1.5"><Phone size={13} /> 08104128681</a></li>
+              <li><a href="tel:08039352371" className="text-zinc-400 hover:text-white transition-colors flex items-center gap-1.5"><Phone size={13} /> 0803 935 2371 (Apartment)</a></li>
               <li><a href="https://wa.me/2348104128681" target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-white transition-colors">WhatsApp Line</a></li>
               <li><a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-white transition-colors flex items-center gap-1.5"><MapPin size={13} /> Google Maps</a></li>
             </ul>
@@ -76,7 +72,7 @@ export const Footer = ({ onOpenReservation, onOpenCsvUpload }) => {
 
         {/* Bottom Bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
-          <span>&copy; {new Date().getFullYear()} Old English Bar & Grills. All rights reserved.</span>
+          <span>&copy; {new Date().getFullYear()} Old English Bar & Grills & Kcanice & Isabella Apartments. All rights reserved.</span>
 
           <div className="flex items-center gap-6">
             <button

@@ -56,20 +56,8 @@ export const Navbar = ({ onOpenReservation }) => {
               <NavLink to="/rooms" className={navItemClass}>
                 Rooms
               </NavLink>
-              <NavLink
-                to="/apartments"
-                className={({ isActive }) =>
-                  `px-3 py-1.5 rounded-full text-xs font-semibold transition-all flex items-center gap-1.5 ${
-                    isActive
-                      ? 'bg-red-600 text-white shadow-sm'
-                      : 'text-red-600 hover:bg-white'
-                  }`
-                }
-              >
-                <span>Apartments</span>
-                <span className="text-[9px] font-extrabold bg-red-600 text-white px-1.5 py-0.5 rounded-full uppercase tracking-widest">
-                  SOON
-                </span>
+              <NavLink to="/apartments" className={navItemClass}>
+                Apartments
               </NavLink>
               <NavLink to="/events" className={navItemClass}>
                 Events
@@ -148,9 +136,8 @@ export const Navbar = ({ onOpenReservation }) => {
               <NavLink to="/rooms" onClick={() => setMobileMenuOpen(false)} className={({ isActive }) => `py-2 border-b border-zinc-100 font-semibold ${isActive ? 'text-red-600 font-bold' : 'text-zinc-900'}`}>
                 Rooms & Spaces Gallery
               </NavLink>
-              <NavLink to="/apartments" onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-zinc-100 text-red-600 font-bold flex items-center justify-between">
-                <span>Luxury Apartments</span>
-                <span className="text-[10px] font-extrabold bg-red-600 text-white px-2 py-0.5 rounded-full uppercase">COMING SOON</span>
+              <NavLink to="/apartments" onClick={() => setMobileMenuOpen(false)} className={({ isActive }) => `py-2 border-b border-zinc-100 font-semibold ${isActive ? 'text-red-600 font-bold' : 'text-zinc-900'}`}>
+                Kcanice & Isabella Apartments
               </NavLink>
               <NavLink to="/events" onClick={() => setMobileMenuOpen(false)} className={({ isActive }) => `py-2 border-b border-zinc-100 font-semibold ${isActive ? 'text-red-600 font-bold' : 'text-zinc-900'}`}>
                 Private Events & Catering

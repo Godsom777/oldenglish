@@ -8,14 +8,14 @@ export const ApartmentsPage = () => {
       {/* Page Header */}
       <div className="bg-[#f5f5f2] py-12 border-b border-zinc-200/80 mb-6">
         <div className="site-container text-center max-w-3xl mx-auto px-4">
-          <span className="chip-pill chip-pill-red mb-3">
-            <Building2 size={12} /> Executive Shortlet Suites
-          </span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 text-white text-xs font-bold uppercase tracking-widest mb-3">
+            <Building2 size={12} className="text-red-500" /> Kcanice & Isabella by Old English
+          </div>
           <h1 className="font-display text-4xl sm:text-6xl font-extrabold text-zinc-900 tracking-tight leading-none mb-3">
-            OLD ENGLISH APARTMENTS
+            KCANICE & ISABELLA APARTMENTS
           </h1>
           <p className="text-zinc-600 text-sm sm:text-base font-medium">
-            Luxury shortlet suites and VIP apartments opening in Area H, New Owerri. Join the launch waitlist for early access.
+            Luxury shortlet suites and executive apartments in New Owerri. Experience comfort, loyalty discounts, and VIP room service directly from Old English.
           </p>
         </div>
       </div>
