@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowUp, Phone, MapPin } from 'lucide-react';
 
 export const Footer = ({ onOpenReservation, onOpenCsvUpload }) => {
@@ -10,14 +11,14 @@ export const Footer = ({ onOpenReservation, onOpenCsvUpload }) => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12 pb-12 border-b border-zinc-800/80">
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <div className="flex items-center gap-3 mb-4">
+            <Link to="/" className="flex items-center gap-3 mb-4 inline-flex">
               <img
                 src="/images/logo.png"
                 alt="Old English Bar & Grills Logo"
                 className="h-12 w-auto object-contain"
               />
               <span className="font-display text-2xl font-bold tracking-tight">OLD ENGLISH</span>
-            </div>
+            </Link>
             <p className="font-serif italic text-red-400 text-sm font-normal mb-3">
               "See where good taste takes you"
             </p>
@@ -29,20 +30,21 @@ export const Footer = ({ onOpenReservation, onOpenCsvUpload }) => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-[11px] font-bold uppercase tracking-widest text-zinc-500 mb-4">Navigation</h4>
+            <h4 className="text-[11px] font-bold uppercase tracking-widest text-zinc-500 mb-4">Page Navigation</h4>
             <ul className="space-y-2.5 text-xs font-semibold">
-              <li><a href="#menu" className="text-zinc-400 hover:text-white transition-colors">Today's Menu</a></li>
-              <li><a href="#story" className="text-zinc-400 hover:text-white transition-colors">Our Story & Standards</a></li>
-              <li><a href="#bar-story" className="text-zinc-400 hover:text-white transition-colors">Our Bar & Mixology</a></li>
-              <li><a href="#rooms" className="text-zinc-400 hover:text-white transition-colors">Rooms & Spaces Gallery</a></li>
+              <li><Link to="/" className="text-zinc-400 hover:text-white transition-colors">Home Page</Link></li>
+              <li><Link to="/menu" className="text-zinc-400 hover:text-white transition-colors">Gastronomy Menu</Link></li>
+              <li><Link to="/story" className="text-zinc-400 hover:text-white transition-colors">Our Story & Standards</Link></li>
+              <li><Link to="/bar" className="text-zinc-400 hover:text-white transition-colors">Our Bar & Mixology</Link></li>
+              <li><Link to="/rooms" className="text-zinc-400 hover:text-white transition-colors">Rooms & Spaces Gallery</Link></li>
               <li>
-                <a href="#apartments" className="text-red-400 hover:text-red-300 transition-colors inline-flex items-center gap-1.5 font-bold">
+                <Link to="/apartments" className="text-red-400 hover:text-red-300 transition-colors inline-flex items-center gap-1.5 font-bold">
                   <span>Luxury Apartments</span>
                   <span className="text-[9px] font-extrabold bg-red-600 text-white px-1.5 py-0.5 rounded-full uppercase">SOON</span>
-                </a>
+                </Link>
               </li>
-              <li><a href="#events" className="text-zinc-400 hover:text-white transition-colors">Private Events</a></li>
-              <li><a href="#location" className="text-zinc-400 hover:text-white transition-colors">Location & Hours</a></li>
+              <li><Link to="/events" className="text-zinc-400 hover:text-white transition-colors">Private Events</Link></li>
+              <li><Link to="/contact" className="text-zinc-400 hover:text-white transition-colors">Location & Hours</Link></li>
             </ul>
           </div>
 

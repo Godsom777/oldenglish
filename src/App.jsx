@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { MenuSection } from './components/MenuSection';
-import { StorySection } from './components/StorySection';
-import { RoomsGallerySection } from './components/RoomsGallerySection';
-import { ApartmentsSection } from './components/ApartmentsSection';
-import { EventsSection } from './components/EventsSection';
-import { LocationSection } from './components/LocationSection';
 import { Footer } from './components/Footer';
+import { ScrollToTop } from './components/ScrollToTop';
 import { DishDetailModal } from './components/DishDetailModal';
 import { CsvUploaderModal } from './components/CsvUploaderModal';
 import { ReservationModal } from './components/ReservationModal';
 import { INITIAL_MENU_ITEMS } from './data/defaultMenu';
 import { downloadSampleMenuCsv } from './utils/csvParser';
+
+// Pages
+import { HomePage } from './pages/HomePage';
+import { MenuPage } from './pages/MenuPage';
+import { StoryPage } from './pages/StoryPage';
+import { BarPage } from './pages/BarPage';
+import { RoomsPage } from './pages/RoomsPage';
+import { ApartmentsPage } from './pages/ApartmentsPage';
+import { EventsPage } from './pages/EventsPage';
+import { ContactPage } from './pages/ContactPage';
 
 export function App() {
   const [menuItems, setMenuItems] = useState(INITIAL_MENU_ITEMS);
@@ -49,74 +54,119 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-zinc-900 font-sans selection:bg-red-600 selection:text-white">
-      {/* Sticky Header */}
-      <Navbar
-        onOpenReservation={(zoneId) => handleOpenReservation(null, zoneId)}
-        onOpenCsvUpload={() => setIsCsvModalOpen(true)}
-      />
-
-      {/* Main Content */}
-      <main>
-        {/* Hero Banner */}
-        <Hero onOpenReservation={() => handleOpenReservation()} />
-
-        {/* Menu Section */}
-        <MenuSection
-          menuItems={menuItems}
-          onSelectItem={(dish) => setSelectedDish(dish)}
-          onReserveWithItem={(dish) => handleOpenReservation(dish)}
+    <BrowserRouter>
+      <ScrollToTop />
+      <div className="min-h-screen bg-white text-zinc-900 font-sans selection:bg-red-600 selection:text-white flex flex-col justify-between">
+        {/* Sticky Header Navbar */}
+        <Navbar
+          onOpenReservation={(zoneId) => handleOpenReservation(null, zoneId)}
           onOpenCsvUpload={() => setIsCsvModalOpen(true)}
-          onDownloadSampleCsv={downloadSampleMenuCsv}
+        />
+
+        {/* Multi-Page Routes */}
+        <main className="flex-1">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <HomePage
+                  menuItems={menuItems}
+                  onSelectItem={(dish) => setSelectedDish(dish)}
+                  onReserveWithItem={(dish) => handleOpenReservation(dish)}
+                  onOpenReservation={(dish, zoneId) => handleOpenReservation(dish, zoneId)}
+                  onOpenCsvUpload={() => setIsCsvModalOpen(true)}
+                  downloadSampleMenuCsv={downloadSampleMenuCsv}
+                  handleResetDefaultMenu={handleResetDefaultMenu}
+                  isCustomMenuLoaded={isCustomMenuLoaded}
+                />
+              }
+            />
+
+            <Route
+              path="/menu"
+              element={
+                <MenuPage
+                  menuItems={menuItems}
+                  onSelectItem={(dish) => setSelectedDish(dish)}
+                  onReserveWithItem={(dish) => handleOpenReservation(dish)}
+                  onOpenCsvUpload={() => setIsCsvModalOpen(true)}
+                  downloadSampleMenuCsv={downloadSampleMenuCsv}
+                  handleResetDefaultMenu={handleResetDefaultMenu}
+                  isCustomMenuLoaded={isCustomMenuLoaded}
+                />
+              }
+            />
+
+            <Route path="/story" element={<StoryPage />} />
+
+            <Route
+              path="/bar"
+              element={
+                <BarPage
+                  onOpenReservation={(dish, zoneId) => handleOpenReservation(dish, zoneId)}
+                />
+              }
+            />
+
+            <Route
+              path="/rooms"
+              element={
+                <RoomsPage
+                  onOpenReservation={(dish, zoneId) => handleOpenReservation(dish, zoneId)}
+                />
+              }
+            />
+
+            <Route path="/apartments" element={<ApartmentsPage />} />
+
+            <Route
+              path="/events"
+              element={
+                <EventsPage
+                  onOpenReservation={(dish, zoneId) => handleOpenReservation(dish, zoneId)}
+                />
+              }
+            />
+
+            <Route
+              path="/contact"
+              element={
+                <ContactPage
+                  onOpenReservation={(dish, zoneId) => handleOpenReservation(dish, zoneId)}
+                />
+              }
+            />
+          </Routes>
+        </main>
+
+        {/* Footer */}
+        <Footer
+          onOpenReservation={() => handleOpenReservation()}
+          onOpenCsvUpload={() => setIsCsvModalOpen(true)}
+        />
+
+        {/* Global Modals & Overlays */}
+        <DishDetailModal
+          item={selectedDish}
+          onClose={() => setSelectedDish(null)}
+          onReserveWithItem={(dish) => handleOpenReservation(dish)}
+        />
+
+        <CsvUploaderModal
+          isOpen={isCsvModalOpen}
+          onClose={() => setIsCsvModalOpen(false)}
+          onCsvParsed={handleCsvParsed}
           onResetDefaultMenu={handleResetDefaultMenu}
-          isCustomMenuLoaded={isCustomMenuLoaded}
         />
 
-        {/* Heritage & Bar Story Section */}
-        <StorySection />
-
-        {/* Rooms & Spaces Gallery Section */}
-        <RoomsGallerySection
-          onReserveRoom={(zoneId) => handleOpenReservation(null, zoneId)}
+        <ReservationModal
+          isOpen={isReservationOpen}
+          onClose={handleCloseReservation}
+          initialItem={reservationInitialDish}
+          initialZone={reservationInitialZone}
         />
-
-        {/* Luxury Apartments Section (Coming Soon) */}
-        <ApartmentsSection />
-
-        {/* Private Events Section */}
-        <EventsSection onOpenReservation={() => handleOpenReservation()} />
-
-        {/* Location & Hours Section */}
-        <LocationSection onOpenReservation={() => handleOpenReservation()} />
-      </main>
-
-      {/* Footer */}
-      <Footer
-        onOpenReservation={() => handleOpenReservation()}
-        onOpenCsvUpload={() => setIsCsvModalOpen(true)}
-      />
-
-      {/* Modals & Bottom Sheets */}
-      <DishDetailModal
-        item={selectedDish}
-        onClose={() => setSelectedDish(null)}
-        onReserveWithItem={(dish) => handleOpenReservation(dish)}
-      />
-
-      <CsvUploaderModal
-        isOpen={isCsvModalOpen}
-        onClose={() => setIsCsvModalOpen(false)}
-        onCsvParsed={handleCsvParsed}
-        onResetDefaultMenu={handleResetDefaultMenu}
-      />
-
-      <ReservationModal
-        isOpen={isReservationOpen}
-        onClose={handleCloseReservation}
-        initialItem={reservationInitialDish}
-        initialZone={reservationInitialZone}
-      />
-    </div>
+      </div>
+    </BrowserRouter>
   );
 }
 
