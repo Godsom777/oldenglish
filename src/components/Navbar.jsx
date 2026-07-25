@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Flame, Menu as MenuIcon, X, Phone } from 'lucide-react';
+import { Menu as MenuIcon, X, Phone } from 'lucide-react';
 import { getLiveBusinessStatus } from '../utils/hoursUtil';
 
 export const Navbar = ({ onOpenReservation }) => {
@@ -18,13 +18,15 @@ export const Navbar = ({ onOpenReservation }) => {
       {/* Floating Pill Navbar Header */}
       <header className="fixed top-3 sm:top-5 left-0 right-0 z-50 px-3 sm:px-6">
         <div className="site-container">
-          <div className="pill-navbar px-4 sm:px-6 py-3 flex items-center justify-between transition-all duration-300">
+          <div className="pill-navbar px-4 sm:px-6 py-2.5 flex items-center justify-between transition-all duration-300">
             {/* Logo */}
-            <a href="#" className="flex items-center gap-2.5 group">
-              <div className="w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center group-hover:scale-105 transition-transform duration-300 shadow-sm shrink-0">
-                <Flame size={16} />
-              </div>
-              <span className="font-display text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 leading-none">
+            <a href="#" className="flex items-center gap-3 group">
+              <img
+                src="/images/logo.png"
+                alt="Old English Bar & Grills Logo"
+                className="h-9 sm:h-10 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+              />
+              <span className="font-display text-xl sm:text-2xl font-extrabold tracking-tight text-zinc-900 leading-none">
                 OLD ENGLISH
               </span>
             </a>
@@ -41,7 +43,13 @@ export const Navbar = ({ onOpenReservation }) => {
                 href="#story"
                 className="px-4 py-1.5 rounded-full text-xs font-semibold text-zinc-600 hover:text-zinc-900 hover:bg-white transition-all"
               >
-                Story
+                Our Story
+              </a>
+              <a
+                href="#bar-story"
+                className="px-4 py-1.5 rounded-full text-xs font-semibold text-zinc-600 hover:text-zinc-900 hover:bg-white transition-all"
+              >
+                Our Bar
               </a>
               <a
                 href="#events"
@@ -97,12 +105,14 @@ export const Navbar = ({ onOpenReservation }) => {
         <div className="fixed inset-0 z-50 bg-white/98 backdrop-blur-2xl p-6 flex flex-col justify-between md:hidden animate-fade-in">
           <div>
             <div className="flex items-center justify-between mb-8 pb-4 border-b border-zinc-100">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center">
-                  <Flame size={16} />
-                </div>
+              <a href="#" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3">
+                <img
+                  src="/images/logo.png"
+                  alt="Old English Bar & Grills Logo"
+                  className="h-10 w-auto object-contain"
+                />
                 <span className="font-display text-2xl font-bold text-zinc-900">OLD ENGLISH</span>
-              </div>
+              </a>
               <button onClick={() => setMobileMenuOpen(false)} className="p-2 text-zinc-600">
                 <X size={24} />
               </button>
@@ -114,6 +124,9 @@ export const Navbar = ({ onOpenReservation }) => {
               </a>
               <a href="#story" onClick={() => setMobileMenuOpen(false)} className="text-zinc-900 font-semibold hover:text-red-600 py-2 border-b border-zinc-100">
                 Our Story
+              </a>
+              <a href="#bar-story" onClick={() => setMobileMenuOpen(false)} className="text-zinc-900 font-semibold hover:text-red-600 py-2 border-b border-zinc-100">
+                Our Bar & Mixology
               </a>
               <a href="#events" onClick={() => setMobileMenuOpen(false)} className="text-zinc-900 font-semibold hover:text-red-600 py-2 border-b border-zinc-100">
                 Private Events

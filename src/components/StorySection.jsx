@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flame, ShieldCheck, Thermometer, Sparkles, UtensilsCrossed, Award } from 'lucide-react';
+import { Flame, ShieldCheck, Thermometer, Sparkles, UtensilsCrossed, Award, Wine, GlassWater, Citrus, Sparkle } from 'lucide-react';
 
 export const StorySection = () => {
   const CULINARY_PILLARS = [
@@ -33,9 +33,9 @@ export const StorySection = () => {
   return (
     <section id="story" className="py-24 sm:py-32 bg-white">
       <div className="site-container">
-        {/* Main Chef Story Header */}
+        {/* ================= PART 1: CULINARY HERITAGE STORY ================= */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-16">
-          {/* Left Bento Image */}
+          {/* Left Bento Image (Chef & Kitchen) */}
           <div className="lg:col-span-5 bento-card relative min-h-[380px] sm:min-h-[460px]">
             <img
               src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=1200&q=80"
@@ -104,7 +104,7 @@ export const StorySection = () => {
         </div>
 
         {/* 5 Professional Hygiene & Culinary Practice Pillars */}
-        <div className="mt-16">
+        <div className="mt-16 mb-24">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <span className="chip-pill chip-pill-red mb-3">
               <ShieldCheck size={12} /> Culinary Standards
@@ -154,6 +154,78 @@ export const StorySection = () => {
               </div>
               <div className="mt-6 pt-4 border-t border-zinc-800 text-xs text-zinc-300 font-semibold relative z-10">
                 Executive Chef Uzochukwu Elui & Kitchen Team
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ================= PART 2: OUR BAR & DRINK VARIETY STORY ================= */}
+        <div id="bar-story" className="pt-12 border-t border-zinc-200/80">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+            {/* Left Bento Story Content (Text on Left) */}
+            <div className="lg:col-span-7 bento-card p-6 sm:p-10 md:p-12 flex flex-col justify-between order-2 lg:order-1">
+              <div>
+                <span className="chip-pill chip-pill-red mb-6">
+                  <Wine size={12} /> Craft Mixology & Lounge
+                </span>
+
+                <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-zinc-900 leading-tight mb-6">
+                  OUR BAR & DRINK VARIETY.
+                </h2>
+
+                <div className="space-y-4 text-zinc-600 text-sm sm:text-base leading-relaxed">
+                  <p>
+                    At <strong className="text-zinc-900">Old English Bar & Grills</strong>, our bar is a vibrant sanctuary designed to complement our rich culinary heritage. Every cocktail, mocktail, and pour is crafted with artisanal precision, fresh natural ingredients, and premium spirits.
+                  </p>
+                  <p>
+                    From our signature luxury creation <strong className="text-red-600">Art De Vivre Pink</strong> to our iconic <strong className="text-zinc-900">Old English Signature Chapman</strong>, our master mixologists infuse passion into every glass—balancing crisp botanical notes, citrus garnishes, and perfectly chilled finishes.
+                  </p>
+                  <p className="font-serif italic text-zinc-900 text-lg font-semibold border-l-2 border-red-600 pl-4 py-1">
+                    "Whether enjoying a quiet evening drink or celebrating with friends, discover where great taste in mixology takes you."
+                  </p>
+                </div>
+              </div>
+
+              {/* Metric Bento Widgets */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8 pt-6 border-t border-zinc-100">
+                <div className="p-4 rounded-2xl bg-zinc-50 border border-zinc-100/80">
+                  <span className="font-display text-2xl sm:text-3xl font-extrabold text-zinc-900 block">Signature</span>
+                  <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider">House Mixology</span>
+                </div>
+                <div className="p-4 rounded-2xl bg-zinc-50 border border-zinc-100/80">
+                  <span className="font-display text-2xl sm:text-3xl font-extrabold text-red-600 block">Premium</span>
+                  <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider">Spirits & Wines</span>
+                </div>
+                <div className="p-4 rounded-2xl bg-zinc-50 border border-zinc-100/80">
+                  <span className="font-display text-2xl sm:text-3xl font-extrabold text-zinc-900 block">Ice-Cold</span>
+                  <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider">Draught & Mocktails</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Bento Image (Barman Photo on Right) */}
+            <div className="lg:col-span-5 bento-card relative min-h-[380px] sm:min-h-[460px] order-1 lg:order-2">
+              <img
+                src="/images/barman.jpg"
+                alt="Old English Master Mixologist Crafting Cocktail"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent pointer-events-none" />
+
+              <div className="absolute top-4 left-4 z-10">
+                <span className="chip-pill chip-pill-dark shadow-md">
+                  <GlassWater size={12} className="text-red-500" /> Master Mixologist Craft
+                </span>
+              </div>
+
+              <div className="absolute bottom-6 left-6 right-6 text-white z-10">
+                <span className="text-[11px] uppercase font-bold text-red-400 tracking-widest block mb-1">
+                  Artisanal Beverage Experience
+                </span>
+                <h4 className="font-serif text-xl sm:text-2xl font-bold leading-tight">
+                  "Handcrafted cocktails mixed with precision and passion."
+                </h4>
+                <p className="text-xs text-zinc-300 mt-1.5 font-medium">— Old English Mixology Lounge</p>
               </div>
             </div>
           </div>

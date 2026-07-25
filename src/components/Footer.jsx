@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flame, ArrowUp, Phone, MapPin, Award } from 'lucide-react';
+import { ArrowUp, Phone, MapPin } from 'lucide-react';
 
 export const Footer = ({ onOpenReservation, onOpenCsvUpload }) => {
   const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -10,10 +10,12 @@ export const Footer = ({ onOpenReservation, onOpenCsvUpload }) => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12 pb-12 border-b border-zinc-800/80">
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <div className="flex items-center gap-2.5 mb-3">
-              <div className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center shrink-0">
-                <Flame size={16} />
-              </div>
+            <div className="flex items-center gap-3 mb-4">
+              <img
+                src="/images/logo.png"
+                alt="Old English Bar & Grills Logo"
+                className="h-12 w-auto object-contain"
+              />
               <span className="font-display text-2xl font-bold tracking-tight">OLD ENGLISH</span>
             </div>
             <p className="font-serif italic text-red-400 text-sm font-normal mb-3">
@@ -31,6 +33,7 @@ export const Footer = ({ onOpenReservation, onOpenCsvUpload }) => {
             <ul className="space-y-2.5 text-xs font-semibold">
               <li><a href="#menu" className="text-zinc-400 hover:text-white transition-colors">Today's Menu</a></li>
               <li><a href="#story" className="text-zinc-400 hover:text-white transition-colors">Our Story & Standards</a></li>
+              <li><a href="#bar-story" className="text-zinc-400 hover:text-white transition-colors">Our Bar & Mixology</a></li>
               <li><a href="#events" className="text-zinc-400 hover:text-white transition-colors">Private Events</a></li>
               <li><a href="#location" className="text-zinc-400 hover:text-white transition-colors">Location & Hours</a></li>
             </ul>

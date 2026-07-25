@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flame, Clock, MapPin, Sparkles, ShieldCheck, Award } from 'lucide-react';
+import { Clock, MapPin, Sparkles, ShieldCheck, Award } from 'lucide-react';
 import { getLiveBusinessStatus } from '../utils/hoursUtil';
 
 export const Hero = ({ onOpenReservation }) => {
@@ -9,14 +9,23 @@ export const Hero = ({ onOpenReservation }) => {
     <section className="relative pt-32 sm:pt-40 pb-20 md:pb-28 bg-[#f5f5f2] overflow-hidden">
       <div className="site-container">
         {/* Giant Impact Headline */}
-        <div className="text-center max-w-4xl mx-auto mb-10 px-2 sm:px-4">
+        <div className="text-center max-w-4xl mx-auto mb-10 px-2 sm:px-4 flex flex-col items-center">
+          {/* Official Brand Crest Logo */}
+          <div className="mb-6">
+            <img
+              src="/images/logo.png"
+              alt="Old English Bar & Grills Crest Logo"
+              className="h-20 sm:h-28 md:h-32 w-auto object-contain drop-shadow-md hover:scale-105 transition-transform duration-500"
+            />
+          </div>
+
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white text-zinc-700 text-xs font-bold uppercase tracking-widest border border-zinc-200/80 mb-6 shadow-sm">
             <Sparkles size={13} className="text-red-600 shrink-0" />
             <span>Chef-Led Culinary Excellence · Owerri Imo State</span>
           </div>
 
           {/* Main Hero Headline */}
-          <h1 className="font-display text-[clamp(2.6rem,9vw,8rem)] font-extrabold text-zinc-900 leading-[0.92] tracking-tight mb-4">
+          <h1 className="font-display text-[clamp(2.6rem,9vw,7.5rem)] font-extrabold text-zinc-900 leading-[0.92] tracking-tight mb-4">
             OLD <span className="text-red-600">ENGLISH.</span>
           </h1>
 
