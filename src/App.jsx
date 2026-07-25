@@ -3,6 +3,7 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { MenuSection } from './components/MenuSection';
 import { StorySection } from './components/StorySection';
+import { RoomsGallerySection } from './components/RoomsGallerySection';
 import { EventsSection } from './components/EventsSection';
 import { LocationSection } from './components/LocationSection';
 import { Footer } from './components/Footer';
@@ -21,16 +22,19 @@ export function App() {
   const [isReservationOpen, setIsReservationOpen] = useState(false);
   const [isCsvModalOpen, setIsCsvModalOpen] = useState(false);
   const [reservationInitialDish, setReservationInitialDish] = useState(null);
+  const [reservationInitialZone, setReservationInitialZone] = useState(null);
 
   // Handlers
-  const handleOpenReservation = (dish = null) => {
+  const handleOpenReservation = (dish = null, zoneId = null) => {
     setReservationInitialDish(dish);
+    setReservationInitialZone(zoneId);
     setIsReservationOpen(true);
   };
 
   const handleCloseReservation = () => {
     setIsReservationOpen(false);
     setReservationInitialDish(null);
+    setReservationInitialZone(null);
   };
 
   const handleCsvParsed = (newItems) => {
@@ -47,7 +51,7 @@ export function App() {
     <div className="min-h-screen bg-white text-zinc-900 font-sans selection:bg-red-600 selection:text-white">
       {/* Sticky Header */}
       <Navbar
-        onOpenReservation={() => handleOpenReservation()}
+        onOpenReservation={(zoneId) => handleOpenReservation(null, zoneId)}
         onOpenCsvUpload={() => setIsCsvModalOpen(true)}
       />
 
@@ -67,8 +71,13 @@ export function App() {
           isCustomMenuLoaded={isCustomMenuLoaded}
         />
 
-        {/* Heritage Story Section */}
+        {/* Heritage & Bar Story Section */}
         <StorySection />
+
+        {/* Rooms & Spaces Gallery Section */}
+        <RoomsGallerySection
+          onReserveRoom={(zoneId) => handleOpenReservation(null, zoneId)}
+        />
 
         {/* Private Events Section */}
         <EventsSection onOpenReservation={() => handleOpenReservation()} />
@@ -101,6 +110,7 @@ export function App() {
         isOpen={isReservationOpen}
         onClose={handleCloseReservation}
         initialItem={reservationInitialDish}
+        initialZone={reservationInitialZone}
       />
     </div>
   );

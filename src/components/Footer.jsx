@@ -34,6 +34,7 @@ export const Footer = ({ onOpenReservation, onOpenCsvUpload }) => {
               <li><a href="#menu" className="text-zinc-400 hover:text-white transition-colors">Today's Menu</a></li>
               <li><a href="#story" className="text-zinc-400 hover:text-white transition-colors">Our Story & Standards</a></li>
               <li><a href="#bar-story" className="text-zinc-400 hover:text-white transition-colors">Our Bar & Mixology</a></li>
+              <li><a href="#rooms" className="text-zinc-400 hover:text-white transition-colors">Rooms & Spaces Gallery</a></li>
               <li><a href="#events" className="text-zinc-400 hover:text-white transition-colors">Private Events</a></li>
               <li><a href="#location" className="text-zinc-400 hover:text-white transition-colors">Location & Hours</a></li>
             </ul>
@@ -57,10 +58,10 @@ export const Footer = ({ onOpenReservation, onOpenCsvUpload }) => {
               <strong className="text-white">7:00 AM – 12:00 AM</strong>
             </p>
             <button
-              onClick={onOpenReservation}
+              onClick={() => onOpenReservation()}
               className="bg-red-600 hover:bg-red-700 text-white text-[11px] font-bold uppercase tracking-wider px-4 py-2 rounded-full transition-all shadow-md shadow-red-600/20"
             >
-              Reserve Table
+              Reserve Table / Room
             </button>
           </div>
         </div>

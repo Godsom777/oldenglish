@@ -35,31 +35,37 @@ export const Navbar = ({ onOpenReservation }) => {
             <nav className="hidden md:flex items-center gap-1.5 bg-zinc-100/90 p-1 rounded-full border border-zinc-200/60">
               <a
                 href="#menu"
-                className="px-4 py-1.5 rounded-full text-xs font-semibold text-zinc-600 hover:text-zinc-900 hover:bg-white transition-all"
+                className="px-3.5 py-1.5 rounded-full text-xs font-semibold text-zinc-600 hover:text-zinc-900 hover:bg-white transition-all"
               >
                 Menu
               </a>
               <a
                 href="#story"
-                className="px-4 py-1.5 rounded-full text-xs font-semibold text-zinc-600 hover:text-zinc-900 hover:bg-white transition-all"
+                className="px-3.5 py-1.5 rounded-full text-xs font-semibold text-zinc-600 hover:text-zinc-900 hover:bg-white transition-all"
               >
-                Our Story
+                Story
               </a>
               <a
                 href="#bar-story"
-                className="px-4 py-1.5 rounded-full text-xs font-semibold text-zinc-600 hover:text-zinc-900 hover:bg-white transition-all"
+                className="px-3.5 py-1.5 rounded-full text-xs font-semibold text-zinc-600 hover:text-zinc-900 hover:bg-white transition-all"
               >
-                Our Bar
+                Bar
+              </a>
+              <a
+                href="#rooms"
+                className="px-3.5 py-1.5 rounded-full text-xs font-semibold text-zinc-600 hover:text-zinc-900 hover:bg-white transition-all"
+              >
+                Rooms & Spaces
               </a>
               <a
                 href="#events"
-                className="px-4 py-1.5 rounded-full text-xs font-semibold text-zinc-600 hover:text-zinc-900 hover:bg-white transition-all"
+                className="px-3.5 py-1.5 rounded-full text-xs font-semibold text-zinc-600 hover:text-zinc-900 hover:bg-white transition-all"
               >
                 Events
               </a>
               <a
                 href="#location"
-                className="px-4 py-1.5 rounded-full text-xs font-semibold text-zinc-600 hover:text-zinc-900 hover:bg-white transition-all"
+                className="px-3.5 py-1.5 rounded-full text-xs font-semibold text-zinc-600 hover:text-zinc-900 hover:bg-white transition-all"
               >
                 Contact
               </a>
@@ -73,7 +79,7 @@ export const Navbar = ({ onOpenReservation }) => {
               </div>
 
               <button
-                onClick={onOpenReservation}
+                onClick={() => onOpenReservation()}
                 className="bg-red-600 hover:bg-red-700 text-white text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-full transition-all duration-300 shadow-md shadow-red-600/20 hover:shadow-lg"
               >
                 Reserve Table
@@ -83,7 +89,7 @@ export const Navbar = ({ onOpenReservation }) => {
             {/* Mobile Actions */}
             <div className="flex items-center gap-2 md:hidden">
               <button
-                onClick={onOpenReservation}
+                onClick={() => onOpenReservation()}
                 className="bg-red-600 text-white text-[11px] font-bold uppercase tracking-wider px-3.5 py-2 rounded-full shadow-sm"
               >
                 Reserve
@@ -128,6 +134,9 @@ export const Navbar = ({ onOpenReservation }) => {
               <a href="#bar-story" onClick={() => setMobileMenuOpen(false)} className="text-zinc-900 font-semibold hover:text-red-600 py-2 border-b border-zinc-100">
                 Our Bar & Mixology
               </a>
+              <a href="#rooms" onClick={() => setMobileMenuOpen(false)} className="text-zinc-900 font-semibold hover:text-red-600 py-2 border-b border-zinc-100">
+                Rooms & Spaces Gallery
+              </a>
               <a href="#events" onClick={() => setMobileMenuOpen(false)} className="text-zinc-900 font-semibold hover:text-red-600 py-2 border-b border-zinc-100">
                 Private Events
               </a>
@@ -145,7 +154,7 @@ export const Navbar = ({ onOpenReservation }) => {
               onClick={() => { setMobileMenuOpen(false); onOpenReservation(); }}
               className="w-full bg-red-600 text-white text-sm font-bold uppercase tracking-wider py-3.5 rounded-full shadow-lg shadow-red-600/20"
             >
-              Reserve a Table
+              Reserve a Table / Room
             </button>
           </div>
         </div>

@@ -1,18 +1,44 @@
 import React, { useState } from 'react';
-import { X, Calendar, Clock, Users, MapPin, CheckCircle2, ChevronRight, ChevronLeft, Utensils, Phone } from 'lucide-react';
+import { X, Calendar, Clock, Users, MapPin, CheckCircle2, ChevronRight, ChevronLeft, Utensils, Phone, ShieldCheck, Sparkles } from 'lucide-react';
 
-const SEATING_ZONES = [
-  { id: 'main-dining', label: 'Main Dining Room', desc: 'Lively atmosphere near the visible open flame grill.' },
-  { id: 'suya-bar', label: 'Suya Bar & Lounge', desc: 'Sleek counter seats with direct mixologist view.' },
-  { id: 'terrace', label: 'Outdoor VIP Terrace', desc: 'Open-air terrace with ambient lighting.' },
-  { id: 'private-room', label: 'Private Dining Room', desc: 'Intimate space for private celebrations.' },
+export const SEATING_ZONES = [
+  {
+    id: 'indoor-lounge',
+    label: 'INDOOR LOUNGE',
+    tag: 'Main Lounge & Bar',
+    desc: 'Vibrant main dining space featuring ambient neon-strip illumination, brick walls, plush seating, and full bar access.',
+  },
+  {
+    id: 'outdoor-space',
+    label: 'OUTDOOR SPACE',
+    tag: 'Open-Air Courtyard',
+    desc: 'Refreshing open-air garden terrace with starlit night dining and relaxed evening breezes in New Owerri.',
+  },
+  {
+    id: 'submarine-room',
+    label: 'SUBMARINE ROOM',
+    tag: 'Immersive VIP Suite',
+    desc: 'Exclusive deep-blue ambient themed private dining room designed for high-profile gatherings and VIP privacy.',
+  },
+  {
+    id: 'cave-room',
+    label: 'CAVE ROOM',
+    tag: 'Rustic Stone Vault',
+    desc: 'Warm stone-carved acoustic vault featuring secluded booth seating, moody lighting, and intimate charm.',
+  },
+  {
+    id: 'bunker-room',
+    label: 'BUNKER ROOM',
+    tag: 'Ultra-Private Enclave',
+    desc: 'Exclusive high-security private lounge vault with dark metallic accents, dedicated butler service, and private audio control.',
+  },
 ];
 
 const TIME_SLOTS = [
   '08:00 AM', '10:00 AM', '12:00 PM', '02:00 PM', '04:00 PM', '06:00 PM', '07:30 PM', '09:00 PM', '10:30 PM'
 ];
 
-export const ReservationModal = ({ isOpen, onClose, initialItem = null }) => {
+export const ReservationModal = ({ isOpen, onClose, initialItem = null, initialZone = null }) => {
   const [step, setStep] = useState(1);
   const [guests, setGuests] = useState(2);
   const [date, setDate] = useState(() => {
@@ -20,7 +46,7 @@ export const ReservationModal = ({ isOpen, onClose, initialItem = null }) => {
     return today.toISOString().split('T')[0];
   });
   const [time, setTime] = useState('07:30 PM');
-  const [zone, setZone] = useState('main-dining');
+  const [zone, setZone] = useState(() => initialZone || 'indoor-lounge');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -47,6 +73,8 @@ export const ReservationModal = ({ isOpen, onClose, initialItem = null }) => {
     onClose();
   };
 
+  const selectedZoneData = SEATING_ZONES.find(z => z.id === zone) || SEATING_ZONES[0];
+
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 animate-fade-in">
       {/* Backdrop */}
@@ -65,11 +93,11 @@ export const ReservationModal = ({ isOpen, onClose, initialItem = null }) => {
             </div>
             <div>
               <h3 className="font-serif text-xl font-bold text-zinc-900">
-                {step === 4 ? 'Reservation Confirmed' : 'Table Reservation'}
+                {step === 4 ? 'Reservation Confirmed' : 'Table & Room Reservation'}
               </h3>
               <p className="text-[11px] text-zinc-500 font-medium">
                 {step === 1 && 'Step 1: Date, Time & Party Size'}
-                {step === 2 && 'Step 2: Choose Seating Preference'}
+                {step === 2 && 'Step 2: Choose Room & Space Preference'}
                 {step === 3 && 'Step 3: Contact & Special Requests'}
                 {step === 4 && 'Your digital table pass is ready'}
               </p>
@@ -161,11 +189,11 @@ export const ReservationModal = ({ isOpen, onClose, initialItem = null }) => {
             </div>
           )}
 
-          {/* STEP 2: Seating Zone */}
+          {/* STEP 2: Seating Zone / Rooms */}
           {step === 2 && (
             <div className="space-y-4">
               <label className="text-xs uppercase font-bold tracking-wider text-zinc-600 mb-1 block">
-                Seating Atmosphere Preference
+                Select Room or Space Preference
               </label>
 
               <div className="space-y-3">
@@ -175,16 +203,21 @@ export const ReservationModal = ({ isOpen, onClose, initialItem = null }) => {
                     onClick={() => setZone(z.id)}
                     className={`p-4 rounded-2xl border cursor-pointer transition-all flex items-start justify-between ${
                       zone === z.id
-                        ? 'bg-red-50/60 border-red-600 text-zinc-900 shadow-sm'
+                        ? 'bg-red-50/70 border-red-600 text-zinc-900 shadow-sm'
                         : 'bg-zinc-50 border-zinc-200 text-zinc-600 hover:border-zinc-300'
                     }`}
                   >
-                    <div>
-                      <h4 className="font-serif text-base font-bold text-zinc-900">{z.label}</h4>
-                      <p className="text-xs text-zinc-600 mt-0.5 font-normal">{z.desc}</p>
+                    <div className="pr-3">
+                      <div className="flex items-center gap-2 mb-1">
+                        <h4 className="font-serif text-base font-bold text-zinc-900">{z.label}</h4>
+                        <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-zinc-200/80 text-zinc-700">
+                          {z.tag}
+                        </span>
+                      </div>
+                      <p className="text-xs text-zinc-600 font-normal leading-relaxed">{z.desc}</p>
                     </div>
                     <div
-                      className={`w-5 h-5 rounded-full border flex items-center justify-center mt-1 ${
+                      className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 mt-1 ${
                         zone === z.id
                           ? 'border-red-600 bg-red-600 text-white'
                           : 'border-zinc-300 bg-white'
@@ -248,7 +281,7 @@ export const ReservationModal = ({ isOpen, onClose, initialItem = null }) => {
                 </label>
                 <textarea
                   rows={2}
-                  placeholder="Birthday celebration, allergy notes, quiet table..."
+                  placeholder="Birthday celebration, allergy notes, quiet booth..."
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                   className="w-full bg-zinc-50 border border-zinc-200 text-zinc-900 rounded-xl p-3 text-sm outline-none focus:border-red-600"
@@ -266,10 +299,10 @@ export const ReservationModal = ({ isOpen, onClose, initialItem = null }) => {
 
               <div>
                 <h3 className="font-serif text-2xl font-bold text-zinc-900 mb-1">
-                  Table Reserved Successfully!
+                  Reservation Confirmed!
                 </h3>
                 <p className="text-xs text-zinc-600">
-                  We look forward to welcoming you to Old English Bar & Grill, Area H New Owerri.
+                  We look forward to welcoming you to Old English Bar & Grills, Area H New Owerri.
                 </p>
               </div>
 
@@ -291,16 +324,16 @@ export const ReservationModal = ({ isOpen, onClose, initialItem = null }) => {
                     <span className="text-zinc-900 font-bold">{formData.name || 'Guest'}</span>
                   </div>
                   <div>
-                    <span className="text-zinc-400 block text-[10px] uppercase font-bold">PARTY SIZE</span>
-                    <span className="text-zinc-900 font-bold">{guests} Guests</span>
+                    <span className="text-zinc-400 block text-[10px] uppercase font-bold">ROOM / SPACE</span>
+                    <span className="text-red-600 font-bold">{selectedZoneData.label}</span>
                   </div>
                   <div>
                     <span className="text-zinc-400 block text-[10px] uppercase font-bold">DATE & TIME</span>
                     <span className="text-zinc-900 font-bold">{date} at {time}</span>
                   </div>
                   <div>
-                    <span className="text-zinc-400 block text-[10px] uppercase font-bold">LOCATION</span>
-                    <span className="text-zinc-900 font-bold">Area H, New Owerri</span>
+                    <span className="text-zinc-400 block text-[10px] uppercase font-bold">PARTY SIZE</span>
+                    <span className="text-zinc-900 font-bold">{guests} Guests</span>
                   </div>
                 </div>
 
