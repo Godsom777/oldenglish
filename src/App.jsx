@@ -4,6 +4,7 @@ import { Hero } from './components/Hero';
 import { MenuSection } from './components/MenuSection';
 import { StorySection } from './components/StorySection';
 import { RoomsGallerySection } from './components/RoomsGallerySection';
+import { ApartmentsSection } from './components/ApartmentsSection';
 import { EventsSection } from './components/EventsSection';
 import { LocationSection } from './components/LocationSection';
 import { Footer } from './components/Footer';
@@ -78,6 +79,9 @@ export function App() {
         <RoomsGallerySection
           onReserveRoom={(zoneId) => handleOpenReservation(null, zoneId)}
         />
+
+        {/* Luxury Apartments Section (Coming Soon) */}
+        <ApartmentsSection />
 
         {/* Private Events Section */}
         <EventsSection onOpenReservation={() => handleOpenReservation()} />

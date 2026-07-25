@@ -35,6 +35,12 @@ export const Footer = ({ onOpenReservation, onOpenCsvUpload }) => {
               <li><a href="#story" className="text-zinc-400 hover:text-white transition-colors">Our Story & Standards</a></li>
               <li><a href="#bar-story" className="text-zinc-400 hover:text-white transition-colors">Our Bar & Mixology</a></li>
               <li><a href="#rooms" className="text-zinc-400 hover:text-white transition-colors">Rooms & Spaces Gallery</a></li>
+              <li>
+                <a href="#apartments" className="text-red-400 hover:text-red-300 transition-colors inline-flex items-center gap-1.5 font-bold">
+                  <span>Luxury Apartments</span>
+                  <span className="text-[9px] font-extrabold bg-red-600 text-white px-1.5 py-0.5 rounded-full uppercase">SOON</span>
+                </a>
+              </li>
               <li><a href="#events" className="text-zinc-400 hover:text-white transition-colors">Private Events</a></li>
               <li><a href="#location" className="text-zinc-400 hover:text-white transition-colors">Location & Hours</a></li>
             </ul>

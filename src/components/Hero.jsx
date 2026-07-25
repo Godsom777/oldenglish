@@ -24,9 +24,9 @@ export const Hero = ({ onOpenReservation }) => {
             <span>Chef-Led Culinary Excellence · Owerri Imo State</span>
           </div>
 
-          {/* Main Hero Headline */}
-          <h1 className="font-display text-[clamp(2.6rem,9vw,7.5rem)] font-extrabold text-zinc-900 leading-[0.92] tracking-tight mb-4">
-            OLD <span className="text-red-600">ENGLISH.</span>
+          {/* Main Hero Headline (ALL RED) */}
+          <h1 className="font-display text-[clamp(2.6rem,9vw,7.5rem)] font-extrabold text-red-600 leading-[0.92] tracking-tight mb-4">
+            OLD ENGLISH.
           </h1>
 
           {/* Slogan */}
