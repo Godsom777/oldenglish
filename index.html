@@ -7,6 +7,17 @@
     <title>Old English Bar & Grills | Owerri Imo State</title>
     <meta name="description" content="Old English Bar & Grills - Founded by Executive Chef Uzochukwu Elui. Premium Flame Grills, Craft Cocktails, Pristine Kitchen Hygiene, and Luxury Dining in Area H, New Owerri." />
     
+    <!-- SPA Redirect Restoration Script for Static Servers -->
+    <script>
+      (function(){
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
