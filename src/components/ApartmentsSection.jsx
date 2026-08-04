@@ -2,6 +2,39 @@ import React, { useState } from 'react';
 import { Building2, Sparkles, ShieldCheck, Phone, Mail, Award, Calendar, CheckCircle2, ArrowRight, Star, Tag, Clock, ChevronRight, MessageCircle, Camera, X, MapPin } from 'lucide-react';
 import { getApartmentWhatsAppUrl } from '../config/whatsapp';
 
+export const ONE_BEDROOM_GALLERY = [
+  {
+    id: '1bed-bedroom',
+    url: '/images/apartments/1bed-bedroom.jpg',
+    title: '1-Bedroom Executive Suite',
+    caption: 'Plush King Bed, Custom Tufted Headboard, Armchair & Work Desk'
+  },
+  {
+    id: '1bed-living',
+    url: '/images/apartments/1bed-living.jpg',
+    title: 'Private Living Lounge',
+    caption: 'Deep Tufted Velvet Lounge Sofa, Accent Table & Nature Wall Art'
+  },
+  {
+    id: '1bed-dining',
+    url: '/images/apartments/1bed-dining.jpg',
+    title: 'Dining & Lounge Area',
+    caption: 'Marble Coffee Table, Woven Floor Rug & Dining Table for 2'
+  },
+  {
+    id: '1bed-kitchen',
+    url: '/images/apartments/1bed-kitchen.jpg',
+    title: 'Full Kitchenette',
+    caption: 'Fitted Cabinets, Double Sink, Microwave, Blender & Kettle'
+  },
+  {
+    id: '1bed-hallway',
+    url: '/images/apartments/1bed-hallway.jpg',
+    title: 'Suite Foyer & Hallway',
+    caption: 'Architectural Linear Ceiling Lights & Polished Tile Corridor'
+  }
+];
+
 export const TWO_BEDROOM_GALLERY = [
   {
     id: '2bed-living',
@@ -42,6 +75,7 @@ export const APARTMENT_ROOM_GALLERY = [
     title: 'Kcanice & Isabella Estate Building',
     caption: 'Multi-Story White Executive Residency & Gated Security in New Owerri'
   },
+  ...ONE_BEDROOM_GALLERY,
   ...TWO_BEDROOM_GALLERY
 ];
 
@@ -53,9 +87,10 @@ export const APARTMENT_PRICING = [
     loyaltyPrice: '₦100,000',
     longStayPrice: '₦80,000',
     capacity: 'Ideal for 1–2 Guests',
-    image: '/images/apartments/apt-bedroom-1.jpg',
+    image: '/images/apartments/1bed-bedroom.jpg',
+    gallery: ONE_BEDROOM_GALLERY,
     description: 'Bespoke 1-bedroom luxury suite featuring plush king bedding, private lounge area, smart LED TV, fully equipped kitchenette, and 24/7 power.',
-    features: ['King Size Bed', 'Private Lounge', 'Smart TV & WiFi', 'Old English Room Service']
+    features: ['King Size Bed', 'Private Lounge', 'Full Fitted Kitchen', 'Smart TV & WiFi', 'Old English Room Service']
   },
   {
     id: '2-bedroom',
@@ -100,6 +135,7 @@ export const ApartmentsSection = () => {
   const [submitted, setSubmitted] = useState(false);
   const [activeImageIndices, setActiveImageIndices] = useState({});
   const [fullscreenImage, setFullscreenImage] = useState(null);
+  const [activeTourTab, setActiveTourTab] = useState('1bed');
 
   const getActiveIdx = (aptId, defaultIdx) => {
     return activeImageIndices[aptId] !== undefined ? activeImageIndices[aptId] : defaultIdx;
@@ -281,7 +317,7 @@ ${inquiryForm.message ? `• Additional Message: ${inquiryForm.message}\n` : ''}
 
                     <div className="absolute top-4 left-4 z-10">
                       <span className="chip-pill chip-pill-red shadow-md">
-                        {apt.gallery ? 'Verified 2-Bedroom Tour' : 'Kcanice & Isabella'}
+                        {apt.gallery ? `Verified ${apt.type.includes('1') ? '1-Bedroom' : '2-Bedroom'} Tour` : 'Kcanice & Isabella'}
                       </span>
                     </div>
 
@@ -398,16 +434,42 @@ ${inquiryForm.message ? `• Additional Message: ${inquiryForm.message}\n` : ''}
             <span className="chip-pill chip-pill-red mb-2 inline-flex items-center gap-1">
               <Camera size={12} /> Authentic Suite Photos
             </span>
-            <h3 className="font-display text-2xl sm:text-3xl font-extrabold text-zinc-900 tracking-tight">
-              2 BEDROOM APARTMENT PHOTO TOUR
+            <h3 className="font-display text-2xl sm:text-3xl font-extrabold text-zinc-900 tracking-tight mb-3">
+              {activeTourTab === '1bed' ? '1 BEDROOM APARTMENT PHOTO TOUR' : '2 BEDROOM APARTMENT PHOTO TOUR'}
             </h3>
-            <p className="text-zinc-600 text-xs sm:text-sm mt-1 font-medium">
-              Explore authentic interior photos of our 2 Bedroom Executive Apartment — master suite, second bedroom, living lounge, fitted kitchen, and granite countertop sink.
+            <p className="text-zinc-600 text-xs sm:text-sm font-medium mb-6">
+              {activeTourTab === '1bed'
+                ? 'Explore authentic photos of our 1 Bedroom Luxury Suite — bedroom, private lounge, dining space, fitted kitchen, and corridor foyer.'
+                : 'Explore authentic photos of our 2 Bedroom Executive Suite — master bedroom, second bedroom, living lounge, fitted kitchen, and countertop sink.'}
             </p>
+
+            {/* Tour Switcher Buttons */}
+            <div className="inline-flex p-1.5 rounded-full bg-zinc-200/80 border border-zinc-300 gap-1.5">
+              <button
+                onClick={() => setActiveTourTab('1bed')}
+                className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all ${
+                  activeTourTab === '1bed'
+                    ? 'bg-red-600 text-white shadow-md'
+                    : 'text-zinc-700 hover:text-zinc-900 hover:bg-zinc-300/50'
+                }`}
+              >
+                1 BEDROOM TOUR (5 Photos)
+              </button>
+              <button
+                onClick={() => setActiveTourTab('2bed')}
+                className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all ${
+                  activeTourTab === '2bed'
+                    ? 'bg-red-600 text-white shadow-md'
+                    : 'text-zinc-700 hover:text-zinc-900 hover:bg-zinc-300/50'
+                }`}
+              >
+                2 BEDROOM TOUR (5 Photos)
+              </button>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-            {APARTMENT_ROOM_GALLERY.map((img) => (
+            {(activeTourTab === '1bed' ? ONE_BEDROOM_GALLERY : TWO_BEDROOM_GALLERY).map((img) => (
               <div
                 key={img.id}
                 onClick={() => setFullscreenImage(img)}
