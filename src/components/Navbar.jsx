@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { Menu as MenuIcon, X, Phone } from 'lucide-react';
+import { Menu as MenuIcon, X, Phone, ExternalLink } from 'lucide-react';
 import { getLiveBusinessStatus } from '../utils/hoursUtil';
 
 export const Navbar = ({ onOpenReservation }) => {
@@ -44,9 +44,14 @@ export const Navbar = ({ onOpenReservation }) => {
               <NavLink to="/" end className={navItemClass}>
                 Home
               </NavLink>
-              <NavLink to="/menu" className={navItemClass}>
-                Menu
-              </NavLink>
+              <a
+                href="https://app.sharptable.com.ng/old-english/area-h/menu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 rounded-full text-xs font-semibold text-zinc-600 hover:text-zinc-900 hover:bg-white transition-all flex items-center gap-1"
+              >
+                Menu <ExternalLink size={11} />
+              </a>
               <NavLink to="/story" className={navItemClass}>
                 Story
               </NavLink>
@@ -124,9 +129,16 @@ export const Navbar = ({ onOpenReservation }) => {
               <NavLink to="/" end onClick={() => setMobileMenuOpen(false)} className={({ isActive }) => `py-2 border-b border-zinc-100 font-semibold ${isActive ? 'text-red-600 font-bold' : 'text-zinc-900'}`}>
                 Home Page
               </NavLink>
-              <NavLink to="/menu" onClick={() => setMobileMenuOpen(false)} className={({ isActive }) => `py-2 border-b border-zinc-100 font-semibold ${isActive ? 'text-red-600 font-bold' : 'text-zinc-900'}`}>
-                Gastronomy Menu
-              </NavLink>
+              <a
+                href="https://app.sharptable.com.ng/old-english/area-h/menu"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-2 border-b border-zinc-100 font-semibold text-zinc-900 flex items-center justify-between"
+              >
+                <span>Gastronomy Menu</span>
+                <ExternalLink size={16} className="text-zinc-400" />
+              </a>
               <NavLink to="/story" onClick={() => setMobileMenuOpen(false)} className={({ isActive }) => `py-2 border-b border-zinc-100 font-semibold ${isActive ? 'text-red-600 font-bold' : 'text-zinc-900'}`}>
                 Culinary Heritage & Story
               </NavLink>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { MenuSection } from '../components/MenuSection';
-import { Sparkles, Utensils } from 'lucide-react';
+import { Sparkles, Utensils, ExternalLink } from 'lucide-react';
 
 export const MenuPage = ({
   menuItems,
@@ -22,9 +22,18 @@ export const MenuPage = ({
           <h1 className="font-display text-4xl sm:text-6xl font-extrabold text-zinc-900 tracking-tight leading-none mb-3">
             GASTRONOMY MENU
           </h1>
-          <p className="text-zinc-600 text-sm sm:text-base font-medium">
+          <p className="text-zinc-600 text-sm sm:text-base font-medium mb-6">
             Curated premium specialties from Executive Chef Uzochukwu Elui — flame grills, authentic soups, finger chops, and signature cocktails.
           </p>
+
+          <a
+            href="https://app.sharptable.com.ng/old-english/area-h/menu"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-xs sm:text-sm font-bold uppercase tracking-wider px-6 py-3.5 rounded-full transition-all duration-300 shadow-lg shadow-red-600/20 hover:scale-[1.02]"
+          >
+            View Full Digital Menu & Order on SharpTable <ExternalLink size={16} />
+          </a>
         </div>
       </div>
 

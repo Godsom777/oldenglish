@@ -34,7 +34,7 @@ export const Footer = ({ onOpenReservation, onOpenCsvUpload }) => {
             <h4 className="text-[11px] font-bold uppercase tracking-widest text-zinc-500 mb-4">Page Navigation</h4>
             <ul className="space-y-2.5 text-xs font-semibold">
               <li><Link to="/" className="text-zinc-400 hover:text-white transition-colors">Home Page</Link></li>
-              <li><Link to="/menu" className="text-zinc-400 hover:text-white transition-colors">Gastronomy Menu</Link></li>
+              <li><a href="https://app.sharptable.com.ng/old-english/area-h/menu" target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-white transition-colors flex items-center gap-1">Gastronomy Menu</a></li>
               <li><Link to="/story" className="text-zinc-400 hover:text-white transition-colors">Our Story & Standards</Link></li>
               <li><Link to="/bar" className="text-zinc-400 hover:text-white transition-colors">Our Bar & Mixology</Link></li>
               <li><Link to="/rooms" className="text-zinc-400 hover:text-white transition-colors">Rooms & Spaces Gallery</Link></li>

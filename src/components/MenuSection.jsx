@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Search, Flame } from 'lucide-react';
+import { Search, Flame, ExternalLink } from 'lucide-react';
 import { DEFAULT_CATEGORIES } from '../data/defaultMenu';
 import { MenuItemCard } from './MenuItemCard';
 
@@ -33,9 +33,19 @@ export const MenuSection = ({
           <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-extrabold text-zinc-900 tracking-tight leading-none mb-4">
             GASTRONOMY MENU
           </h2>
-          <p className="text-zinc-600 text-xs sm:text-base font-medium leading-relaxed">
+          <p className="text-zinc-600 text-xs sm:text-base font-medium leading-relaxed mb-6">
             Hardwood flame grill classics, Suya skewers, rich pepper soups, and signature craft mixology.
           </p>
+          <div>
+            <a
+              href="https://app.sharptable.com.ng/old-english/area-h/menu"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-xs font-bold uppercase tracking-wider px-6 py-3 rounded-full transition-all shadow-md shadow-red-600/20"
+            >
+              Open Full Interactive Menu on SharpTable <ExternalLink size={15} />
+            </a>
+          </div>
         </div>
 
         {/* Floating Pill Filter Bar & Search */}

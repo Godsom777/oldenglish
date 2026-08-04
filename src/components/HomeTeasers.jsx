@@ -45,12 +45,14 @@ export const HomeTeasers = ({
               A quick taste of Executive Chef Uzochukwu Elui's flame-grilled specialties, authentic Africana soups, and craft cocktails.
             </p>
           </div>
-          <Link
-            to="/menu"
+          <a
+            href="https://app.sharptable.com.ng/old-english/area-h/menu"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-xs font-bold uppercase tracking-wider px-6 py-3 rounded-full transition-all duration-300 shadow-md shadow-red-600/20 hover:shadow-lg w-max"
           >
             Explore Full Menu <ArrowRight size={16} />
-          </Link>
+          </a>
         </div>
 
         {/* 4 Featured Dishes Grid */}
@@ -66,13 +68,15 @@ export const HomeTeasers = ({
         </div>
 
         <div className="text-center pt-2">
-          <Link
-            to="/menu"
+          <a
+            href="https://app.sharptable.com.ng/old-english/area-h/menu"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-sm font-bold text-zinc-900 hover:text-red-600 transition-colors group"
           >
-            <span>View all 20+ dishes, drink pairings, and menu uploader</span>
+            <span>View full digital menu on SharpTable</span>
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-          </Link>
+          </a>
         </div>
       </section>
 

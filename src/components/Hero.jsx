@@ -48,7 +48,9 @@ export const Hero = ({ onOpenReservation }) => {
               Book a Table
             </button>
             <a
-              href="#menu"
+              href="https://app.sharptable.com.ng/old-english/area-h/menu"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-full sm:w-auto bg-white hover:bg-zinc-100 text-zinc-900 text-xs sm:text-sm font-bold uppercase tracking-widest px-8 py-3.5 rounded-full border border-zinc-200 transition-all duration-300 shadow-sm text-center"
             >
               Explore Today's Menu
