@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Building2, Sparkles, ShieldCheck, Phone, Mail, Award, Calendar, CheckCircle2, ArrowRight, Star, Tag, Clock, ChevronRight } from 'lucide-react';
+import { Building2, Sparkles, ShieldCheck, Phone, Mail, Award, Calendar, CheckCircle2, ArrowRight, Star, Tag, Clock, ChevronRight, MessageCircle } from 'lucide-react';
+import { getApartmentWhatsAppUrl } from '../config/whatsapp';
 
 export const APARTMENT_PRICING = [
   {
@@ -54,10 +55,23 @@ export const ApartmentsSection = () => {
   const [inquiryForm, setInquiryForm] = useState({ name: '', phone: '', apartment: '1 BEDROOM APARTMENT', message: '' });
   const [submitted, setSubmitted] = useState(false);
 
+  const getInquiryMessage = () => {
+    return `Hello Kcanice & Isabella Apartments! 🏨
+
+I would like to make an apartment booking inquiry:
+
+• Name: ${inquiryForm.name}
+• Phone: ${inquiryForm.phone}
+• Apartment Requested: ${inquiryForm.apartment}
+${inquiryForm.message ? `• Additional Message: ${inquiryForm.message}\n` : ''}`;
+  };
+
   const handleInquirySubmit = (e) => {
     e.preventDefault();
     if (inquiryForm.name && inquiryForm.phone) {
       setSubmitted(true);
+      const url = getApartmentWhatsAppUrl(getInquiryMessage());
+      window.open(url, '_blank');
     }
   };
 
@@ -214,12 +228,20 @@ export const ApartmentsSection = () => {
               </div>
 
               {/* Action */}
-              <div className="pt-4 border-t border-zinc-100 flex items-center justify-between gap-3">
+              <div className="pt-4 border-t border-zinc-100 flex flex-col sm:flex-row items-center justify-between gap-2.5">
+                <a
+                  href={getApartmentWhatsAppUrl(`Hello Kcanice & Isabella Apartments! 🏨\n\nI would like to book/inquire about the ${apt.type} (${apt.regularPrice}/night). Please let me know availability.`)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:flex-1 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider py-3 rounded-full transition-all text-center flex items-center justify-center gap-2 shadow-md shadow-emerald-600/20"
+                >
+                  <MessageCircle size={14} /> Book via WhatsApp
+                </a>
                 <a
                   href="tel:08039352371"
-                  className="flex-1 bg-red-600 hover:bg-red-700 text-white text-xs font-bold uppercase tracking-wider py-3 rounded-full transition-all text-center flex items-center justify-center gap-2 shadow-md shadow-red-600/20"
+                  className="w-full sm:w-auto bg-zinc-100 hover:bg-zinc-200 text-zinc-800 text-xs font-bold uppercase tracking-wider py-3 px-4 rounded-full transition-all text-center flex items-center justify-center gap-1.5 border border-zinc-200"
                 >
-                  <Phone size={14} /> Book: 0803 935 2371
+                  <Phone size={13} /> Call Desk
                 </a>
               </div>
             </div>
@@ -249,6 +271,17 @@ export const ApartmentsSection = () => {
                   <a href="tel:08039352371" className="hover:underline text-white font-bold">0803 935 2371</a>
                 </div>
                 <div className="flex items-center gap-2">
+                  <MessageCircle size={15} className="text-emerald-400" />
+                  <a
+                    href={getApartmentWhatsAppUrl("Hello Kcanice & Isabella Apartments! 🏨 I have an inquiry regarding apartment availability.")}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline text-emerald-400 font-bold"
+                  >
+                    WhatsApp Booking Line
+                  </a>
+                </div>
+                <div className="flex items-center gap-2">
                   <Mail size={15} className="text-red-400" />
                   <a href="mailto:info@kcaniceisabella.com" className="hover:underline text-white">info@kcaniceisabella.com</a>
                 </div>
@@ -258,13 +291,27 @@ export const ApartmentsSection = () => {
             {/* Right Form */}
             <div className="md:col-span-7 bg-white text-zinc-900 p-6 sm:p-8 rounded-3xl shadow-xl">
               {submitted ? (
-                <div className="text-center py-6 space-y-3">
+                <div className="text-center py-6 space-y-4">
                   <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
                     <CheckCircle2 size={24} />
                   </div>
-                  <h4 className="font-serif text-xl font-bold">Inquiry Received!</h4>
-                  <p className="text-xs text-zinc-600">Our reservations manager will contact you at <strong>{inquiryForm.phone}</strong> shortly.</p>
-                  <button onClick={() => setSubmitted(false)} className="text-xs font-bold text-red-600 hover:underline">Submit another inquiry</button>
+                  <h4 className="font-serif text-xl font-bold">Inquiry Sent via WhatsApp!</h4>
+                  <p className="text-xs text-zinc-600">
+                    If WhatsApp didn't open automatically, click below to send your booking inquiry directly.
+                  </p>
+                  <div className="pt-2 flex flex-col items-center gap-2">
+                    <a
+                      href={getApartmentWhatsAppUrl(getInquiryMessage())}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider shadow-md"
+                    >
+                      <MessageCircle size={15} /> Continue on WhatsApp
+                    </a>
+                    <button onClick={() => setSubmitted(false)} className="text-xs font-bold text-red-600 hover:underline mt-2">
+                      Submit another inquiry
+                    </button>
+                  </div>
                 </div>
               ) : (
                 <form onSubmit={handleInquirySubmit} className="space-y-4 text-left">
@@ -306,9 +353,9 @@ export const ApartmentsSection = () => {
                   </div>
                   <button
                     type="submit"
-                    className="w-full bg-red-600 hover:bg-red-700 text-white text-xs font-bold uppercase tracking-wider py-3 rounded-full transition-all shadow-md shadow-red-600/20"
+                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider py-3 rounded-full transition-all shadow-md shadow-emerald-600/20 flex items-center justify-center gap-2"
                   >
-                    Send Booking Inquiry
+                    <MessageCircle size={15} /> Send Booking via WhatsApp
                   </button>
                 </form>
               )}

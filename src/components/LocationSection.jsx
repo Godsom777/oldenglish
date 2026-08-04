@@ -1,6 +1,7 @@
 import React from 'react';
 import { MapPin, Phone, Clock, ExternalLink, MessageCircle, ShieldCheck } from 'lucide-react';
 import { OPERATING_HOURS, getLiveBusinessStatus } from '../utils/hoursUtil';
+import { getRestaurantWhatsAppUrl } from '../config/whatsapp';
 
 export const LocationSection = ({ onOpenReservation }) => {
   const status = getLiveBusinessStatus();
@@ -93,12 +94,12 @@ export const LocationSection = ({ onOpenReservation }) => {
 
             <div className="pt-6 border-t border-zinc-100 flex flex-col gap-2 mt-4">
               <a
-                href="https://wa.me/2348104128681"
+                href={getRestaurantWhatsAppUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full bg-emerald-50 text-emerald-800 text-xs font-bold uppercase tracking-wider py-3 rounded-full hover:bg-emerald-100 transition-colors flex items-center justify-center gap-2 border border-emerald-200/60"
               >
-                <MessageCircle size={14} /> WhatsApp Line
+                <MessageCircle size={14} /> Restaurant WhatsApp Line
               </a>
             </div>
           </div>

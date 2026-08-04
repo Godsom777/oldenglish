@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Send, CheckCircle2 } from 'lucide-react';
+import { Send, CheckCircle2, MessageCircle } from 'lucide-react';
+import { getRestaurantWhatsAppUrl } from '../config/whatsapp';
 
 export const EventsSection = ({ onOpenReservation }) => {
   const [submitted, setSubmitted] = useState(false);
@@ -11,10 +12,24 @@ export const EventsSection = ({ onOpenReservation }) => {
     details: '',
   });
 
+  const getEventWhatsAppMessage = () => {
+    return `Hello Old English Bar & Grills! 🎉
+
+I would like to inquire about hosting a private event:
+
+• Name: ${formData.name}
+• Phone: ${formData.phone}
+• Event Type: ${formData.eventType}
+• Guest Count: ${formData.guests}
+${formData.details ? `• Special Requests: ${formData.details}\n` : ''}`;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!formData.name || !formData.phone) return;
     setSubmitted(true);
+    const url = getRestaurantWhatsAppUrl(getEventWhatsAppMessage());
+    window.open(url, '_blank');
   };
 
   return (
@@ -60,18 +75,28 @@ export const EventsSection = ({ onOpenReservation }) => {
             </p>
 
             {submitted ? (
-              <div className="text-center py-12 space-y-3">
-                <CheckCircle2 size={44} className="text-red-600 mx-auto" />
-                <h4 className="font-serif text-2xl font-bold text-zinc-900">Inquiry Sent Successfully!</h4>
+              <div className="text-center py-12 space-y-4">
+                <CheckCircle2 size={44} className="text-emerald-600 mx-auto" />
+                <h4 className="font-serif text-2xl font-bold text-zinc-900">Inquiry Sent via WhatsApp!</h4>
                 <p className="text-xs text-zinc-500">
-                  We will contact you at <strong>{formData.phone}</strong> shortly.
+                  If WhatsApp didn't open automatically, click below to send your request.
                 </p>
-                <button
-                  onClick={() => setSubmitted(false)}
-                  className="text-xs font-bold text-red-600 uppercase tracking-widest mt-4 hover:underline"
-                >
-                  Submit Another Inquiry
-                </button>
+                <div className="pt-2 flex flex-col items-center gap-2">
+                  <a
+                    href={getRestaurantWhatsAppUrl(getEventWhatsAppMessage())}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider shadow-md"
+                  >
+                    <MessageCircle size={15} /> Continue on WhatsApp
+                  </a>
+                  <button
+                    onClick={() => setSubmitted(false)}
+                    className="text-xs font-bold text-red-600 uppercase tracking-widest mt-2 hover:underline"
+                  >
+                    Submit Another Inquiry
+                  </button>
+                </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -152,9 +177,9 @@ export const EventsSection = ({ onOpenReservation }) => {
 
                 <button
                   type="submit"
-                  className="w-full bg-red-600 hover:bg-red-700 text-white text-xs font-bold uppercase tracking-widest py-4 rounded-full transition-all duration-300 shadow-lg shadow-red-600/25 flex items-center justify-center gap-2"
+                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold uppercase tracking-widest py-4 rounded-full transition-all duration-300 shadow-lg shadow-emerald-600/25 flex items-center justify-center gap-2"
                 >
-                  <Send size={14} /> Send Event Request
+                  <MessageCircle size={15} /> Send Event Request via WhatsApp
                 </button>
               </form>
             )}

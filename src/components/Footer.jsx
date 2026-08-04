@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUp, Phone, MapPin } from 'lucide-react';
+import { ArrowUp, Phone, MapPin, MessageCircle } from 'lucide-react';
+import { getRestaurantWhatsAppUrl, getApartmentWhatsAppUrl } from '../config/whatsapp';
 
 export const Footer = ({ onOpenReservation, onOpenCsvUpload }) => {
   const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -47,9 +48,18 @@ export const Footer = ({ onOpenReservation, onOpenCsvUpload }) => {
           <div>
             <h4 className="text-[11px] font-bold uppercase tracking-widest text-zinc-500 mb-4">Contact Us</h4>
             <ul className="space-y-2.5 text-xs font-semibold">
-              <li><a href="tel:08104128681" className="text-red-400 hover:text-red-300 transition-colors flex items-center gap-1.5"><Phone size={13} /> 08104128681</a></li>
+              <li><a href="tel:08104128681" className="text-red-400 hover:text-red-300 transition-colors flex items-center gap-1.5"><Phone size={13} /> 08104128681 (Restaurant)</a></li>
               <li><a href="tel:08039352371" className="text-zinc-400 hover:text-white transition-colors flex items-center gap-1.5"><Phone size={13} /> 0803 935 2371 (Apartment)</a></li>
-              <li><a href="https://wa.me/2348104128681" target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-white transition-colors">WhatsApp Line</a></li>
+              <li>
+                <a href={getRestaurantWhatsAppUrl()} target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1.5 font-bold">
+                  <MessageCircle size={13} /> Restaurant WhatsApp
+                </a>
+              </li>
+              <li>
+                <a href={getApartmentWhatsAppUrl()} target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1.5 font-bold">
+                  <MessageCircle size={13} /> Apartment WhatsApp
+                </a>
+              </li>
               <li><a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-white transition-colors flex items-center gap-1.5"><MapPin size={13} /> Google Maps</a></li>
             </ul>
           </div>

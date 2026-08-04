@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { X, Calendar, Clock, Users, MapPin, CheckCircle2, ChevronRight, ChevronLeft, Utensils, Phone, ShieldCheck, Sparkles } from 'lucide-react';
+import { X, Calendar, Clock, Users, MapPin, CheckCircle2, ChevronRight, ChevronLeft, Utensils, Phone, ShieldCheck, Sparkles, MessageCircle } from 'lucide-react';
+import { getRestaurantWhatsAppUrl } from '../config/whatsapp';
 
 export const SEATING_ZONES = [
   {
@@ -57,11 +58,32 @@ export const ReservationModal = ({ isOpen, onClose, initialItem = null, initialZ
 
   if (!isOpen) return null;
 
+  const selectedZoneData = SEATING_ZONES.find(z => z.id === zone) || SEATING_ZONES[0];
+
+  const buildWhatsAppMessage = (ref) => {
+    return `Hello Old English Bar & Grills! 🍽️
+
+I would like to place a table/room reservation:
+
+• Reference: ${ref}
+• Guest Name: ${formData.name}
+• Phone: ${formData.phone}
+• Email: ${formData.email || 'N/A'}
+• Room/Space: ${selectedZoneData.label} (${selectedZoneData.tag})
+• Date & Time: ${date} at ${time}
+• Guests: ${guests} ${guests === 1 ? 'Guest' : 'Guests'}
+${initialItem ? `• Selected Dish: ${initialItem.name}\n` : ''}${formData.notes ? `• Special Requests: ${formData.notes}\n` : ''}`;
+  };
+
   const handleNextStep = () => {
     if (step === 3) {
       const ref = `OE-${Math.floor(100000 + Math.random() * 900000)}`;
       setBookingRef(ref);
       setStep(4);
+      
+      const message = buildWhatsAppMessage(ref);
+      const url = getRestaurantWhatsAppUrl(message);
+      window.open(url, '_blank');
     } else {
       setStep(step + 1);
     }
@@ -72,8 +94,6 @@ export const ReservationModal = ({ isOpen, onClose, initialItem = null, initialZ
     setBookingRef(null);
     onClose();
   };
-
-  const selectedZoneData = SEATING_ZONES.find(z => z.id === zone) || SEATING_ZONES[0];
 
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 animate-fade-in">
@@ -337,7 +357,7 @@ export const ReservationModal = ({ isOpen, onClose, initialItem = null, initialZ
                   </div>
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-zinc-200 text-[11px] text-zinc-600 flex items-center justify-between">
+                <div className="mt-4 pt-3 border-t border-zinc-200 text-[11px] text-zinc-600 flex items-center justify-between mb-4">
                   <span className="flex items-center gap-1">
                     <MapPin size={13} className="text-red-600" /> Area H, New Owerri
                   </span>
@@ -345,6 +365,15 @@ export const ReservationModal = ({ isOpen, onClose, initialItem = null, initialZ
                     <Phone size={12} className="text-red-600" /> 08104128681
                   </span>
                 </div>
+
+                <a
+                  href={getRestaurantWhatsAppUrl(buildWhatsAppMessage(bookingRef))}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider py-3 px-4 rounded-xl transition-all flex items-center justify-center gap-2 shadow-md shadow-emerald-600/20"
+                >
+                  <MessageCircle size={16} /> Open & Send Reservation via WhatsApp
+                </a>
               </div>
             </div>
           )}
@@ -373,7 +402,7 @@ export const ReservationModal = ({ isOpen, onClose, initialItem = null, initialZ
                   : ''
               }`}
             >
-              <span>{step === 3 ? 'Confirm Reservation' : 'Continue'}</span>
+              <span>{step === 3 ? 'Confirm & Send to WhatsApp' : 'Continue'}</span>
               <ChevronRight size={16} />
             </button>
           ) : (
