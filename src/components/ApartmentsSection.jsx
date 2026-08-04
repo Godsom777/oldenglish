@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
-import { Building2, Sparkles, ShieldCheck, Phone, Mail, Award, Calendar, CheckCircle2, ArrowRight, Star, Tag, Clock, ChevronRight, MessageCircle, Camera, X } from 'lucide-react';
+import { Building2, Sparkles, ShieldCheck, Phone, Mail, Award, Calendar, CheckCircle2, ArrowRight, Star, Tag, Clock, ChevronRight, MessageCircle, Camera, X, MapPin } from 'lucide-react';
 import { getApartmentWhatsAppUrl } from '../config/whatsapp';
 
 export const APARTMENT_ROOM_GALLERY = [
+  {
+    id: 'building-exterior',
+    url: '/images/apartments/building-exterior.jpg',
+    title: 'Kcanice & Isabella Estate Building',
+    caption: 'Multi-Story White Executive Residency & Gated Security in New Owerri'
+  },
   {
     id: 'bedroom-1',
     url: '/images/apartments/apt-bedroom-1.jpg',
@@ -43,7 +49,7 @@ export const APARTMENT_PRICING = [
     loyaltyPrice: '₦100,000',
     longStayPrice: '₦80,000',
     capacity: 'Ideal for 1–2 Guests',
-    defaultImageIdx: 0,
+    defaultImageIdx: 1,
     image: '/images/apartments/apt-bedroom-1.jpg',
     description: 'Bespoke 1-bedroom luxury suite featuring plush king bedding, private lounge area, smart LED TV, fully equipped kitchenette, and 24/7 power.',
     features: ['King Size Bed', 'Private Lounge', 'Smart TV & WiFi', 'Old English Room Service']
@@ -55,7 +61,7 @@ export const APARTMENT_PRICING = [
     loyaltyPrice: '₦150,000',
     longStayPrice: '₦120,000',
     capacity: 'Ideal for 2–4 Guests',
-    defaultImageIdx: 1,
+    defaultImageIdx: 2,
     image: '/images/apartments/apt-living-1.jpg',
     description: 'Spacious 2-bedroom executive apartment with ensuite bathrooms, grand dining space, modern kitchen, and Italian leather seating.',
     features: ['2 Ensuite Bedrooms', 'Grand Dining Area', 'Full Fitted Kitchen', 'Daily Housekeeping']
@@ -67,7 +73,7 @@ export const APARTMENT_PRICING = [
     loyaltyPrice: '₦200,000',
     longStayPrice: '₦180,000',
     capacity: 'Ideal for 4–6 Guests',
-    defaultImageIdx: 3,
+    defaultImageIdx: 4,
     image: '/images/apartments/apt-bedroom-2.jpg',
     description: 'Opulent 3-bedroom family & VIP suite featuring master balcony, luxury marble baths, high-speed fiber internet, and premium sound systems.',
     features: ['3 Luxury Bedrooms', 'Master Balcony', 'High-Speed Fiber', 'Gated VIP Security']
@@ -79,7 +85,7 @@ export const APARTMENT_PRICING = [
     loyaltyPrice: '₦300,000',
     longStayPrice: '₦250,000',
     capacity: 'VIP Executive Residency',
-    defaultImageIdx: 2,
+    defaultImageIdx: 3,
     image: '/images/apartments/apt-kitchen-1.jpg',
     description: 'The pinnacle of luxury. Top-floor Penthouse suite with 360° panoramic balcony view, private cocktail lounge setup, and dedicated 24/7 butler service.',
     features: ['360° Panoramic View', 'Private Cocktail Setup', 'Dedicated Butler', 'Smart Automation']
@@ -123,49 +129,87 @@ ${inquiryForm.message ? `• Additional Message: ${inquiryForm.message}\n` : ''}
   };
 
   return (
-    <section id="apartments" className="py-24 sm:py-32 bg-white relative overflow-hidden">
+    <section id="apartments" className="py-12 sm:py-20 bg-white relative overflow-hidden">
       <div className="site-container">
-        {/* Header */}
-        <div className="text-center max-w-4xl mx-auto mb-16 px-2">
-          {/* Logo & Brand Emblem */}
-          <div className="flex flex-col items-center mb-6">
-            <div className="w-16 h-16 rounded-2xl bg-zinc-900 text-white flex items-center justify-center font-serif text-2xl font-bold tracking-tighter mb-3 shadow-lg">
-              K&I
+        
+        {/* Grand Hero Section with Building Exterior */}
+        <div className="relative rounded-3xl overflow-hidden bg-zinc-950 mb-16 shadow-2xl group border border-zinc-200">
+          <div className="relative aspect-[16/10] sm:aspect-[21/9] min-h-[420px] sm:min-h-[500px] w-full">
+            <img
+              src="/images/apartments/building-exterior.jpg"
+              alt="Kcanice & Isabella Apartment Building Exterior"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
+            />
+            {/* Cinematic Gradient Overlays */}
+            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/60 to-black/30 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-r from-zinc-950/80 via-zinc-950/30 to-transparent pointer-events-none" />
+
+            {/* Top Badge & Expand Photo */}
+            <div className="absolute top-4 sm:top-6 left-4 sm:left-6 right-4 sm:right-6 z-10 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="chip-pill chip-pill-red shadow-lg flex items-center gap-1.5 text-[10px] sm:text-xs font-extrabold uppercase">
+                  <Building2 size={13} /> OFFICIAL ESTATE EXTERIOR
+                </span>
+                <span className="hidden sm:inline-flex px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider border border-white/10">
+                  New Owerri Residency
+                </span>
+              </div>
+
+              <button
+                onClick={() => setFullscreenImage({
+                  url: '/images/apartments/building-exterior.jpg',
+                  title: 'Kcanice & Isabella Estate Building',
+                  caption: 'Multi-Story White Executive Residency & Gated Security in New Owerri'
+                })}
+                className="bg-black/70 hover:bg-red-600 text-white px-3 py-2 rounded-full backdrop-blur-md transition-all shadow-lg flex items-center gap-1.5 text-xs font-bold border border-white/20"
+                title="View Fullscreen Building Photo"
+              >
+                <Camera size={14} /> Full View
+              </button>
             </div>
-            <span className="text-xs font-extrabold uppercase tracking-widest text-red-600">
-              KCANICE & ISABELLA APARTMENT
-            </span>
-            <span className="text-[11px] font-semibold text-zinc-400 uppercase tracking-widest mt-1">
-              by Old English Bar & Grills
-            </span>
-          </div>
 
-          <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-extrabold text-zinc-900 tracking-tight leading-none mb-3">
-            EXPERIENCE COMFORT. <span className="text-red-600">LIVE ELEGANTLY.</span>
-          </h2>
-          
-          <p className="font-serif italic text-xl text-zinc-700 font-normal mb-4">
-            "Your Comfort, Our Priority."
-          </p>
+            {/* Hero Text & Actions Overlay */}
+            <div className="absolute bottom-6 sm:bottom-12 left-6 sm:left-12 right-6 sm:right-12 z-10 max-w-3xl text-left text-white">
+              <div className="flex items-center gap-2 mb-3 text-red-500 font-extrabold text-xs uppercase tracking-widest">
+                <MapPin size={14} className="shrink-0" /> Area H, New Owerri, Imo State
+              </div>
 
-          <p className="text-zinc-600 text-xs sm:text-base font-medium max-w-2xl mx-auto leading-relaxed mb-6">
-            Bespoke luxury shortlet suites and executive residency in New Owerri. Integrated with 24/7 power, VIP security, and room service directly from Old English Bar & Grills.
-          </p>
+              <h1 className="font-display text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-none mb-3 text-white">
+                KCANICE & ISABELLA APARTMENTS
+              </h1>
+              
+              <p className="font-serif italic text-lg sm:text-xl text-zinc-200 font-normal mb-3">
+                "Your Comfort, Our Priority."
+              </p>
 
-          {/* Action Pills */}
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            <button
-              onClick={() => setShowFlyerModal(true)}
-              className="bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-bold uppercase tracking-wider px-6 py-3 rounded-full transition-all shadow-md flex items-center gap-2"
-            >
-              <Award size={14} className="text-red-500" /> View Official Price List Flyer
-            </button>
-            <a
-              href="tel:08039352371"
-              className="bg-red-600 hover:bg-red-700 text-white text-xs font-bold uppercase tracking-wider px-6 py-3 rounded-full transition-all shadow-md flex items-center gap-2"
-            >
-              <Phone size={14} /> Call 0803 935 2371
-            </a>
+              <p className="text-zinc-300 text-xs sm:text-base font-medium max-w-2xl leading-relaxed mb-6">
+                Bespoke luxury shortlet suites and multi-story executive residency in New Owerri. Integrated with 24/7 power, gated VIP security, and room service directly from Old English Bar & Grills.
+              </p>
+
+              {/* Action Buttons */}
+              <div className="flex flex-wrap items-center gap-3">
+                <a
+                  href={getApartmentWhatsAppUrl("Hello Kcanice & Isabella Apartments! 🏨 I would like to inquire about suite reservations.")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider px-6 py-3.5 rounded-full transition-all shadow-xl flex items-center gap-2"
+                >
+                  <MessageCircle size={15} /> Book via WhatsApp
+                </a>
+                <button
+                  onClick={() => setShowFlyerModal(true)}
+                  className="bg-zinc-900/90 hover:bg-zinc-900 text-white text-xs font-bold uppercase tracking-wider px-6 py-3.5 rounded-full transition-all shadow-lg flex items-center gap-2 border border-zinc-700"
+                >
+                  <Award size={15} className="text-red-500" /> View Official Price List Flyer
+                </button>
+                <a
+                  href="tel:08039352371"
+                  className="bg-white/10 hover:bg-white/20 text-white backdrop-blur-md text-xs font-bold uppercase tracking-wider px-6 py-3.5 rounded-full transition-all border border-white/20 flex items-center gap-2"
+                >
+                  <Phone size={14} /> Call Desk 0803 935 2371
+                </a>
+              </div>
+            </div>
           </div>
         </div>
 
