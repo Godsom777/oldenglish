@@ -9,6 +9,17 @@ export const SUBMARINE_IMAGES = [
   { url: '/images/submarine/sub1.jpg', caption: 'Sculpture & Custom Wood Table Details' }
 ];
 
+export const CAVE_IMAGES = [
+  { url: '/images/cave/cave1.jpg', caption: 'Cave Room Private Smart TV & Custom Display Shelves' },
+  { url: '/images/cave/cave2.jpg', caption: 'Neon Blue Wall Strip Illumination & Seating' },
+  { url: '/images/cave/cave3.jpg', caption: 'Plush Velvet Lounge Sofas & Acoustic Wall' }
+];
+
+export const OUTDOOR_IMAGES = [
+  { url: '/images/outdoor/outdoor1.jpg', caption: 'Open-Air Canopy Terrace with String Lights & White Tables' },
+  { url: '/images/outdoor/outdoor2.jpg', caption: 'Rustic Hand-Carved Tree Branch Seating & Turf Area' }
+];
+
 export const ROOMS_DATA = [
   {
     id: 'indoor-lounge',
@@ -25,10 +36,12 @@ export const ROOMS_DATA = [
     title: 'OUTDOOR SPACE',
     tag: 'Open-Air Courtyard',
     capacity: 'Up to 40 Guests',
-    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80',
-    description: 'Refreshing open-air garden terrace with starlit night dining, tropical greenery, and fresh evening breezes in New Owerri.',
-    features: ['Starlit Canopy', 'Fresh Night Air', 'Garden Ambiance', 'Cocktail Lounge'],
+    image: '/images/outdoor/outdoor1.jpg',
+    gallery: OUTDOOR_IMAGES,
+    description: 'Refreshing open-air garden terrace under illuminated canopy lighting, featuring rustic hand-crafted wood furniture, lush greenery, and fresh night breezes.',
+    features: ['Starlit Canopy', 'Rustic Wood Furniture', 'Fresh Night Air', 'Garden Ambiance'],
     colSpan: 'lg:col-span-5',
+    isGalleryAvailable: true,
   },
   {
     id: 'submarine-room',
@@ -39,18 +52,20 @@ export const ROOMS_DATA = [
     gallery: SUBMARINE_IMAGES,
     description: 'An exclusive deep-blue ambient themed private lounge room in Old English Bar featuring dark velvet sofas, smart entertainment, African art accents, and VIP privacy.',
     features: ['Deep Blue Ambiance', 'Smart TV & Lounge', 'African Mask Art', 'Dedicated Butler'],
-    colSpan: 'lg:col-span-12', // Highlighted full row for the authentic gallery!
+    colSpan: 'lg:col-span-12', // Highlighted full row for authentic gallery!
     isGalleryAvailable: true,
   },
   {
     id: 'cave-room',
     title: 'CAVE ROOM',
     tag: 'Rustic Stone Vault',
-    description: 'Warm stone-carved acoustic vault featuring secluded booth seating, moody lighting, and timeless architectural charm.',
-    capacity: 'Private 6–10 Guests',
-    image: 'https://images.unsplash.com/photo-1578474846511-04ba529f0b88?auto=format&fit=crop&w=1200&q=80',
-    features: ['Stone Vault Walls', 'Moody Accent Lights', 'Secluded Booths', 'Acoustic Comfort'],
+    capacity: 'Private 6–12 Guests',
+    image: '/images/cave/cave1.jpg',
+    gallery: CAVE_IMAGES,
+    description: 'Intimate neon-blue ambient stone vault featuring private smart TV entertainment, plush velvet lounge sofas, custom artifact shelving, and acoustic privacy.',
+    features: ['Blue Neon Vault', 'Smart TV Entertainment', 'Plush Velvet Sofas', 'Acoustic Comfort'],
     colSpan: 'lg:col-span-6',
+    isGalleryAvailable: true,
   },
   {
     id: 'bunker-room',
@@ -65,115 +80,132 @@ export const ROOMS_DATA = [
 ];
 
 export const RoomsGallerySection = ({ onReserveRoom }) => {
-  const [activeSubImageIdx, setActiveSubImageIdx] = useState(0);
+  const [activeImageIndices, setActiveImageIndices] = useState({});
   const [fullscreenImage, setFullscreenImage] = useState(null);
 
+  const getActiveIdx = (roomId) => activeImageIndices[roomId] || 0;
+  const setActiveIdx = (roomId, idx) => setActiveImageIndices(prev => ({ ...prev, [roomId]: idx }));
+
   return (
-    <section id="rooms" className="py-24 sm:py-32 bg-[#f5f5f2]">
+    <section id="rooms" className="py-20 sm:py-32 bg-[#f5f5f2]">
       <div className="site-container">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 px-2">
-          <span className="chip-pill chip-pill-red mb-4">
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 px-4">
+          <span className="chip-pill chip-pill-red mb-3 inline-flex items-center gap-1.5">
             <Sparkles size={12} /> Exclusive Rooms & Enclaves
           </span>
           <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-extrabold text-zinc-900 tracking-tight leading-none mb-4">
             OUR ROOMS & SPACES
           </h2>
           <p className="text-zinc-600 text-xs sm:text-base font-medium leading-relaxed">
-            Explore Old English Bar & Grills' 5 unique dining atmospheres — featuring authentic interior photos of our Submarine Room & Indoor Lounge.
+            Explore Old English Bar & Grills' 5 unique dining atmospheres — featuring authentic photos of our Submarine Room, Cave Room, Outdoor Space, and Indoor Lounge.
           </p>
         </div>
 
         {/* Bento Grid Rooms Gallery */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8">
           {ROOMS_DATA.map((room) => {
-            const isSubmarine = room.id === 'submarine-room';
+            const hasGallery = Array.isArray(room.gallery) && room.gallery.length > 0;
+            const activeIdx = getActiveIdx(room.id);
+            const currentImgObj = hasGallery ? room.gallery[activeIdx] : { url: room.image, caption: room.title };
 
             return (
               <div
                 key={room.id}
-                className={`${room.colSpan} bento-card p-6 sm:p-8 flex flex-col justify-between group transition-all duration-300 ${
-                  isSubmarine ? 'border-2 border-red-600/30 bg-white shadow-xl' : 'hover:-translate-y-1'
+                className={`${room.colSpan} bento-card p-4 sm:p-8 flex flex-col justify-between group transition-all duration-300 ${
+                  hasGallery ? 'border-2 border-red-600/30 bg-white shadow-xl hover:-translate-y-1' : 'hover:-translate-y-1'
                 }`}
               >
                 <div>
-                  {/* Image Frame */}
-                  <div className="relative aspect-[16/9] sm:aspect-[16/10] rounded-2xl overflow-hidden bg-zinc-900 mb-6 group/img">
+                  {/* Clean Photo Frame (No heavy text overlays covering the picture on mobile) */}
+                  <div 
+                    className="relative aspect-[4/3] sm:aspect-[16/10] rounded-2xl overflow-hidden bg-zinc-900 mb-5 group/img cursor-pointer shadow-md"
+                    onClick={() => setFullscreenImage(currentImgObj)}
+                  >
                     <img
-                      src={isSubmarine ? SUBMARINE_IMAGES[activeSubImageIdx].url : room.image}
+                      src={currentImgObj.url}
                       alt={room.title}
                       className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-700 ease-out opacity-95"
                       loading="lazy"
-                      onClick={() => isSubmarine && setFullscreenImage(SUBMARINE_IMAGES[activeSubImageIdx])}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none sm:bg-gradient-to-t sm:from-black/70 sm:via-transparent sm:to-transparent" />
 
-                    {/* Floating Tags */}
-                    <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
-                      <span className="chip-pill chip-pill-red shadow-md">
+                    {/* Top Tag Pill */}
+                    <div className="absolute top-3 left-3 z-10">
+                      <span className="chip-pill chip-pill-red shadow-md text-[10px] sm:text-xs">
                         {room.tag}
                       </span>
+                    </div>
+
+                    {/* Top Right Camera Zoom Button */}
+                    <div className="absolute top-3 right-3 z-10">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setFullscreenImage(currentImgObj);
+                        }}
+                        className="bg-black/60 hover:bg-red-600 text-white p-2 rounded-full backdrop-blur-md transition-colors shadow-md"
+                        title="View Fullscreen Photo"
+                      >
+                        <Camera size={15} />
+                      </button>
+                    </div>
+
+                    {/* Capacity Badge */}
+                    <div className="absolute bottom-3 left-3 z-10">
                       <span className="chip-pill chip-pill-dark shadow-md text-[10px]">
                         {room.capacity}
                       </span>
                     </div>
-
-                    {/* Captions / Title Overlay */}
-                    <div className="absolute bottom-4 left-4 right-4 text-white z-10 flex items-end justify-between">
-                      <div>
-                        <h3 className="font-display text-xl sm:text-3xl font-extrabold tracking-tight">
-                          {room.title}
-                        </h3>
-                        {isSubmarine && (
-                          <p className="text-xs text-red-300 font-medium mt-0.5">
-                            {SUBMARINE_IMAGES[activeSubImageIdx].caption}
-                          </p>
-                        )}
-                      </div>
-
-                      {isSubmarine && (
-                        <button
-                          onClick={() => setFullscreenImage(SUBMARINE_IMAGES[activeSubImageIdx])}
-                          className="bg-black/60 hover:bg-red-600 text-white p-2 rounded-full backdrop-blur-md transition-colors"
-                          title="View Fullscreen Photo"
-                        >
-                          <Camera size={16} />
-                        </button>
-                      )}
-                    </div>
                   </div>
 
-                  {/* Submarine Room Multi-Photo Selector Thumbnails */}
-                  {isSubmarine && (
-                    <div className="mb-6 bg-zinc-50 p-3 rounded-2xl border border-zinc-200/80">
+                  {/* Room Title & Active Photo Caption (Positioned cleanly below image frame) */}
+                  <div className="mb-4">
+                    <div className="flex items-center justify-between gap-2 mb-1">
+                      <h3 className="font-display text-2xl sm:text-3xl font-extrabold text-zinc-900 tracking-tight">
+                        {room.title}
+                      </h3>
+                    </div>
+
+                    {hasGallery && currentImgObj.caption && (
+                      <p className="text-xs text-red-600 font-semibold flex items-center gap-1.5 mt-0.5">
+                        <Sparkles size={12} className="shrink-0" />
+                        <span>{currentImgObj.caption}</span>
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Multi-Photo Selector Thumbnails */}
+                  {hasGallery && (
+                    <div className="mb-5 bg-zinc-50 p-3 rounded-2xl border border-zinc-200/80">
                       <div className="flex items-center justify-between mb-2 px-1">
                         <span className="text-[11px] font-bold uppercase tracking-wider text-zinc-500 flex items-center gap-1.5">
-                          <Camera size={13} className="text-red-600" /> Submarine Room Photo Gallery (5 Authentic Views)
+                          <Camera size={13} className="text-red-600 shrink-0" /> Photo Gallery ({room.gallery.length} Views)
                         </span>
                         <span className="text-[10px] font-bold text-red-600">
-                          {activeSubImageIdx + 1} of {SUBMARINE_IMAGES.length}
+                          {activeIdx + 1} of {room.gallery.length}
                         </span>
                       </div>
 
-                      <div className="grid grid-cols-5 gap-2">
-                        {SUBMARINE_IMAGES.map((img, idx) => (
+                      <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
+                        {room.gallery.map((img, idx) => (
                           <button
                             key={idx}
-                            onClick={() => setActiveSubImageIdx(idx)}
+                            onClick={() => setActiveIdx(room.id, idx)}
                             className={`relative aspect-square rounded-xl overflow-hidden border-2 transition-all ${
-                              activeSubImageIdx === idx
+                              activeIdx === idx
                                 ? 'border-red-600 shadow-md scale-105'
                                 : 'border-transparent opacity-60 hover:opacity-100'
                             }`}
                           >
-                            <img src={img.url} alt={`Submarine View ${idx + 1}`} className="w-full h-full object-cover" />
+                            <img src={img.url} alt={`${room.title} View ${idx + 1}`} className="w-full h-full object-cover" />
                           </button>
                         ))}
                       </div>
                     </div>
                   )}
 
-                  {/* Info & Description */}
+                  {/* Description */}
                   <p className="text-zinc-600 text-xs sm:text-sm leading-relaxed mb-4 font-medium">
                     {room.description}
                   </p>
@@ -191,15 +223,15 @@ export const RoomsGallerySection = ({ onReserveRoom }) => {
                   </div>
                 </div>
 
-                {/* Reserve Room Button */}
-                <div className="pt-4 border-t border-zinc-100 flex items-center justify-between">
+                {/* Card Footer Reserve Action */}
+                <div className="pt-4 border-t border-zinc-100 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
                   <span className="text-[11px] font-bold uppercase tracking-wider text-red-600 flex items-center gap-1">
-                    <ShieldCheck size={13} /> Verified Bar Space
+                    <ShieldCheck size={13} className="shrink-0" /> Verified Bar Space
                   </span>
 
                   <button
                     onClick={() => onReserveRoom(room.id)}
-                    className="bg-zinc-900 hover:bg-red-600 text-white text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-full transition-all duration-300 flex items-center gap-2 shadow-sm"
+                    className="w-full sm:w-auto bg-zinc-900 hover:bg-red-600 text-white text-xs font-bold uppercase tracking-wider px-5 py-3 sm:py-2.5 rounded-full transition-all duration-300 flex items-center justify-center gap-2 shadow-sm"
                   >
                     <span>Reserve {room.title}</span>
                     <ArrowRight size={14} />
@@ -229,10 +261,13 @@ export const RoomsGallerySection = ({ onReserveRoom }) => {
               alt={fullscreenImage.caption}
               className="w-full h-auto max-h-[80vh] object-contain rounded-2xl shadow-2xl border border-zinc-800"
             />
-            <p className="text-white text-sm font-semibold mt-4">{fullscreenImage.caption}</p>
+            {fullscreenImage.caption && (
+              <p className="text-white text-sm font-semibold mt-4">{fullscreenImage.caption}</p>
+            )}
           </div>
         </div>
       )}
     </section>
   );
 };
+
