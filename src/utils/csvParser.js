@@ -22,7 +22,7 @@ export const parseMenuCsv = (file) => {
             const description = row.description || row.desc || row.details || 'Delicious flame-grilled specialty item.';
             const spicyLevel = parseInt(row.spicy || row.spicylevel || row.spice || '0', 10) || 0;
             const tagsRaw = row.tags || row.diet || row.labels || '';
-            const image = row.image || row.photo || row.img || 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80';
+            const image = row.image || row.photo || row.img || '/images/food/food-sizzling-special.jpg';
 
             // Clean category ID
             const category = cleanCategoryId(categoryRaw);
@@ -75,18 +75,18 @@ export const downloadSampleMenuCsv = () => {
       Description: 'Thinly sliced prime ribeye marinated in authentic Yaji spice blend, flash-grilled over glowing flames.',
       Ingredients: 'Prime Ribeye, Yaji Spice, Peanut Powder, Ginger, Onion',
       Pairing: 'Old English Signature Chapman',
-      Image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80',
+      Image: '/images/food/food-grill-combo.jpg',
       Featured: true
     },
     {
-      Name: 'Whole BBQ Catfish',
+      Name: 'Whole BBQ Catfish & Seafood Platter',
       Category: 'grills',
       Spicy: 2,
       Tags: 'Popular, Halal',
       Description: 'Whole jumbo fresh Catfish flame-grilled over open coals with fried plantain & attieke.',
       Ingredients: 'Fresh Catfish, Red Pepper Rub, Sweet Plantain',
       Pairing: 'Fresh Fruit Juice',
-      Image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80',
+      Image: '/images/food/food-seafood-platter.jpg',
       Featured: true
     },
     {

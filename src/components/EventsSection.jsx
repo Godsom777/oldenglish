@@ -53,7 +53,7 @@ ${formData.details ? `• Special Requests: ${formData.details}\n` : ''}`;
 
             <div className="relative rounded-2xl overflow-hidden aspect-[16/10] bg-zinc-100 mt-4">
               <img
-                src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=80"
+                src="/images/food/food-grill-combo.jpg"
                 alt="Private Event Setting"
                 className="w-full h-full object-cover"
               />

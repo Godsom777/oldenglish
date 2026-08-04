@@ -38,7 +38,7 @@ export const StorySection = () => {
           {/* Left Bento Image (Chef & Kitchen) */}
           <div className="lg:col-span-5 bento-card relative min-h-[380px] sm:min-h-[460px]">
             <img
-              src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=1200&q=80"
+              src="/images/food/food-sizzling-special.jpg"
               alt="Executive Chef Uzochukwu Elui & Kitchen Team"
               className="w-full h-full object-cover"
             />
