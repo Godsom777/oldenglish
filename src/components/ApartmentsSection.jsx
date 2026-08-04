@@ -170,19 +170,19 @@ ${inquiryForm.message ? `• Additional Message: ${inquiryForm.message}\n` : ''}
       <div className="site-container">
         
         {/* Grand Hero Section with Building Exterior */}
-        <div className="relative rounded-3xl overflow-hidden bg-zinc-950 mb-16 shadow-2xl group border border-zinc-200">
-          <div className="relative aspect-[16/10] sm:aspect-[21/9] min-h-[420px] sm:min-h-[500px] w-full">
+        <div className="relative rounded-3xl overflow-hidden bg-zinc-950 mb-12 sm:mb-16 shadow-2xl group border border-zinc-200">
+          <div className="relative min-h-[480px] sm:min-h-[520px] w-full flex flex-col justify-between">
             <img
               src="/images/apartments/building-exterior.jpg"
               alt="Kcanice & Isabella Apartment Building Exterior"
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
+              className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
             />
             {/* Cinematic Gradient Overlays */}
-            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/60 to-black/30 pointer-events-none" />
-            <div className="absolute inset-0 bg-gradient-to-r from-zinc-950/80 via-zinc-950/30 to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/70 to-black/40 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-r from-zinc-950/80 via-zinc-950/40 to-transparent pointer-events-none" />
 
             {/* Top Badge & Expand Photo */}
-            <div className="absolute top-4 sm:top-6 left-4 sm:left-6 right-4 sm:right-6 z-10 flex items-center justify-between">
+            <div className="relative z-10 p-4 sm:p-6 flex items-center justify-between gap-2">
               <div className="flex items-center gap-2">
                 <span className="chip-pill chip-pill-red shadow-lg flex items-center gap-1.5 text-[10px] sm:text-xs font-extrabold uppercase">
                   <Building2 size={13} /> OFFICIAL ESTATE EXTERIOR
@@ -198,7 +198,7 @@ ${inquiryForm.message ? `• Additional Message: ${inquiryForm.message}\n` : ''}
                   title: 'Kcanice & Isabella Estate Building',
                   caption: 'Multi-Story White Executive Residency & Gated Security in New Owerri'
                 })}
-                className="bg-black/70 hover:bg-red-600 text-white px-3 py-2 rounded-full backdrop-blur-md transition-all shadow-lg flex items-center gap-1.5 text-xs font-bold border border-white/20"
+                className="bg-black/70 hover:bg-red-600 text-white px-3 py-2 rounded-full backdrop-blur-md transition-all shadow-lg flex items-center gap-1.5 text-xs font-bold border border-white/20 shrink-0 cursor-pointer active:scale-95"
                 title="View Fullscreen Building Photo"
               >
                 <Camera size={14} /> Full View
@@ -206,42 +206,42 @@ ${inquiryForm.message ? `• Additional Message: ${inquiryForm.message}\n` : ''}
             </div>
 
             {/* Hero Text & Actions Overlay */}
-            <div className="absolute bottom-6 sm:bottom-12 left-6 sm:left-12 right-6 sm:right-12 z-10 max-w-3xl text-left text-white">
-              <div className="flex items-center gap-2 mb-3 text-red-500 font-extrabold text-xs uppercase tracking-widest">
+            <div className="relative z-10 p-5 sm:p-12 max-w-3xl text-left text-white mt-auto">
+              <div className="flex items-center gap-2 mb-2 sm:mb-3 text-red-500 font-extrabold text-xs uppercase tracking-widest">
                 <MapPin size={14} className="shrink-0" /> Area H, New Owerri, Imo State
               </div>
 
-              <h1 className="font-display text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-none mb-3 text-white">
+              <h1 className="font-display text-2xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight sm:leading-none mb-2 sm:mb-3 text-white">
                 KCANICE & ISABELLA APARTMENTS
               </h1>
               
-              <p className="font-serif italic text-lg sm:text-xl text-zinc-200 font-normal mb-3">
+              <p className="font-serif italic text-base sm:text-xl text-zinc-200 font-normal mb-2 sm:mb-3">
                 "Your Comfort, Our Priority."
               </p>
 
-              <p className="text-zinc-300 text-xs sm:text-base font-medium max-w-2xl leading-relaxed mb-6">
+              <p className="text-zinc-300 text-xs sm:text-base font-medium max-w-2xl leading-relaxed mb-5 sm:mb-6">
                 Bespoke luxury shortlet suites and multi-story executive residency in New Owerri. Integrated with 24/7 power, gated VIP security, and room service directly from Old English Bar & Grills.
               </p>
 
               {/* Action Buttons */}
-              <div className="flex flex-wrap items-center gap-3">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 w-full sm:w-auto">
                 <a
                   href={getApartmentWhatsAppUrl("Hello Kcanice & Isabella Apartments! 🏨 I would like to inquire about suite reservations.")}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider px-6 py-3.5 rounded-full transition-all shadow-xl flex items-center gap-2"
+                  className="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider px-6 py-3.5 rounded-full transition-all shadow-xl flex items-center justify-center gap-2 active:scale-95"
                 >
                   <MessageCircle size={15} /> Book via WhatsApp
                 </a>
                 <button
                   onClick={() => setShowFlyerModal(true)}
-                  className="bg-zinc-900/90 hover:bg-zinc-900 text-white text-xs font-bold uppercase tracking-wider px-6 py-3.5 rounded-full transition-all shadow-lg flex items-center gap-2 border border-zinc-700"
+                  className="bg-zinc-900/90 hover:bg-zinc-900 text-white text-xs font-bold uppercase tracking-wider px-5 py-3.5 rounded-full transition-all shadow-lg flex items-center justify-center gap-2 border border-zinc-700 active:scale-95 cursor-pointer"
                 >
                   <Award size={15} className="text-red-500" /> View Official Price List Flyer
                 </button>
                 <a
                   href="tel:08039352371"
-                  className="bg-white/10 hover:bg-white/20 text-white backdrop-blur-md text-xs font-bold uppercase tracking-wider px-6 py-3.5 rounded-full transition-all border border-white/20 flex items-center gap-2"
+                  className="bg-white/10 hover:bg-white/20 text-white backdrop-blur-md text-xs font-bold uppercase tracking-wider px-5 py-3.5 rounded-full transition-all border border-white/20 flex items-center justify-center gap-2 active:scale-95"
                 >
                   <Phone size={14} /> Call Desk 0803 935 2371
                 </a>
@@ -300,7 +300,7 @@ ${inquiryForm.message ? `• Additional Message: ${inquiryForm.message}\n` : ''}
             const currentImgObj = suiteGallery[activeIdx] || suiteGallery[0];
 
             return (
-              <div key={apt.id} className="bento-card p-6 sm:p-8 flex flex-col justify-between group transition-all hover:-translate-y-1">
+              <div key={apt.id} className="bento-card p-5 sm:p-8 flex flex-col justify-between group transition-all hover:-translate-y-1">
                 <div>
                   {/* Image Frame */}
                   <div 
@@ -328,7 +328,7 @@ ${inquiryForm.message ? `• Additional Message: ${inquiryForm.message}\n` : ''}
                           e.stopPropagation();
                           setFullscreenImage(currentImgObj);
                         }}
-                        className="bg-black/60 hover:bg-red-600 text-white p-2 rounded-full backdrop-blur-md transition-colors shadow-md"
+                        className="bg-black/60 hover:bg-red-600 text-white p-2.5 rounded-full backdrop-blur-md transition-colors shadow-md active:scale-95 cursor-pointer"
                         title="View Fullscreen Photo"
                       >
                         <Camera size={15} />
@@ -349,22 +349,22 @@ ${inquiryForm.message ? `• Additional Message: ${inquiryForm.message}\n` : ''}
 
                   {/* Room Gallery Interactive Thumbnails Bar */}
                   <div className="mb-5 bg-zinc-50 p-2.5 rounded-2xl border border-zinc-200/80">
-                    <div className="flex items-center justify-between mb-2 px-1">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-500 flex items-center gap-1.5">
+                    <div className="flex items-center justify-between mb-2 px-1 gap-2">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-500 flex items-center gap-1.5 shrink-0">
                         <Camera size={12} className="text-red-600 shrink-0" /> {apt.gallery ? 'Verified Photo Tour' : 'Room Gallery'} ({suiteGallery.length} Views)
                       </span>
-                      <span className="text-[10px] font-semibold text-red-600 truncate max-w-[180px]">
+                      <span className="text-[10px] font-semibold text-red-600 truncate max-w-[160px] sm:max-w-[200px]">
                         {currentImgObj.title}
                       </span>
                     </div>
 
-                    <div className="grid grid-cols-5 gap-1.5">
+                    <div className="grid grid-cols-5 gap-1.5 sm:gap-2">
                       {suiteGallery.map((img, idx) => (
                         <button
                           key={img.id}
                           onClick={() => setActiveIdx(apt.id, idx)}
                           title={img.title}
-                          className={`relative aspect-square rounded-xl overflow-hidden border-2 transition-all ${
+                          className={`relative aspect-square rounded-xl overflow-hidden border-2 transition-all cursor-pointer active:scale-95 ${
                             activeIdx === idx
                               ? 'border-red-600 shadow-md scale-105'
                               : 'border-transparent opacity-60 hover:opacity-100'
@@ -407,20 +407,20 @@ ${inquiryForm.message ? `• Additional Message: ${inquiryForm.message}\n` : ''}
                 </div>
 
                 {/* Action */}
-                <div className="pt-4 border-t border-zinc-100 flex flex-col sm:flex-row items-center justify-between gap-2.5">
+                <div className="pt-4 border-t border-zinc-100 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5">
                   <a
                     href={getApartmentWhatsAppUrl(`Hello Kcanice & Isabella Apartments! 🏨\n\nI would like to book/inquire about the ${apt.type} (${apt.regularPrice}/night). Please let me know availability.`)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full sm:flex-1 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider py-3 rounded-full transition-all text-center flex items-center justify-center gap-2 shadow-md shadow-emerald-600/20"
+                    className="w-full sm:flex-1 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider py-3.5 rounded-full transition-all text-center flex items-center justify-center gap-2 shadow-md shadow-emerald-600/20 active:scale-95"
                   >
-                    <MessageCircle size={14} /> Book via WhatsApp
+                    <MessageCircle size={15} /> Book via WhatsApp
                   </a>
                   <a
                     href="tel:08039352371"
-                    className="w-full sm:w-auto bg-zinc-100 hover:bg-zinc-200 text-zinc-800 text-xs font-bold uppercase tracking-wider py-3 px-4 rounded-full transition-all text-center flex items-center justify-center gap-1.5 border border-zinc-200"
+                    className="w-full sm:w-auto bg-zinc-100 hover:bg-zinc-200 text-zinc-800 text-xs font-bold uppercase tracking-wider py-3.5 px-5 rounded-full transition-all text-center flex items-center justify-center gap-1.5 border border-zinc-200 active:scale-95"
                   >
-                    <Phone size={13} /> Call Desk
+                    <Phone size={14} /> Call Desk
                   </a>
                 </div>
               </div>
@@ -429,7 +429,7 @@ ${inquiryForm.message ? `• Additional Message: ${inquiryForm.message}\n` : ''}
         </div>
 
         {/* Room Pictures Showcase Strip */}
-        <div className="mb-16 bg-[#f8f8f6] rounded-3xl p-6 sm:p-10 border border-zinc-200/80">
+        <div className="mb-16 bg-[#f8f8f6] rounded-3xl p-5 sm:p-10 border border-zinc-200/80">
           <div className="text-center max-w-2xl mx-auto mb-8">
             <span className="chip-pill chip-pill-red mb-2 inline-flex items-center gap-1">
               <Camera size={12} /> Authentic Suite Photos
@@ -444,10 +444,10 @@ ${inquiryForm.message ? `• Additional Message: ${inquiryForm.message}\n` : ''}
             </p>
 
             {/* Tour Switcher Buttons */}
-            <div className="inline-flex p-1.5 rounded-full bg-zinc-200/80 border border-zinc-300 gap-1.5">
+            <div className="flex flex-col sm:flex-row w-full sm:w-auto gap-2 p-1.5 rounded-2xl sm:rounded-full bg-zinc-200/80 border border-zinc-300 max-w-md mx-auto sm:inline-flex">
               <button
                 onClick={() => setActiveTourTab('1bed')}
-                className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all ${
+                className={`w-full sm:w-auto px-5 py-2.5 rounded-xl sm:rounded-full text-xs font-bold transition-all cursor-pointer active:scale-95 ${
                   activeTourTab === '1bed'
                     ? 'bg-red-600 text-white shadow-md'
                     : 'text-zinc-700 hover:text-zinc-900 hover:bg-zinc-300/50'
@@ -457,7 +457,7 @@ ${inquiryForm.message ? `• Additional Message: ${inquiryForm.message}\n` : ''}
               </button>
               <button
                 onClick={() => setActiveTourTab('2bed')}
-                className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all ${
+                className={`w-full sm:w-auto px-5 py-2.5 rounded-xl sm:rounded-full text-xs font-bold transition-all cursor-pointer active:scale-95 ${
                   activeTourTab === '2bed'
                     ? 'bg-red-600 text-white shadow-md'
                     : 'text-zinc-700 hover:text-zinc-900 hover:bg-zinc-300/50'
@@ -473,7 +473,7 @@ ${inquiryForm.message ? `• Additional Message: ${inquiryForm.message}\n` : ''}
               <div
                 key={img.id}
                 onClick={() => setFullscreenImage(img)}
-                className="group relative aspect-[4/3] rounded-2xl overflow-hidden bg-zinc-900 cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                className="group relative aspect-[4/3] rounded-2xl overflow-hidden bg-zinc-900 cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 active:scale-95"
               >
                 <img
                   src={img.url}
@@ -496,7 +496,7 @@ ${inquiryForm.message ? `• Additional Message: ${inquiryForm.message}\n` : ''}
         </div>
 
         {/* Contact & Inquiry Form Bento */}
-        <div className="bento-card-dark p-8 sm:p-12 relative overflow-hidden max-w-4xl mx-auto shadow-2xl">
+        <div className="bento-card-dark p-6 sm:p-12 relative overflow-hidden max-w-4xl mx-auto shadow-2xl">
           <div className="absolute top-0 right-0 w-64 h-64 bg-red-600/15 rounded-full blur-3xl pointer-events-none" />
 
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center relative z-10">
@@ -514,11 +514,11 @@ ${inquiryForm.message ? `• Additional Message: ${inquiryForm.message}\n` : ''}
 
               <div className="space-y-2 pt-2 text-xs font-semibold text-zinc-300">
                 <div className="flex items-center gap-2">
-                  <Phone size={15} className="text-red-400" />
+                  <Phone size={15} className="text-red-400 shrink-0" />
                   <a href="tel:08039352371" className="hover:underline text-white font-bold">0803 935 2371</a>
                 </div>
                 <div className="flex items-center gap-2">
-                  <MessageCircle size={15} className="text-emerald-400" />
+                  <MessageCircle size={15} className="text-emerald-400 shrink-0" />
                   <a
                     href={getApartmentWhatsAppUrl("Hello Kcanice & Isabella Apartments! 🏨 I have an inquiry regarding apartment availability.")}
                     target="_blank"
@@ -529,14 +529,14 @@ ${inquiryForm.message ? `• Additional Message: ${inquiryForm.message}\n` : ''}
                   </a>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Mail size={15} className="text-red-400" />
+                  <Mail size={15} className="text-red-400 shrink-0" />
                   <a href="mailto:info@kcaniceisabella.com" className="hover:underline text-white">info@kcaniceisabella.com</a>
                 </div>
               </div>
             </div>
 
             {/* Right Form */}
-            <div className="md:col-span-7 bg-white text-zinc-900 p-6 sm:p-8 rounded-3xl shadow-xl">
+            <div className="md:col-span-7 bg-white text-zinc-900 p-5 sm:p-8 rounded-3xl shadow-xl">
               {submitted ? (
                 <div className="text-center py-6 space-y-4">
                   <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
@@ -551,11 +551,11 @@ ${inquiryForm.message ? `• Additional Message: ${inquiryForm.message}\n` : ''}
                       href={getApartmentWhatsAppUrl(getInquiryMessage())}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider shadow-md"
+                      className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider shadow-md active:scale-95"
                     >
                       <MessageCircle size={15} /> Continue on WhatsApp
                     </a>
-                    <button onClick={() => setSubmitted(false)} className="text-xs font-bold text-red-600 hover:underline mt-2">
+                    <button onClick={() => setSubmitted(false)} className="text-xs font-bold text-red-600 hover:underline mt-2 cursor-pointer">
                       Submit another inquiry
                     </button>
                   </div>
@@ -571,7 +571,7 @@ ${inquiryForm.message ? `• Additional Message: ${inquiryForm.message}\n` : ''}
                       placeholder="Full Name"
                       value={inquiryForm.name}
                       onChange={(e) => setInquiryForm({ ...inquiryForm, name: e.target.value })}
-                      className="w-full bg-zinc-50 border border-zinc-200 rounded-xl p-2.5 text-xs font-medium text-zinc-900 focus:outline-none focus:ring-2 focus:ring-red-600/30"
+                      className="w-full bg-zinc-50 border border-zinc-200 rounded-xl p-3 text-base sm:text-xs font-medium text-zinc-900 focus:outline-none focus:ring-2 focus:ring-red-600/30"
                     />
                   </div>
                   <div>
@@ -582,7 +582,7 @@ ${inquiryForm.message ? `• Additional Message: ${inquiryForm.message}\n` : ''}
                       placeholder="0803 935 2371"
                       value={inquiryForm.phone}
                       onChange={(e) => setInquiryForm({ ...inquiryForm, phone: e.target.value })}
-                      className="w-full bg-zinc-50 border border-zinc-200 rounded-xl p-2.5 text-xs font-medium text-zinc-900 focus:outline-none focus:ring-2 focus:ring-red-600/30"
+                      className="w-full bg-zinc-50 border border-zinc-200 rounded-xl p-3 text-base sm:text-xs font-medium text-zinc-900 focus:outline-none focus:ring-2 focus:ring-red-600/30"
                     />
                   </div>
                   <div>
@@ -590,7 +590,7 @@ ${inquiryForm.message ? `• Additional Message: ${inquiryForm.message}\n` : ''}
                     <select
                       value={inquiryForm.apartment}
                       onChange={(e) => setInquiryForm({ ...inquiryForm, apartment: e.target.value })}
-                      className="w-full bg-zinc-50 border border-zinc-200 rounded-xl p-2.5 text-xs font-semibold text-zinc-900 focus:outline-none focus:ring-2 focus:ring-red-600/30"
+                      className="w-full bg-zinc-50 border border-zinc-200 rounded-xl p-3 text-base sm:text-xs font-semibold text-zinc-900 focus:outline-none focus:ring-2 focus:ring-red-600/30"
                     >
                       <option value="1 BEDROOM APARTMENT">1 BEDROOM APARTMENT (₦150k / ₦100k)</option>
                       <option value="2 BEDROOM APARTMENT">2 BEDROOM APARTMENT (₦200k / ₦150k)</option>
@@ -600,7 +600,7 @@ ${inquiryForm.message ? `• Additional Message: ${inquiryForm.message}\n` : ''}
                   </div>
                   <button
                     type="submit"
-                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider py-3 rounded-full transition-all shadow-md shadow-emerald-600/20 flex items-center justify-center gap-2"
+                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider py-3.5 rounded-full transition-all shadow-md shadow-emerald-600/20 flex items-center justify-center gap-2 cursor-pointer active:scale-95"
                   >
                     <MessageCircle size={15} /> Send Booking via WhatsApp
                   </button>
@@ -613,20 +613,62 @@ ${inquiryForm.message ? `• Additional Message: ${inquiryForm.message}\n` : ''}
 
       {/* Official Price List Flyer Modal */}
       {showFlyerModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-fade-in" onClick={() => setShowFlyerModal(false)}>
-          <div className="relative max-w-2xl w-full bg-white rounded-3xl overflow-hidden shadow-2xl p-4 text-center max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
-            <div className="flex items-center justify-between mb-3 px-2 pb-2 border-b border-zinc-100">
-              <span className="font-serif text-lg font-bold text-zinc-900">Official Kcanice & Isabella Price List</span>
-              <button onClick={() => setShowFlyerModal(false)} className="w-8 h-8 rounded-full bg-zinc-100 text-zinc-700 flex items-center justify-center font-bold">✕</button>
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md animate-fade-in"
+          onClick={() => setShowFlyerModal(false)}
+        >
+          <div
+            className="relative max-w-2xl w-full bg-white rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[92vh]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Sticky Header with prominent close button */}
+            <div className="sticky top-0 z-20 bg-white/95 backdrop-blur-md flex items-center justify-between px-4 sm:px-6 py-3.5 border-b border-zinc-200">
+              <div className="flex items-center gap-2">
+                <Award size={18} className="text-red-600 shrink-0" />
+                <span className="font-serif text-sm sm:text-base font-extrabold text-zinc-900 truncate">
+                  Official Price List Flyer
+                </span>
+              </div>
+              <button
+                onClick={() => setShowFlyerModal(false)}
+                className="w-10 h-10 rounded-full bg-zinc-100 hover:bg-red-600 hover:text-white text-zinc-800 transition-all flex items-center justify-center font-bold shadow-sm active:scale-95 shrink-0 cursor-pointer"
+                aria-label="Close flyer"
+                title="Close"
+              >
+                <X size={20} />
+              </button>
             </div>
-            <img
-              src="/images/kcanice-isabella-flyer.jpg"
-              alt="Official Kcanice and Isabella Apartment Price List"
-              className="w-full h-auto rounded-2xl shadow-md border border-zinc-200"
-            />
-            <div className="mt-4 pt-3 border-t border-zinc-100 flex items-center justify-between text-xs font-bold text-zinc-700 px-2">
-              <span>Direct Phone: 0803 935 2371</span>
-              <a href="tel:08039352371" className="bg-red-600 text-white px-4 py-2 rounded-full uppercase tracking-wider">Call Now</a>
+
+            {/* Scrollable Image Body */}
+            <div className="overflow-y-auto p-3 sm:p-5 flex-1 overscroll-contain bg-zinc-900/5">
+              <img
+                src="/images/kcanice-isabella-flyer.jpg"
+                alt="Official Kcanice and Isabella Apartment Price List"
+                className="w-full h-auto rounded-2xl shadow-md border border-zinc-200"
+              />
+            </div>
+
+            {/* Sticky Bottom Actions */}
+            <div className="sticky bottom-0 z-20 bg-zinc-50 border-t border-zinc-200 p-3 sm:p-4 flex flex-col sm:flex-row items-center justify-between gap-2.5">
+              <div className="text-center sm:text-left text-xs font-semibold text-zinc-600">
+                Direct Phone: <a href="tel:08039352371" className="font-bold text-zinc-900 hover:underline">0803 935 2371</a>
+              </div>
+              <div className="flex items-center gap-2 w-full sm:w-auto">
+                <a
+                  href="tel:08039352371"
+                  className="flex-1 sm:flex-initial bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-bold uppercase tracking-wider px-5 py-3 rounded-full text-center transition-all flex items-center justify-center gap-1.5 active:scale-95"
+                >
+                  <Phone size={14} /> Call Now
+                </a>
+                <a
+                  href={getApartmentWhatsAppUrl("Hello Kcanice & Isabella Apartments! 🏨 I would like to inquire about rates from the official flyer.")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 sm:flex-initial bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider px-5 py-3 rounded-full text-center transition-all flex items-center justify-center gap-1.5 shadow-md active:scale-95"
+                >
+                  <MessageCircle size={14} /> WhatsApp
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -635,27 +677,46 @@ ${inquiryForm.message ? `• Additional Message: ${inquiryForm.message}\n` : ''}
       {/* Fullscreen Photo Lightbox Modal */}
       {fullscreenImage && (
         <div
-          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 animate-fade-in"
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col items-center justify-between p-4 sm:p-6 animate-fade-in"
           onClick={() => setFullscreenImage(null)}
         >
-          <div className="relative max-w-4xl w-full text-center" onClick={(e) => e.stopPropagation()}>
+          {/* Top Bar with Info & High Visibility Floating Close Button */}
+          <div className="w-full max-w-5xl flex items-center justify-between z-20 py-2 mb-2" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center gap-2">
+              <span className="chip-pill chip-pill-red text-[10px] sm:text-xs">
+                <Camera size={12} /> Photo Viewer
+              </span>
+            </div>
+
             <button
               onClick={() => setFullscreenImage(null)}
-              className="absolute -top-12 right-0 text-white hover:text-red-500 font-bold flex items-center gap-1 text-sm bg-white/10 px-3 py-1 rounded-full"
+              className="bg-zinc-800/90 hover:bg-red-600 active:scale-95 text-white font-bold px-4 py-2.5 rounded-full backdrop-blur-md transition-all shadow-xl flex items-center gap-2 text-xs sm:text-sm border border-white/20 shrink-0 cursor-pointer"
+              aria-label="Close photo view"
+              title="Close Fullscreen View"
             >
-              Close <X size={18} />
+              <span>Close</span>
+              <X size={18} />
             </button>
+          </div>
+
+          {/* Main Centered Image */}
+          <div className="relative max-w-5xl w-full flex-1 flex flex-col items-center justify-center min-h-0 py-2" onClick={(e) => e.stopPropagation()}>
             <img
               src={fullscreenImage.url}
               alt={fullscreenImage.title}
-              className="w-full h-auto max-h-[80vh] object-contain rounded-2xl shadow-2xl border border-zinc-800"
+              className="max-h-[72vh] w-auto max-w-full object-contain rounded-2xl shadow-2xl border border-zinc-800"
             />
-            <div className="mt-4 text-white text-center">
-              <h4 className="text-lg font-bold font-serif">{fullscreenImage.title}</h4>
+            <div className="mt-4 text-white text-center px-4 max-w-2xl">
+              <h4 className="text-base sm:text-lg font-bold font-serif">{fullscreenImage.title}</h4>
               {fullscreenImage.caption && (
-                <p className="text-xs text-zinc-300 mt-1">{fullscreenImage.caption}</p>
+                <p className="text-xs text-zinc-300 mt-1 font-medium">{fullscreenImage.caption}</p>
               )}
             </div>
+          </div>
+
+          {/* Bottom Tap Anywhere to Dismiss Hint */}
+          <div className="text-[11px] text-zinc-500 font-medium py-1">
+            Tap anywhere outside to close
           </div>
         </div>
       )}
