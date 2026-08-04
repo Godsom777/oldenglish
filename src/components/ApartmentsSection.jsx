@@ -2,6 +2,39 @@ import React, { useState } from 'react';
 import { Building2, Sparkles, ShieldCheck, Phone, Mail, Award, Calendar, CheckCircle2, ArrowRight, Star, Tag, Clock, ChevronRight, MessageCircle, Camera, X, MapPin } from 'lucide-react';
 import { getApartmentWhatsAppUrl } from '../config/whatsapp';
 
+export const TWO_BEDROOM_GALLERY = [
+  {
+    id: '2bed-living',
+    url: '/images/apartments/apt-living-1.jpg',
+    title: 'Executive Living Room & Dining Area',
+    caption: 'Spacious 2-Bedroom Sectional Lounge, Marble Coffee Table & Dining Space'
+  },
+  {
+    id: '2bed-master-bedroom',
+    url: '/images/apartments/apt-bedroom-1.jpg',
+    title: 'Master Bedroom Suite',
+    caption: 'Plush King Bed, Custom Tufted Headboard, Lounge Sofa & Floor Rug'
+  },
+  {
+    id: '2bed-ensuite-bedroom',
+    url: '/images/apartments/apt-bedroom-2.jpg',
+    title: 'Second Ensuite Bedroom',
+    caption: 'Spacious Bedroom with Built-in Wood Wardrobes & Tiled Flooring'
+  },
+  {
+    id: '2bed-kitchen',
+    url: '/images/apartments/apt-kitchen-1.jpg',
+    title: 'Modern Fitted Kitchen',
+    caption: 'Custom White Cabinetry, Refrigerator, Stove Top & Built-in Microwave'
+  },
+  {
+    id: '2bed-sink',
+    url: '/images/apartments/apt-kitchen-2.jpg',
+    title: 'Granite Countertop Sink',
+    caption: 'Granite Countertop with Running Water Double Sink & Microwave'
+  }
+];
+
 export const APARTMENT_ROOM_GALLERY = [
   {
     id: 'building-exterior',
@@ -9,36 +42,7 @@ export const APARTMENT_ROOM_GALLERY = [
     title: 'Kcanice & Isabella Estate Building',
     caption: 'Multi-Story White Executive Residency & Gated Security in New Owerri'
   },
-  {
-    id: 'bedroom-1',
-    url: '/images/apartments/apt-bedroom-1.jpg',
-    title: 'Master Bedroom Suite',
-    caption: 'Plush King Bed, Custom Tufted Headboard, Lounge Sofa & Rug'
-  },
-  {
-    id: 'living-1',
-    url: '/images/apartments/apt-living-1.jpg',
-    title: 'Executive Living Lounge',
-    caption: 'Spacious Sectional Lounge, Marble Coffee Table & Dining Area'
-  },
-  {
-    id: 'kitchen-1',
-    url: '/images/apartments/apt-kitchen-1.jpg',
-    title: 'Modern Fitted Kitchen',
-    caption: 'Custom White Cabinetry, Refrigerator, Stove Top & Oven'
-  },
-  {
-    id: 'bedroom-2',
-    url: '/images/apartments/apt-bedroom-2.jpg',
-    title: 'Ensuite Suite Bedroom',
-    caption: 'Spacious Bedroom with Built-in Wood Wardrobes & Tiled Floor'
-  },
-  {
-    id: 'kitchen-2',
-    url: '/images/apartments/apt-kitchen-2.jpg',
-    title: 'Granite Countertop & Sink',
-    caption: 'Granite Countertop with Running Water Double Sink & Microwave'
-  }
+  ...TWO_BEDROOM_GALLERY
 ];
 
 export const APARTMENT_PRICING = [
@@ -49,7 +53,6 @@ export const APARTMENT_PRICING = [
     loyaltyPrice: '₦100,000',
     longStayPrice: '₦80,000',
     capacity: 'Ideal for 1–2 Guests',
-    defaultImageIdx: 1,
     image: '/images/apartments/apt-bedroom-1.jpg',
     description: 'Bespoke 1-bedroom luxury suite featuring plush king bedding, private lounge area, smart LED TV, fully equipped kitchenette, and 24/7 power.',
     features: ['King Size Bed', 'Private Lounge', 'Smart TV & WiFi', 'Old English Room Service']
@@ -61,8 +64,8 @@ export const APARTMENT_PRICING = [
     loyaltyPrice: '₦150,000',
     longStayPrice: '₦120,000',
     capacity: 'Ideal for 2–4 Guests',
-    defaultImageIdx: 2,
     image: '/images/apartments/apt-living-1.jpg',
+    gallery: TWO_BEDROOM_GALLERY,
     description: 'Spacious 2-bedroom executive apartment with ensuite bathrooms, grand dining space, modern kitchen, and Italian leather seating.',
     features: ['2 Ensuite Bedrooms', 'Grand Dining Area', 'Full Fitted Kitchen', 'Daily Housekeeping']
   },
@@ -73,7 +76,6 @@ export const APARTMENT_PRICING = [
     loyaltyPrice: '₦200,000',
     longStayPrice: '₦180,000',
     capacity: 'Ideal for 4–6 Guests',
-    defaultImageIdx: 4,
     image: '/images/apartments/apt-bedroom-2.jpg',
     description: 'Opulent 3-bedroom family & VIP suite featuring master balcony, luxury marble baths, high-speed fiber internet, and premium sound systems.',
     features: ['3 Luxury Bedrooms', 'Master Balcony', 'High-Speed Fiber', 'Gated VIP Security']
@@ -85,7 +87,6 @@ export const APARTMENT_PRICING = [
     loyaltyPrice: '₦300,000',
     longStayPrice: '₦250,000',
     capacity: 'VIP Executive Residency',
-    defaultImageIdx: 3,
     image: '/images/apartments/apt-kitchen-1.jpg',
     description: 'The pinnacle of luxury. Top-floor Penthouse suite with 360° panoramic balcony view, private cocktail lounge setup, and dedicated 24/7 butler service.',
     features: ['360° Panoramic View', 'Private Cocktail Setup', 'Dedicated Butler', 'Smart Automation']
@@ -258,8 +259,9 @@ ${inquiryForm.message ? `• Additional Message: ${inquiryForm.message}\n` : ''}
         {/* Pricing & Suite Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           {APARTMENT_PRICING.map((apt) => {
-            const activeIdx = getActiveIdx(apt.id, apt.defaultImageIdx);
-            const currentImgObj = APARTMENT_ROOM_GALLERY[activeIdx];
+            const suiteGallery = apt.gallery || APARTMENT_ROOM_GALLERY;
+            const activeIdx = getActiveIdx(apt.id, 0);
+            const currentImgObj = suiteGallery[activeIdx] || suiteGallery[0];
 
             return (
               <div key={apt.id} className="bento-card p-6 sm:p-8 flex flex-col justify-between group transition-all hover:-translate-y-1">
@@ -279,7 +281,7 @@ ${inquiryForm.message ? `• Additional Message: ${inquiryForm.message}\n` : ''}
 
                     <div className="absolute top-4 left-4 z-10">
                       <span className="chip-pill chip-pill-red shadow-md">
-                        Kcanice & Isabella
+                        {apt.gallery ? 'Verified 2-Bedroom Tour' : 'Kcanice & Isabella'}
                       </span>
                     </div>
 
@@ -313,7 +315,7 @@ ${inquiryForm.message ? `• Additional Message: ${inquiryForm.message}\n` : ''}
                   <div className="mb-5 bg-zinc-50 p-2.5 rounded-2xl border border-zinc-200/80">
                     <div className="flex items-center justify-between mb-2 px-1">
                       <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-500 flex items-center gap-1.5">
-                        <Camera size={12} className="text-red-600 shrink-0" /> Room Gallery ({APARTMENT_ROOM_GALLERY.length} Views)
+                        <Camera size={12} className="text-red-600 shrink-0" /> {apt.gallery ? 'Verified Photo Tour' : 'Room Gallery'} ({suiteGallery.length} Views)
                       </span>
                       <span className="text-[10px] font-semibold text-red-600 truncate max-w-[180px]">
                         {currentImgObj.title}
@@ -321,7 +323,7 @@ ${inquiryForm.message ? `• Additional Message: ${inquiryForm.message}\n` : ''}
                     </div>
 
                     <div className="grid grid-cols-5 gap-1.5">
-                      {APARTMENT_ROOM_GALLERY.map((img, idx) => (
+                      {suiteGallery.map((img, idx) => (
                         <button
                           key={img.id}
                           onClick={() => setActiveIdx(apt.id, idx)}
@@ -394,13 +396,13 @@ ${inquiryForm.message ? `• Additional Message: ${inquiryForm.message}\n` : ''}
         <div className="mb-16 bg-[#f8f8f6] rounded-3xl p-6 sm:p-10 border border-zinc-200/80">
           <div className="text-center max-w-2xl mx-auto mb-8">
             <span className="chip-pill chip-pill-red mb-2 inline-flex items-center gap-1">
-              <Camera size={12} /> Real Interior Gallery
+              <Camera size={12} /> Authentic Suite Photos
             </span>
             <h3 className="font-display text-2xl sm:text-3xl font-extrabold text-zinc-900 tracking-tight">
-              APARTMENT INTERIOR GALLERY
+              2 BEDROOM APARTMENT PHOTO TOUR
             </h3>
             <p className="text-zinc-600 text-xs sm:text-sm mt-1 font-medium">
-              Explore authentic photos of our furnished master bedrooms, modern fitted kitchens, and executive lounges.
+              Explore authentic interior photos of our 2 Bedroom Executive Apartment — master suite, second bedroom, living lounge, fitted kitchen, and granite countertop sink.
             </p>
           </div>
 
