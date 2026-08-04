@@ -1,6 +1,39 @@
 import React, { useState } from 'react';
-import { Building2, Sparkles, ShieldCheck, Phone, Mail, Award, Calendar, CheckCircle2, ArrowRight, Star, Tag, Clock, ChevronRight, MessageCircle } from 'lucide-react';
+import { Building2, Sparkles, ShieldCheck, Phone, Mail, Award, Calendar, CheckCircle2, ArrowRight, Star, Tag, Clock, ChevronRight, MessageCircle, Camera, X } from 'lucide-react';
 import { getApartmentWhatsAppUrl } from '../config/whatsapp';
+
+export const APARTMENT_ROOM_GALLERY = [
+  {
+    id: 'bedroom-1',
+    url: '/images/apartments/apt-bedroom-1.jpg',
+    title: 'Master Bedroom Suite',
+    caption: 'Plush King Bed, Custom Tufted Headboard, Lounge Sofa & Rug'
+  },
+  {
+    id: 'living-1',
+    url: '/images/apartments/apt-living-1.jpg',
+    title: 'Executive Living Lounge',
+    caption: 'Spacious Sectional Lounge, Marble Coffee Table & Dining Area'
+  },
+  {
+    id: 'kitchen-1',
+    url: '/images/apartments/apt-kitchen-1.jpg',
+    title: 'Modern Fitted Kitchen',
+    caption: 'Custom White Cabinetry, Refrigerator, Stove Top & Oven'
+  },
+  {
+    id: 'bedroom-2',
+    url: '/images/apartments/apt-bedroom-2.jpg',
+    title: 'Ensuite Suite Bedroom',
+    caption: 'Spacious Bedroom with Built-in Wood Wardrobes & Tiled Floor'
+  },
+  {
+    id: 'kitchen-2',
+    url: '/images/apartments/apt-kitchen-2.jpg',
+    title: 'Granite Countertop & Sink',
+    caption: 'Granite Countertop with Running Water Double Sink & Microwave'
+  }
+];
 
 export const APARTMENT_PRICING = [
   {
@@ -10,7 +43,8 @@ export const APARTMENT_PRICING = [
     loyaltyPrice: '₦100,000',
     longStayPrice: '₦80,000',
     capacity: 'Ideal for 1–2 Guests',
-    image: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80',
+    defaultImageIdx: 0,
+    image: '/images/apartments/apt-bedroom-1.jpg',
     description: 'Bespoke 1-bedroom luxury suite featuring plush king bedding, private lounge area, smart LED TV, fully equipped kitchenette, and 24/7 power.',
     features: ['King Size Bed', 'Private Lounge', 'Smart TV & WiFi', 'Old English Room Service']
   },
@@ -21,7 +55,8 @@ export const APARTMENT_PRICING = [
     loyaltyPrice: '₦150,000',
     longStayPrice: '₦120,000',
     capacity: 'Ideal for 2–4 Guests',
-    image: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80',
+    defaultImageIdx: 1,
+    image: '/images/apartments/apt-living-1.jpg',
     description: 'Spacious 2-bedroom executive apartment with ensuite bathrooms, grand dining space, modern kitchen, and Italian leather seating.',
     features: ['2 Ensuite Bedrooms', 'Grand Dining Area', 'Full Fitted Kitchen', 'Daily Housekeeping']
   },
@@ -32,7 +67,8 @@ export const APARTMENT_PRICING = [
     loyaltyPrice: '₦200,000',
     longStayPrice: '₦180,000',
     capacity: 'Ideal for 4–6 Guests',
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
+    defaultImageIdx: 3,
+    image: '/images/apartments/apt-bedroom-2.jpg',
     description: 'Opulent 3-bedroom family & VIP suite featuring master balcony, luxury marble baths, high-speed fiber internet, and premium sound systems.',
     features: ['3 Luxury Bedrooms', 'Master Balcony', 'High-Speed Fiber', 'Gated VIP Security']
   },
@@ -43,7 +79,8 @@ export const APARTMENT_PRICING = [
     loyaltyPrice: '₦300,000',
     longStayPrice: '₦250,000',
     capacity: 'VIP Executive Residency',
-    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80',
+    defaultImageIdx: 2,
+    image: '/images/apartments/apt-kitchen-1.jpg',
     description: 'The pinnacle of luxury. Top-floor Penthouse suite with 360° panoramic balcony view, private cocktail lounge setup, and dedicated 24/7 butler service.',
     features: ['360° Panoramic View', 'Private Cocktail Setup', 'Dedicated Butler', 'Smart Automation']
   }
@@ -54,6 +91,16 @@ export const ApartmentsSection = () => {
   const [showFlyerModal, setShowFlyerModal] = useState(false);
   const [inquiryForm, setInquiryForm] = useState({ name: '', phone: '', apartment: '1 BEDROOM APARTMENT', message: '' });
   const [submitted, setSubmitted] = useState(false);
+  const [activeImageIndices, setActiveImageIndices] = useState({});
+  const [fullscreenImage, setFullscreenImage] = useState(null);
+
+  const getActiveIdx = (aptId, defaultIdx) => {
+    return activeImageIndices[aptId] !== undefined ? activeImageIndices[aptId] : defaultIdx;
+  };
+
+  const setActiveIdx = (aptId, idx) => {
+    setActiveImageIndices(prev => ({ ...prev, [aptId]: idx }));
+  };
 
   const getInquiryMessage = () => {
     return `Hello Kcanice & Isabella Apartments! 🏨
@@ -166,86 +213,178 @@ ${inquiryForm.message ? `• Additional Message: ${inquiryForm.message}\n` : ''}
 
         {/* Pricing & Suite Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-          {APARTMENT_PRICING.map((apt) => (
-            <div key={apt.id} className="bento-card p-6 sm:p-8 flex flex-col justify-between group transition-all hover:-translate-y-1">
-              <div>
-                {/* Image */}
-                <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-zinc-900 mb-6">
-                  <img
-                    src={apt.image}
-                    alt={apt.type}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+          {APARTMENT_PRICING.map((apt) => {
+            const activeIdx = getActiveIdx(apt.id, apt.defaultImageIdx);
+            const currentImgObj = APARTMENT_ROOM_GALLERY[activeIdx];
 
-                  <div className="absolute top-4 left-4 z-10">
-                    <span className="chip-pill chip-pill-red shadow-md">
-                      Kcanice & Isabella
-                    </span>
-                  </div>
+            return (
+              <div key={apt.id} className="bento-card p-6 sm:p-8 flex flex-col justify-between group transition-all hover:-translate-y-1">
+                <div>
+                  {/* Image Frame */}
+                  <div 
+                    className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-zinc-900 mb-4 cursor-pointer group/img"
+                    onClick={() => setFullscreenImage(currentImgObj)}
+                  >
+                    <img
+                      src={currentImgObj.url}
+                      alt={currentImgObj.title}
+                      className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-700 ease-out"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
 
-                  <div className="absolute bottom-4 left-4 right-4 text-white z-10 flex items-end justify-between">
-                    <div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-red-400 block mb-0.5">
-                        {apt.capacity}
+                    <div className="absolute top-4 left-4 z-10">
+                      <span className="chip-pill chip-pill-red shadow-md">
+                        Kcanice & Isabella
                       </span>
-                      <h3 className="font-display text-xl sm:text-2xl font-bold tracking-tight">
-                        {apt.type}
-                      </h3>
+                    </div>
+
+                    {/* Camera Zoom Button */}
+                    <div className="absolute top-4 right-4 z-10">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setFullscreenImage(currentImgObj);
+                        }}
+                        className="bg-black/60 hover:bg-red-600 text-white p-2 rounded-full backdrop-blur-md transition-colors shadow-md"
+                        title="View Fullscreen Photo"
+                      >
+                        <Camera size={15} />
+                      </button>
+                    </div>
+
+                    <div className="absolute bottom-4 left-4 right-4 text-white z-10 flex items-end justify-between">
+                      <div>
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-red-400 block mb-0.5">
+                          {apt.capacity}
+                        </span>
+                        <h3 className="font-display text-xl sm:text-2xl font-bold tracking-tight">
+                          {apt.type}
+                        </h3>
+                      </div>
                     </div>
                   </div>
+
+                  {/* Room Gallery Interactive Thumbnails Bar */}
+                  <div className="mb-5 bg-zinc-50 p-2.5 rounded-2xl border border-zinc-200/80">
+                    <div className="flex items-center justify-between mb-2 px-1">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-500 flex items-center gap-1.5">
+                        <Camera size={12} className="text-red-600 shrink-0" /> Room Gallery ({APARTMENT_ROOM_GALLERY.length} Views)
+                      </span>
+                      <span className="text-[10px] font-semibold text-red-600 truncate max-w-[180px]">
+                        {currentImgObj.title}
+                      </span>
+                    </div>
+
+                    <div className="grid grid-cols-5 gap-1.5">
+                      {APARTMENT_ROOM_GALLERY.map((img, idx) => (
+                        <button
+                          key={img.id}
+                          onClick={() => setActiveIdx(apt.id, idx)}
+                          title={img.title}
+                          className={`relative aspect-square rounded-xl overflow-hidden border-2 transition-all ${
+                            activeIdx === idx
+                              ? 'border-red-600 shadow-md scale-105'
+                              : 'border-transparent opacity-60 hover:opacity-100'
+                          }`}
+                        >
+                          <img src={img.url} alt={img.title} className="w-full h-full object-cover" />
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <p className="text-zinc-600 text-xs sm:text-sm leading-relaxed mb-6 font-medium">
+                    {apt.description}
+                  </p>
+
+                  {/* Rates Table Card */}
+                  <div className="bg-zinc-50 rounded-2xl p-4 border border-zinc-200/80 mb-6 space-y-2 text-xs">
+                    <div className="flex items-center justify-between pb-2 border-b border-zinc-200 font-bold text-zinc-900">
+                      <span>Regular Night Rate:</span>
+                      <span className="font-mono text-base text-red-600">{apt.regularPrice}</span>
+                    </div>
+                    <div className="flex items-center justify-between text-zinc-600 font-semibold pt-1">
+                      <span className="flex items-center gap-1"><Tag size={12} className="text-emerald-600" /> Returning Guest Loyalty:</span>
+                      <span className="font-mono text-emerald-700 font-bold">{apt.loyaltyPrice}</span>
+                    </div>
+                    <div className="flex items-center justify-between text-zinc-600 font-semibold">
+                      <span className="flex items-center gap-1"><Clock size={12} className="text-indigo-600" /> Extended Stay Rate:</span>
+                      <span className="font-mono text-indigo-700 font-bold">{apt.longStayPrice}</span>
+                    </div>
+                  </div>
+
+                  {/* Features */}
+                  <div className="flex flex-wrap gap-1.5 mb-6">
+                    {apt.features.map((feat, idx) => (
+                      <span key={idx} className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-white text-zinc-700 border border-zinc-200">
+                        {feat}
+                      </span>
+                    ))}
+                  </div>
                 </div>
 
-                <p className="text-zinc-600 text-xs sm:text-sm leading-relaxed mb-6 font-medium">
-                  {apt.description}
-                </p>
-
-                {/* Rates Table Card */}
-                <div className="bg-zinc-50 rounded-2xl p-4 border border-zinc-200/80 mb-6 space-y-2 text-xs">
-                  <div className="flex items-center justify-between pb-2 border-b border-zinc-200 font-bold text-zinc-900">
-                    <span>Regular Night Rate:</span>
-                    <span className="font-mono text-base text-red-600">{apt.regularPrice}</span>
-                  </div>
-                  <div className="flex items-center justify-between text-zinc-600 font-semibold pt-1">
-                    <span className="flex items-center gap-1"><Tag size={12} className="text-emerald-600" /> Returning Guest Loyalty:</span>
-                    <span className="font-mono text-emerald-700 font-bold">{apt.loyaltyPrice}</span>
-                  </div>
-                  <div className="flex items-center justify-between text-zinc-600 font-semibold">
-                    <span className="flex items-center gap-1"><Clock size={12} className="text-indigo-600" /> Extended Stay Rate:</span>
-                    <span className="font-mono text-indigo-700 font-bold">{apt.longStayPrice}</span>
-                  </div>
-                </div>
-
-                {/* Features */}
-                <div className="flex flex-wrap gap-1.5 mb-6">
-                  {apt.features.map((feat, idx) => (
-                    <span key={idx} className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-white text-zinc-700 border border-zinc-200">
-                      {feat}
-                    </span>
-                  ))}
+                {/* Action */}
+                <div className="pt-4 border-t border-zinc-100 flex flex-col sm:flex-row items-center justify-between gap-2.5">
+                  <a
+                    href={getApartmentWhatsAppUrl(`Hello Kcanice & Isabella Apartments! 🏨\n\nI would like to book/inquire about the ${apt.type} (${apt.regularPrice}/night). Please let me know availability.`)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full sm:flex-1 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider py-3 rounded-full transition-all text-center flex items-center justify-center gap-2 shadow-md shadow-emerald-600/20"
+                  >
+                    <MessageCircle size={14} /> Book via WhatsApp
+                  </a>
+                  <a
+                    href="tel:08039352371"
+                    className="w-full sm:w-auto bg-zinc-100 hover:bg-zinc-200 text-zinc-800 text-xs font-bold uppercase tracking-wider py-3 px-4 rounded-full transition-all text-center flex items-center justify-center gap-1.5 border border-zinc-200"
+                  >
+                    <Phone size={13} /> Call Desk
+                  </a>
                 </div>
               </div>
+            );
+          })}
+        </div>
 
-              {/* Action */}
-              <div className="pt-4 border-t border-zinc-100 flex flex-col sm:flex-row items-center justify-between gap-2.5">
-                <a
-                  href={getApartmentWhatsAppUrl(`Hello Kcanice & Isabella Apartments! 🏨\n\nI would like to book/inquire about the ${apt.type} (${apt.regularPrice}/night). Please let me know availability.`)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full sm:flex-1 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider py-3 rounded-full transition-all text-center flex items-center justify-center gap-2 shadow-md shadow-emerald-600/20"
-                >
-                  <MessageCircle size={14} /> Book via WhatsApp
-                </a>
-                <a
-                  href="tel:08039352371"
-                  className="w-full sm:w-auto bg-zinc-100 hover:bg-zinc-200 text-zinc-800 text-xs font-bold uppercase tracking-wider py-3 px-4 rounded-full transition-all text-center flex items-center justify-center gap-1.5 border border-zinc-200"
-                >
-                  <Phone size={13} /> Call Desk
-                </a>
+        {/* Room Pictures Showcase Strip */}
+        <div className="mb-16 bg-[#f8f8f6] rounded-3xl p-6 sm:p-10 border border-zinc-200/80">
+          <div className="text-center max-w-2xl mx-auto mb-8">
+            <span className="chip-pill chip-pill-red mb-2 inline-flex items-center gap-1">
+              <Camera size={12} /> Real Interior Gallery
+            </span>
+            <h3 className="font-display text-2xl sm:text-3xl font-extrabold text-zinc-900 tracking-tight">
+              APARTMENT INTERIOR GALLERY
+            </h3>
+            <p className="text-zinc-600 text-xs sm:text-sm mt-1 font-medium">
+              Explore authentic photos of our furnished master bedrooms, modern fitted kitchens, and executive lounges.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            {APARTMENT_ROOM_GALLERY.map((img) => (
+              <div
+                key={img.id}
+                onClick={() => setFullscreenImage(img)}
+                className="group relative aspect-[4/3] rounded-2xl overflow-hidden bg-zinc-900 cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              >
+                <img
+                  src={img.url}
+                  alt={img.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+                <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span className="bg-black/60 text-white p-1.5 rounded-full backdrop-blur-md block">
+                    <Camera size={13} />
+                  </span>
+                </div>
+                <div className="absolute bottom-3 left-3 right-3 text-white">
+                  <p className="text-xs font-bold leading-tight drop-shadow-sm">{img.title}</p>
+                  <p className="text-[10px] text-zinc-300 line-clamp-1 mt-0.5">{img.caption}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
         {/* Contact & Inquiry Form Bento */}
@@ -384,6 +523,35 @@ ${inquiryForm.message ? `• Additional Message: ${inquiryForm.message}\n` : ''}
           </div>
         </div>
       )}
+
+      {/* Fullscreen Photo Lightbox Modal */}
+      {fullscreenImage && (
+        <div
+          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 animate-fade-in"
+          onClick={() => setFullscreenImage(null)}
+        >
+          <div className="relative max-w-4xl w-full text-center" onClick={(e) => e.stopPropagation()}>
+            <button
+              onClick={() => setFullscreenImage(null)}
+              className="absolute -top-12 right-0 text-white hover:text-red-500 font-bold flex items-center gap-1 text-sm bg-white/10 px-3 py-1 rounded-full"
+            >
+              Close <X size={18} />
+            </button>
+            <img
+              src={fullscreenImage.url}
+              alt={fullscreenImage.title}
+              className="w-full h-auto max-h-[80vh] object-contain rounded-2xl shadow-2xl border border-zinc-800"
+            />
+            <div className="mt-4 text-white text-center">
+              <h4 className="text-lg font-bold font-serif">{fullscreenImage.title}</h4>
+              {fullscreenImage.caption && (
+                <p className="text-xs text-zinc-300 mt-1">{fullscreenImage.caption}</p>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
+
